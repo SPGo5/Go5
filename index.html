@@ -1427,7 +1427,40 @@ html, body {
   <div id="profile-corner-code"></div>
 </div>
 <div id="logout-popup">
+  <button onclick="showProfilePicUploader()" style="background:none;border:1px solid rgba(0,191,255,0.4);color:rgba(0,191,255,0.85);font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;padding:10px 14px;border-radius:8px;cursor:pointer;text-align:left;">📷 Change profile pic</button>
   <button onclick="doLogout()">⟵ Log out</button>
+</div>
+
+<!-- Profile Pic Uploader Modal -->
+<div id="profile-pic-modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,40,0.92); flex-direction:column; align-items:center; justify-content:center; padding:24px;">
+  <div style="background:#000073; border:1px solid rgba(0,191,255,0.3); border-radius:16px; padding:24px; width:100%; max-width:380px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+    <div style="font-family:'Cinzel',serif; font-size:14px; color:var(--sky); letter-spacing:0.12em;">Change Profile Pic</div>
+    <div style="font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; color:rgba(255,100,100,0.8); text-align:center;">Note: your current profile pic will be replaced.</div>
+
+    <!-- Step 1: file pick -->
+    <div id="ppu-step1" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <label style="width:100%; padding:14px; background:rgba(0,191,255,0.1); border:1px dashed rgba(0,191,255,0.4); border-radius:10px; text-align:center; cursor:pointer; font-family:'Crimson Pro',serif; font-size:14px; color:var(--sky);">
+        📁 Pick a photo
+        <input type="file" accept="image/*" id="ppu-file-input" style="display:none;" onchange="ppuFileChosen(this)">
+      </label>
+    </div>
+
+    <!-- Step 2: crop UI -->
+    <div id="ppu-step2" style="display:none; width:100%; flex-direction:column; align-items:center; gap:12px;">
+      <div style="font-family:'Crimson Pro',serif; font-size:12px; color:rgba(255,255,255,0.6); text-align:center;">Drag to reposition · Pinch or scroll to zoom</div>
+      <div id="ppu-crop-wrap" style="position:relative; width:260px; height:260px; border-radius:50%; overflow:hidden; border:3px solid rgba(204,255,0,0.8); cursor:grab; touch-action:none; flex-shrink:0;">
+        <img id="ppu-img" style="position:absolute; transform-origin:top left;" draggable="false">
+      </div>
+      <div style="display:flex; gap:10px; width:100%;">
+        <button onclick="ppuZoom(-0.1)" style="flex:1; padding:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:white; border-radius:8px; font-size:18px; cursor:pointer;">−</button>
+        <button onclick="ppuZoom(0.1)"  style="flex:1; padding:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:white; border-radius:8px; font-size:18px; cursor:pointer;">+</button>
+      </div>
+      <button onclick="ppuUpload()" id="ppu-upload-btn" style="width:100%; padding:14px; background:var(--sky); color:#000073; font-family:'Cinzel',serif; font-size:13px; font-weight:700; border:none; border-radius:10px; cursor:pointer; letter-spacing:0.1em;">Save & Upload</button>
+      <div id="ppu-status" style="font-family:'Crimson Pro',serif; font-size:13px; color:rgba(255,255,255,0.7); font-style:italic; text-align:center; min-height:20px;"></div>
+    </div>
+
+    <button onclick="closePpuModal()" style="background:none; border:none; color:rgba(255,255,255,0.4); font-family:'Cinzel',serif; font-size:11px; cursor:pointer; letter-spacing:0.1em;">✕ Cancel</button>
+  </div>
 </div>
 
 <!-- ============================================================
@@ -3023,7 +3056,7 @@ let kwHistory = [];
 // ============================================================
 // UNIFIED JSONP helper for ALL GAS calls (avoids CORS issues)
 // ============================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbwnhEM3zfTLRof65C8KC3Nj4dtt8gACr0kwuzsWQHMls9VcY0aeP7Ba6F_Ntcecpf0QsQ/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbzI0j5PLoSz1eTjWYEU3PMh3iYSKcuZPZLYaAXZFzf5K5hGLVtD9Ff6oXDeJrVeki32/exec';
 
 function gasJsonp(params, onSuccess, onError, timeoutMs) {
   const cbName = 'gasCB_' + Date.now() + '_' + Math.floor(Math.random()*9999);
@@ -3176,7 +3209,8 @@ function showLoginError(msg) {
   if (el) { el.textContent = msg; el.style.display = 'block'; }
 }
 
-const PROFILE_PIC_BASE = 'https://raw.githubusercontent.com/SPGo5/Go5/main/Profile%20Pix/';
+const PROFILE_PIX_FOLDER = '1lqdsCGjE1-O51Y6JxGHuTdlhDvaFH-rA';
+let cachedProfilePicDataUri = null; // cached base64 data URI for this session
 
 function updateProfileCorner() {
   const corner = document.getElementById('profile-corner');
@@ -3184,7 +3218,6 @@ function updateProfileCorner() {
   const code = document.getElementById('profile-corner-code');
   if (!corner) return;
   if (isGuest) {
-    // Show Guest with 🆓 emoji
     corner.style.display = 'flex';
     img.style.display = 'none';
     code.innerHTML = 'Guest<br><span style="font-size:11px;">🆓</span>';
@@ -3197,10 +3230,28 @@ function updateProfileCorner() {
                   : currentTier === 3 ? 'Tier 3'
                   : '';
   code.innerHTML = currentUser + (tierLabel ? '<br><span style="font-size:8px;color:rgba(0,191,255,0.6);letter-spacing:0.05em;">' + tierLabel + '</span>' : '');
-  const picUrl = PROFILE_PIC_BASE + encodeURIComponent(currentUser) + '-Profile-Pic-R.png';
-  img.onerror = function() { img.src = ''; img.style.display = 'none'; };
-  img.onload = function() { img.style.display = 'block'; };
-  img.src = picUrl;
+  // Load from Drive via GAS (uses cache if already loaded this session)
+  loadProfilePic(currentUser, currentTier, function(dataUri) {
+    if (dataUri) { img.src = dataUri; img.style.display = 'block'; }
+    else { img.style.display = 'none'; }
+  });
+}
+
+function loadProfilePic(idCode, tier, callback) {
+  // Return cached version immediately if available
+  if (cachedProfilePicDataUri) { callback(cachedProfilePicDataUri); return; }
+  // Try personal pic first, then tier default
+  const picName = idCode + '-Profile-Pic-R.png';
+  const tierName = 'SPGo-Member-Tier' + tier + '.png';
+  gasJsonp('action=getProfilePic&idCode=' + encodeURIComponent(idCode) + '&tier=' + (tier||0), function(data) {
+    if (data.data) {
+      const uri = 'data:' + (data.mime || 'image/png') + ';base64,' + data.data;
+      cachedProfilePicDataUri = uri;
+      callback(uri);
+    } else {
+      callback(null);
+    }
+  }, function() { callback(null); });
 }
 
 function toggleLogoutPopup() {
@@ -3227,6 +3278,180 @@ document.addEventListener('click', function(e) {
     popup.style.display = 'none';
   }
 });
+
+// ============================================================
+// PROFILE PIC UPLOADER
+// ============================================================
+let ppuState = { scale: 1, x: 0, y: 0, dragging: false, lastX: 0, lastY: 0, naturalW: 0, naturalH: 0 };
+const PPU_SIZE = 260; // crop circle diameter in px
+
+function showProfilePicUploader() {
+  document.getElementById('logout-popup').style.display = 'none';
+  document.getElementById('ppu-step1').style.display = 'flex';
+  document.getElementById('ppu-step2').style.display = 'none';
+  document.getElementById('ppu-status').textContent = '';
+  document.getElementById('ppu-file-input').value = '';
+  document.getElementById('profile-pic-modal').style.display = 'flex';
+}
+
+function closePpuModal() {
+  document.getElementById('profile-pic-modal').style.display = 'none';
+}
+
+function ppuFileChosen(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = document.getElementById('ppu-img');
+    img.onload = function() {
+      ppuState.naturalW = img.naturalWidth;
+      ppuState.naturalH = img.naturalHeight;
+      // Fit image to fill the circle crop area
+      const fitScale = Math.max(PPU_SIZE / img.naturalWidth, PPU_SIZE / img.naturalHeight);
+      ppuState.scale = fitScale;
+      // Center
+      ppuState.x = (PPU_SIZE - img.naturalWidth * fitScale) / 2;
+      ppuState.y = (PPU_SIZE - img.naturalHeight * fitScale) / 2;
+      ppuApplyTransform();
+      document.getElementById('ppu-step1').style.display = 'none';
+      document.getElementById('ppu-step2').style.display = 'flex';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function ppuApplyTransform() {
+  const img = document.getElementById('ppu-img');
+  img.style.width = (ppuState.naturalW * ppuState.scale) + 'px';
+  img.style.height = (ppuState.naturalH * ppuState.scale) + 'px';
+  img.style.left = ppuState.x + 'px';
+  img.style.top = ppuState.y + 'px';
+}
+
+function ppuZoom(delta) {
+  const oldScale = ppuState.scale;
+  ppuState.scale = Math.max(0.2, Math.min(10, ppuState.scale + delta * ppuState.scale));
+  // Zoom toward center of crop circle
+  const ratio = ppuState.scale / oldScale;
+  ppuState.x = PPU_SIZE/2 - ratio * (PPU_SIZE/2 - ppuState.x);
+  ppuState.y = PPU_SIZE/2 - ratio * (PPU_SIZE/2 - ppuState.y);
+  ppuApplyTransform();
+}
+
+// Drag to reposition
+(function() {
+  function setupDrag() {
+    const wrap = document.getElementById('ppu-crop-wrap');
+    if (!wrap) return;
+
+    // Mouse
+    wrap.addEventListener('mousedown', function(e) {
+      ppuState.dragging = true; ppuState.lastX = e.clientX; ppuState.lastY = e.clientY;
+      wrap.style.cursor = 'grabbing'; e.preventDefault();
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (!ppuState.dragging) return;
+      ppuState.x += e.clientX - ppuState.lastX;
+      ppuState.y += e.clientY - ppuState.lastY;
+      ppuState.lastX = e.clientX; ppuState.lastY = e.clientY;
+      ppuApplyTransform();
+    });
+    document.addEventListener('mouseup', function() {
+      ppuState.dragging = false;
+      const wrap = document.getElementById('ppu-crop-wrap');
+      if (wrap) wrap.style.cursor = 'grab';
+    });
+
+    // Touch
+    wrap.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 1) {
+        ppuState.dragging = true;
+        ppuState.lastX = e.touches[0].clientX; ppuState.lastY = e.touches[0].clientY;
+      }
+    }, {passive: true});
+    wrap.addEventListener('touchmove', function(e) {
+      if (!ppuState.dragging || e.touches.length !== 1) return;
+      ppuState.x += e.touches[0].clientX - ppuState.lastX;
+      ppuState.y += e.touches[0].clientY - ppuState.lastY;
+      ppuState.lastX = e.touches[0].clientX; ppuState.lastY = e.touches[0].clientY;
+      ppuApplyTransform(); e.preventDefault();
+    }, {passive: false});
+    wrap.addEventListener('touchend', function() { ppuState.dragging = false; });
+
+    // Scroll to zoom
+    wrap.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      ppuZoom(e.deltaY < 0 ? 0.1 : -0.1);
+    }, {passive: false});
+  }
+  // Wait for DOM
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupDrag);
+  else setupDrag();
+})();
+
+async function ppuUpload() {
+  const statusEl = document.getElementById('ppu-status');
+  const btn = document.getElementById('ppu-upload-btn');
+  const img = document.getElementById('ppu-img');
+  if (!img.src) return;
+
+  // Draw cropped circle to canvas at 400×400px output
+  const OUT = 400;
+  const canvas = document.createElement('canvas');
+  canvas.width = OUT; canvas.height = OUT;
+  const ctx = canvas.getContext('2d');
+
+  // Clip to circle
+  ctx.beginPath(); ctx.arc(OUT/2, OUT/2, OUT/2, 0, Math.PI*2); ctx.clip();
+
+  // Scale from PPU_SIZE coords to OUT coords
+  const scaleRatio = OUT / PPU_SIZE;
+  ctx.drawImage(img,
+    ppuState.x * scaleRatio, ppuState.y * scaleRatio,
+    ppuState.naturalW * ppuState.scale * scaleRatio,
+    ppuState.naturalH * ppuState.scale * scaleRatio
+  );
+
+  // Compress: start at quality 0.85, reduce if > 300KB
+  let quality = 0.85;
+  let dataUrl;
+  do {
+    dataUrl = canvas.toDataURL('image/png');
+    // PNG doesn't have quality param — convert to JPEG for size control
+    dataUrl = canvas.toDataURL('image/jpeg', quality);
+    quality -= 0.1;
+  } while (dataUrl.length > 400000 && quality > 0.3);
+
+  btn.disabled = true;
+  statusEl.textContent = 'Uploading…';
+
+  // Strip data URI prefix for GAS
+  const base64 = dataUrl.split(',')[1];
+
+  gasJsonp(
+    'action=saveProfilePic&idCode=' + encodeURIComponent(currentUser) + '&data=' + encodeURIComponent(base64),
+    function(res) {
+      btn.disabled = false;
+      if (res.success) {
+        statusEl.textContent = '✅ Saved! Refreshing…';
+        // Bust cache and reload profile pic
+        cachedProfilePicDataUri = null;
+        setTimeout(function() {
+          updateProfileCorner();
+          closePpuModal();
+        }, 1500);
+      } else {
+        statusEl.textContent = '❌ Error: ' + (res.error || 'Upload failed');
+      }
+    },
+    function(err) {
+      btn.disabled = false;
+      statusEl.textContent = '❌ Connection error. Try again.';
+    }
+  );
+}
 
 function showIdInput() {}
 function loginWithId() {}
@@ -3891,7 +4116,7 @@ function copyDiceResultImage() {
   const dieType = diceSetup && diceSetup.type ? diceSetup.type : 6;
   const diceImgUrl = DIE_IMGS_MAP[dieType] || DIE_IMGS_MAP[6];
   const tsutsujiUrl = 'https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png';
-  const profileUrl = currentUser ? ('https://raw.githubusercontent.com/SPGo5/Go5/main/Profile%20Pix/' + encodeURIComponent(currentUser) + '-Profile-Pic-R.png') : null;
+  const profileUrl = cachedProfilePicDataUri || null; // use cached Drive pic
   const descText = ((document.getElementById('dice-description') || {}).value || '').trim();
 
   // === 2x scale for sharpness, same width as screen ===
@@ -3941,7 +4166,11 @@ function copyDiceResultImage() {
   ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
 
   let diceImg=null, tsutsujiImg=null, profileImg=null;
-  const totalToLoad = profileUrl ? 3 : 2;
+  // Load profile from cache — doesn't block canvas draw
+  if (cachedProfilePicDataUri && currentUser) {
+    const pi = new Image(); pi.onload = () => { profileImg = pi; }; pi.src = cachedProfilePicDataUri;
+  }
+  const totalToLoad = 2;
   let loaded = 0;
   function onLoaded() { loaded++; if (loaded >= totalToLoad) draw(); }
 
@@ -4041,10 +4270,6 @@ function copyDiceResultImage() {
   di.onload=()=>{diceImg=di;onLoaded();}; di.onerror=()=>onLoaded(); di.src=diceImgUrl;
   const ti=new Image(); ti.crossOrigin='anonymous';
   ti.onload=()=>{tsutsujiImg=ti;onLoaded();}; ti.onerror=()=>onLoaded(); ti.src=tsutsujiUrl;
-  if (profileUrl) {
-    const pi=new Image(); pi.crossOrigin='anonymous';
-    pi.onload=()=>{profileImg=pi;onLoaded();}; pi.onerror=()=>onLoaded(); pi.src=profileUrl;
-  }
 }
 
 
@@ -4304,13 +4529,13 @@ function kwCopyResultImage() {
 
   const guanyinUrl  = 'https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png';
   const tsutsujiUrl = 'https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png';
-  const profileUrl  = currentUser
-    ? 'https://raw.githubusercontent.com/SPGo5/Go5/main/Profile%20Pix/'
-      + encodeURIComponent(currentUser) + '-Profile-Pic-R.png'
-    : null;
 
   let guanyinImg = null, tsutsujiImg = null, profileImg = null;
-  const totalToLoad = profileUrl ? 3 : 2;
+  // Profile from cache — doesn't block canvas draw
+  if (cachedProfilePicDataUri && currentUser) {
+    const pi = new Image(); pi.onload = () => { profileImg = pi; }; pi.src = cachedProfilePicDataUri;
+  }
+  const totalToLoad = 2;
   let loaded = 0;
   function onLoaded() { loaded++; if (loaded >= totalToLoad) draw(); }
 
@@ -4446,9 +4671,11 @@ function kwCopyResultImage() {
   gi.onload = () => { guanyinImg = gi; onLoaded(); }; gi.onerror = () => onLoaded(); gi.src = guanyinUrl;
   const ti = new Image(); ti.crossOrigin = 'anonymous';
   ti.onload = () => { tsutsujiImg = ti; onLoaded(); }; ti.onerror = () => onLoaded(); ti.src = tsutsujiUrl;
-  if (profileUrl) {
-    const pi = new Image(); pi.crossOrigin = 'anonymous';
-    pi.onload = () => { profileImg = pi; onLoaded(); }; pi.onerror = () => onLoaded(); pi.src = profileUrl;
+  // Load profile pic from cache
+  if (cachedProfilePicDataUri && currentUser) {
+    const pi = new Image();
+    pi.onload = () => { profileImg = pi; }; // don't block download on this
+    pi.src = cachedProfilePicDataUri;
   }
 }
 
