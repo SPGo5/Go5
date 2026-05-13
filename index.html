@@ -3446,27 +3446,32 @@ async function ppuUpload() {
   // Strip data URI prefix for GAS
   const base64 = dataUrl.split(',')[1];
 
-  gasJsonp(
-    'action=saveProfilePic&idCode=' + encodeURIComponent(currentUser) + '&data=' + encodeURIComponent(base64),
-    function(res) {
-      btn.disabled = false;
-      if (res.success) {
-        statusEl.textContent = '✅ Saved! Refreshing…';
-        // Bust cache and reload profile pic
-        cachedProfilePicDataUri = null;
-        setTimeout(function() {
-          updateProfileCorner();
-          closePpuModal();
-        }, 1500);
-      } else {
-        statusEl.textContent = '❌ Error: ' + (res.error || 'Upload failed');
-      }
-    },
-    function(err) {
-      btn.disabled = false;
-      statusEl.textContent = '❌ Connection error. Try again.';
+  try {
+    const formData = new FormData();
+    formData.append('action', 'saveProfilePic');
+    formData.append('idCode', currentUser);
+    formData.append('data', base64);
+    const response = await fetch(GAS_URL, {
+      method: 'POST',
+      body: formData
+    });
+    const res = await response.json();
+    btn.disabled = false;
+    if (res.success) {
+      statusEl.textContent = '✅ Saved! Refreshing…';
+      cachedProfilePicDataUri = null;
+      cachedProfilePicIsPersonal = false;
+      setTimeout(function() {
+        updateProfileCorner();
+        closePpuModal();
+      }, 1500);
+    } else {
+      statusEl.textContent = '❌ Error: ' + (res.error || 'Upload failed');
     }
-  );
+  } catch(err) {
+    btn.disabled = false;
+    statusEl.textContent = '❌ Connection error. Try again.';
+  }
 }
 
 function showIdInput() {}
