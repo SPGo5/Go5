@@ -50,6 +50,16 @@ button:active, a.card:active, [onclick]:active {
   border: 2px solid rgba(0,191,255,0.5);
   box-shadow: 0 0 10px rgba(0,191,255,0.3);
 }
+#profile-corner img.flower-pic {
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  object-fit: contain;
+  box-shadow: none;
+  filter: drop-shadow(0 0 6px rgba(0,191,255,0.7)) drop-shadow(0 0 14px rgba(0,191,255,0.4));
+  width: 42px;
+  height: 42px;
+}
 #profile-corner-code {
   font-family: 'Cinzel', serif;
   font-size: 9px;
@@ -3210,7 +3220,8 @@ function showLoginError(msg) {
 }
 
 const PROFILE_PIX_FOLDER = '1lqdsCGjE1-O51Y6JxGHuTdlhDvaFH-rA';
-let cachedProfilePicDataUri = null; // cached base64 data URI for this session
+let cachedProfilePicDataUri = null;
+let cachedProfilePicIsPersonal = false;
 
 function updateProfileCorner() {
   const corner = document.getElementById('profile-corner');
@@ -3231,27 +3242,32 @@ function updateProfileCorner() {
                   : '';
   code.innerHTML = currentUser + (tierLabel ? '<br><span style="font-size:8px;color:rgba(0,191,255,0.6);letter-spacing:0.05em;">' + tierLabel + '</span>' : '');
   // Load from Drive via GAS (uses cache if already loaded this session)
-  loadProfilePic(currentUser, currentTier, function(dataUri) {
-    if (dataUri) { img.src = dataUri; img.style.display = 'block'; }
-    else { img.style.display = 'none'; }
+  loadProfilePic(currentUser, currentTier, function(dataUri, isPersonal) {
+    if (dataUri) {
+      img.src = dataUri;
+      img.style.display = 'block';
+      if (isPersonal) {
+        img.classList.remove('flower-pic');
+      } else {
+        img.classList.add('flower-pic');
+      }
+    } else { img.style.display = 'none'; }
   });
 }
 
 function loadProfilePic(idCode, tier, callback) {
-  // Return cached version immediately if available
-  if (cachedProfilePicDataUri) { callback(cachedProfilePicDataUri); return; }
-  // Try personal pic first, then tier default
-  const picName = idCode + '-Profile-Pic-R.png';
-  const tierName = 'SPGo-Member-Tier' + tier + '.png';
+  if (cachedProfilePicDataUri) { callback(cachedProfilePicDataUri, cachedProfilePicIsPersonal); return; }
   gasJsonp('action=getProfilePic&idCode=' + encodeURIComponent(idCode) + '&tier=' + (tier||0), function(data) {
     if (data.data) {
       const uri = 'data:' + (data.mime || 'image/png') + ';base64,' + data.data;
+      const isPersonal = !!(data.isPersonal);
       cachedProfilePicDataUri = uri;
-      callback(uri);
+      cachedProfilePicIsPersonal = isPersonal;
+      callback(uri, isPersonal);
     } else {
-      callback(null);
+      callback(null, false);
     }
-  }, function() { callback(null); });
+  }, function() { callback(null, false); });
 }
 
 function toggleLogoutPopup() {
