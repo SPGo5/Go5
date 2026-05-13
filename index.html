@@ -1428,6 +1428,942 @@ html, body {
 .fcs-en { font-family:'Roboto',sans-serif; font-size:12px; color:#ffffff; opacity:0.85; line-height:1.3; }
 .fcs-check-box { width:32px; min-width:32px; background:rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; font-size:16px; color:#00cc44; }
 </style>
+
+<!-- SPGo Shared Core Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SPGo5/Go5.SHARED@main/spgo-core.css">
+
+<style>
+/* ============================================================
+   SCREEN 0 — LOGIN
+   ============================================================ */
+#screen-B0-login .id-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 16px;
+  border: 2px solid rgba(0,191,255,0.3);
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.1em;
+  background: rgba(0,0,0,0.3);
+  color: white;
+  outline: none;
+  text-align: center;
+  text-transform: uppercase;
+  display: none;
+  margin-top: 14px;
+}
+#screen-B0-login .id-input::placeholder { color: rgba(255,255,255,0.25); }
+#screen-B0-login .id-input:focus { border-color: var(--sky); }
+#btn-go-id {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px;
+  background: var(--sky);
+  color: var(--navy);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: none;
+  margin-top: 10px;
+}
+.login-note {
+  font-size: 13px;
+  color: var(--text-mid);
+  text-align: center;
+  margin-top: 24px;
+  max-width: 320px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   SCREEN B4.3 — HOUSE FACING RULER (MAP)
+   ============================================================ */
+#map-container {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+}
+#leaflet-map {
+  width: 100%;
+  height: 400px;
+}
+#map-canvas-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 500;
+}
+#map-draw-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 600;
+  cursor: crosshair;
+  display: none;
+}
+.map-search-wrap {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.map-search-wrap input {
+  flex: 1;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid rgba(0,191,255,0.3);
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 14px;
+  font-family: 'Crimson Pro', serif;
+  padding: 0 16px;
+  outline: none;
+}
+.map-search-wrap input:focus { border-color: var(--sky); }
+.map-search-btn {
+  height: 50px;
+  padding: 0 20px;
+  border-radius: 10px;
+  background: var(--sky);
+  color: var(--navy);
+  border: none;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.map-toolbar {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,191,255,0.2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-top: 10px;
+}
+.map-tool-btn {
+  background: transparent;
+  border: 1px solid rgba(0,191,255,0.3);
+  color: var(--sky);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.map-tool-btn:hover { background: rgba(0,191,255,0.1); border-color: var(--sky); }
+.map-tool-btn.active { background: rgba(0,191,255,0.15); border-color: var(--sky); }
+.map-tool-btn.danger { border-color: rgba(255,80,80,0.4); color: rgba(255,80,80,0.8); }
+.map-tool-btn.danger:hover { background: rgba(255,80,80,0.1); }
+.map-instr {
+  font-size: 12px;
+  color: var(--text-mid);
+  font-style: italic;
+  flex: 1;
+  min-width: 160px;
+}
+
+/* BEARING RESULT */
+.bearing-result {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 14px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,191,255,0.25);
+  border-top: 2px solid rgba(200,169,110,0.5);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: none;
+}
+.bearing-result.active { display: block; }
+.bearing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.b-block { text-align: center; }
+.b-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 4px;
+}
+.b-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: #c8a96e;
+  line-height: 1;
+}
+.b-val sup { font-size: 1rem; opacity: 0.6; }
+.b-val.sm { font-size: 1.4rem; }
+.b-sub { font-size: 13px; color: var(--text-mid); font-style: italic; margin-top: 2px; }
+
+.bearing-result-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 14px;
+}
+.result-copy-btn {
+  background: transparent;
+  border: 1px solid rgba(200,169,110,0.5);
+  color: #c8a96e;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.1s, transform 0.08s, opacity 0.08s;
+  -webkit-tap-highlight-color: rgba(200,169,110,0.3);
+}
+.result-copy-btn:hover { background: rgba(200,169,110,0.1); }
+.result-copy-btn:active { transform: scale(0.94); opacity: 0.7; background: rgba(200,169,110,0.2); }
+.result-period-btn {
+  background: var(--sky);
+  border: none;
+  color: var(--navy);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.copy-confirm {
+  font-size: 12px;
+  color: var(--sky);
+  font-style: italic;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.copy-confirm.show { opacity: 1; }
+
+/* PERIOD PICKER (for B4.3 flow) */
+.period-picker {
+  width: 100%;
+  max-width: 700px;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+.period-picker.active { display: flex; }
+.period-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.period-btn {
+  background: var(--dim2);
+  border: 1px solid rgba(0,191,255,0.2);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 12px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.period-btn:hover { background: rgba(0,191,255,0.1); border-color: var(--sky); }
+.period-btn.selected { background: rgba(0,191,255,0.15); border-color: var(--sky); }
+
+/* MAGNETIC SECTION */
+.magnetic-section {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 16px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,191,255,0.15);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: none;
+}
+.magnetic-section.active { display: block; }
+.mag-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(200,169,110,0.7);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mag-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(200,169,110,0.2);
+}
+.mag-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.mag-field label {
+  font-size: 12px;
+  color: var(--text-mid);
+  min-width: 140px;
+  font-style: italic;
+}
+.mag-field input {
+  flex: 1;
+  min-width: 80px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,191,255,0.25);
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 13px;
+  padding: 0 12px;
+  outline: none;
+}
+.mag-field input:focus { border-color: var(--sky); }
+.mag-calc-btn {
+  width: 100%;
+  margin-top: 10px;
+  height: 46px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid rgba(200,169,110,0.4);
+  color: #c8a96e;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.mag-calc-btn:hover { background: rgba(200,169,110,0.08); }
+.mag-result-box {
+  margin-top: 12px;
+  padding: 14px;
+  background: rgba(200,169,110,0.06);
+  border: 1px solid rgba(200,169,110,0.15);
+  border-radius: 8px;
+  display: none;
+}
+.mag-result-box.active { display: block; }
+
+/* ============================================================
+   B4.4 — FLYING STAR CHART LOOKUP
+   ============================================================ */
+.fs-result-wrap {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 16px;
+  display: none;
+}
+.fs-result-wrap.active { display: block; }
+.fs-chart-img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+/* ============================================================
+   B2.1 — DICE ROLLER
+   ============================================================ */
+.dice-setup {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.dice-question {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 4px;
+}
+.dice-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dice-row .dropdown-wrap { flex: 1; margin-bottom: 0; }
+.die-rep-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 6px;
+}
+.die-rep-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.die-rep-num {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--sky);
+  min-width: 50px;
+}
+.die-rep-input {
+  flex: 1;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,191,255,0.3);
+  background: rgba(0,0,60,0.85) !important;
+  color: #ffffff !important;
+  font-size: 13px;
+  padding: 0 12px;
+  outline: none;
+  font-family: 'Crimson Pro', serif;
+  -webkit-text-fill-color: #ffffff !important;
+  color-scheme: dark;
+  /* Inset box-shadow forces dark bg even on mobile Chrome */
+  box-shadow: inset 0 0 0 1000px rgba(0,0,60,0.92);
+}
+.die-rep-input:-webkit-autofill,
+.die-rep-input:-webkit-autofill:hover,
+.die-rep-input:-webkit-autofill:focus,
+.die-rep-input:not(:placeholder-shown) {
+  background: rgba(0,0,60,0.95) !important;
+  -webkit-text-fill-color: white !important;
+  color: white !important;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,60,0.95) !important;
+  caret-color: white;
+}
+.die-rep-input::placeholder { color: rgba(255,255,255,0.35); }
+.die-rep-input:focus { border-color: var(--sky); box-shadow: inset 0 0 0 1000px rgba(0,0,80,0.95); }
+
+.dice-instruction-box {
+  background: var(--dim2);
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  width: 100%;
+  max-width: 420px;
+}
+.dice-instruction-box strong { color: var(--sky); }
+
+.dice-result-screen {
+  width: 100%;
+  max-width: 420px;
+  display: none;
+}
+.dice-result-screen.active { display: block; }
+.dice-result-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--dim2);
+  border: 1px solid var(--border-dim);
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.dice-result-num {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--text-dim);
+  min-width: 50px;
+}
+
+/* Dice rolling animation */
+.dice-rolling-wrap {
+  width: 100%;
+  max-width: 420px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 12px;
+}
+.dice-rolling-wrap.active { display: flex; }
+.dice-roll-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.die-anim {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  animation: dieRoll 0.15s infinite;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+@keyframes dieRoll {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(15deg) scale(1.1); }
+  50%  { transform: rotate(-10deg) scale(0.95); }
+  75%  { transform: rotate(8deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+.dice-rolling-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+.dice-result-rep {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-mid);
+  font-style: italic;
+}
+.dice-result-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #c8a96e;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* ============================================================
+   B2.2 — KWANYIN
+   ============================================================ */
+#screen-B2-2-2-T2 {
+  padding-bottom: 60px;
+}
+.kwanyin-title {
+  font-family: 'Klee One', 'Ma Shan Zheng', 'KaiTi', cursive;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.12em;
+  color: #f5f0e8;
+  text-shadow: 0 0 4px rgba(255,245,80,0.95), 0 0 22px rgba(255,248,140,0.45), 0 0 80px rgba(255,253,210,0.08);
+  margin: 20px 0 10px;
+}
+.kwanyin-img {
+  display: block;
+  margin: 0 auto 30px;
+  max-height: 180px;
+  width: auto;
+  filter: drop-shadow(0 0 6px rgba(204,255,0,0.9)) drop-shadow(0 0 22px rgba(204,255,0,0.5)) drop-shadow(0 0 50px rgba(204,255,0,0.2));
+}
+.kw-methods {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 16px;
+}
+.kw-method-card {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #ffffff;
+  border-radius: 12px;
+  padding: 14px 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  min-width: 0;
+}
+.kw-method-card:hover { background: #e8e8f5; }
+.kw-method-card.active {
+  border: 2.5px solid #000073;
+  background: #e8e8f5;
+  box-shadow: 0 0 0 3px rgba(0,0,115,0.25), inset 0 2px 6px rgba(0,0,0,0.15);
+}
+.kw-method-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+.kw-method-name {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(11px, 3vw, 28px);
+  font-weight: 700;
+  display: block;
+  color: #000073;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kw-method-desc { font-size: clamp(9px, 2.5vw, 14px); font-style: italic; color: #000073; }
+
+.kw-stage {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 24px 20px 28px;
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+}
+.kw-number {
+  font-family: 'Ma Shan Zheng', 'IM Fell English', serif;
+  font-size: 110px;
+  font-weight: 400;
+  line-height: 1;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5f0e8;
+  text-shadow: 0 0 4px rgba(255,245,80,0.95), 0 0 22px rgba(255,248,140,0.45);
+}
+.kw-number.rolling { animation: kw-flicker 0.08s infinite; }
+@keyframes kw-flicker {
+  0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; }
+}
+/* ============================================================
+   UNIVERSAL LOADING STATE — SPGo Super Portal Design System
+   All loading/status text across the portal must use:
+   - Font: Crimson Pro, italic
+   - Color: #ccff00 (lime) while loading, rgba(255,255,255,0.5) on error
+   - Animation: haircutPulse 1.2s ease-in-out infinite
+   - Text: "Loading…" (never "Loading your charts...", "Searching...", etc.)
+   - Apply class "sp-loading" to any loading text element
+   - Apply class "sp-loading-img" to any logo image shown while loading
+   The verifying screen also follows this pattern.
+   ============================================================ */
+.sp-loading {
+  font-family: 'Crimson Pro', serif !important;
+  font-style: italic !important;
+  font-size: 15px !important;
+  color: #ccff00 !important;
+  animation: haircutPulse 1.2s ease-in-out infinite !important;
+  text-align: center;
+}
+.sp-loading-img {
+  animation: haircutGlowBlob 1.6s ease-in-out infinite !important;
+}
+
+@keyframes haircutGlowBlob {
+  0%,100% { filter: drop-shadow(0 0 6px rgba(204,255,0,0.9)) drop-shadow(0 0 20px rgba(204,255,0,0.5)); transform: scale(1); }
+  50%      { filter: drop-shadow(0 0 18px rgba(204,255,0,1)) drop-shadow(0 0 40px rgba(204,255,0,0.7)); transform: scale(1.07); }
+}
+@keyframes haircutPulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+.kw-fate {
+  font-size: 18px;
+  font-style: italic;
+  color: #c8c0b0;
+  min-height: 26px;
+  margin-bottom: 20px;
+}
+.kw-btn {
+  font-family: 'IM Fell English', serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #000073;
+  background: #fffde0;
+  border: 1.5px solid #fff9a0;
+  border-radius: 8px;
+  padding: 14px 0;
+  width: 66%;
+  cursor: pointer;
+  box-shadow: 0 0 4px rgba(255,245,80,0.95), 0 0 22px rgba(255,248,140,0.45);
+  transition: background 0.15s, transform 0.1s;
+}
+.kw-btn:hover { background: #fffaaa; }
+.kw-btn:active { transform: scale(0.98); }
+.kw-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.kw-status { margin-top: 10px; font-size: 16px; font-style: italic; color: #a09888; min-height: 20px; }
+.kw-history {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 16px;
+}
+.kw-history-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  color: #a09888;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.kw-chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.kw-chip {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 16px;
+  color: #c8c0b0;
+}
+.kw-chip b { font-family: 'Ma Shan Zheng', serif; font-size: 18px; color: #f5f0e8; font-weight: 700; }
+.kw-chip small { font-size: 12px; opacity: 0.5; margin-left: 3px; }
+
+/* ============================================================
+   B1.4 — HAIRCUT
+   ============================================================ */
+.haircut-box {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid rgba(0,191,255,0.2);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--dim2);
+}
+.haircut-box-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 10px;
+}
+.haircut-date-display {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--sky);
+  margin-bottom: 14px;
+}
+.haircut-advice {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  min-height: 30px;
+}
+.haircut-date-input {
+  width: 100%;
+  height: 46px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,191,255,0.3);
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 14px;
+  padding: 0 14px;
+  outline: none;
+  margin-bottom: 12px;
+}
+.haircut-date-input:focus { border-color: var(--sky); }
+.haircut-note {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.portal-footer {
+  margin-top: 60px;
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+.footer-credit {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  font-style: italic;
+  line-height: 1.8;
+}
+.footer-credit strong { color: rgba(0,191,255,0.5); font-style: normal; font-weight: 400; }
+.footer-copy {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.2);
+  margin-top: 4px;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.red-note { color: var(--red); font-size: 13px; text-align: center; margin-top: 8px; }
+.info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--sky);
+  border: 1px solid rgba(0,191,255,0.3);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: background 0.15s;
+  margin-top: 10px;
+}
+.info-link:hover { background: rgba(0,191,255,0.08); }
+
+.coming-soon-tag {
+  font-size: 10px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.3);
+  color: var(--gold);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* ============================================================
+   2Hs MODULE STYLES
+   ============================================================ */
+.dob-select {
+  width: 100%;
+  height: 54px;
+  border-radius: 10px;
+  border: 2px solid rgba(0,191,255,0.3);
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 13px;
+  padding: 0 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%2300BFFF' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.dob-select option { background: #000073; color: #fff; }
+.hs-btn {
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255,255,255,0.1);
+  width: fit-content;
+  min-width: 280px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.hs-btn:hover { transform: scale(1.04); box-shadow: 0 0 50px rgba(255,255,255,0.6); }
+.hs-btn:active { transform: scale(0.97); }
+.hs-btn-orchid { width: 70px; height: 70px; object-fit: contain; flex-shrink: 0; }
+.hs-btn-body { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hs-btn-num { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600; opacity: 0.7; margin-bottom: 4px; text-align: center; }
+.hs-btn-char { font-size: 52px; font-weight: 700; line-height: 1; text-align: center; }
+.hs-btn-hint { font-size: 11px; color: rgba(255,255,255,0.35); text-align: center; margin-top: 8px; display: block; }
+.start-over-btn { margin-top: 32px; width: 75%; padding: 14px; border-radius: 10px; border: 1px solid rgba(0,191,255,0.3); background: transparent; color: rgba(255,255,255,0.4); font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.15em; cursor: pointer; display: block; margin-left: auto; margin-right: auto; }
+
+/* Pillar highlight */
+.hl { color: #FFD700; }
+
+/* Die type image picker */
+.die-type-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; padding: 10px 14px; border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05);
+  transition: all 0.2s; flex: 1; max-width: 110px;
+}
+.die-type-opt img { width: 56px; height: 56px; object-fit: contain; transition: transform 0.2s; }
+.die-type-opt.selected {
+  border: 2.5px solid var(--sky);
+  background: rgba(0,191,255,0.12);
+  box-shadow: 0 0 14px rgba(0,191,255,0.4);
+}
+.die-type-opt.selected img { transform: scale(1.15); }
+.die-type-label { font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.08em; color:rgba(255,255,255,0.7); }
+
+/* Randomness source picker */
+.dice-src-opt {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  cursor: pointer; padding: 10px 12px; border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05);
+  transition: all 0.2s; flex: 1;
+}
+.dice-src-opt.selected {
+  border: 2.5px solid var(--sky);
+  background: rgba(0,191,255,0.15);
+  box-shadow: 0 0 14px rgba(0,191,255,0.5), 0 0 30px rgba(0,191,255,0.2);
+  animation: srcGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes srcGlow {
+  from { box-shadow: 0 0 10px rgba(0,191,255,0.4); }
+  to   { box-shadow: 0 0 22px rgba(0,191,255,0.8); }
+}
+.dice-src-icon { font-size: 22px; }
+.dice-src-label { font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.08em; color:rgba(255,255,255,0.7); }
+.dice-src-opt:not(.selected) { opacity: 0.5; }
+
+/* kw-method glow when active (item 14) */
+.kw-method-card.active {
+  border: 2.5px solid #000073;
+  background: #e8e8f5;
+  box-shadow: 0 0 0 3px rgba(0,0,115,0.3), 0 0 18px rgba(0,100,255,0.5), inset 0 2px 6px rgba(0,0,0,0.15);
+  transform: scale(1.06);
+  animation: kwMethodGlow 1.4s ease-in-out infinite alternate;
+}
+@keyframes kwMethodGlow {
+  from { box-shadow: 0 0 0 3px rgba(0,0,115,0.2), 0 0 12px rgba(0,100,255,0.35); }
+  to   { box-shadow: 0 0 0 4px rgba(0,0,115,0.4), 0 0 28px rgba(0,100,255,0.7); }
+}
+.kw-method-card:not(.active) { opacity: 0.55; transform: scale(1); }
+
+/* ============================================================
+   4Cs & STRUCTURE (2Hs module)
+   ============================================================ */
+.fcs-container { border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); margin-bottom:16px; background:rgba(255,255,255,0.04); }
+.fcs-section-label { font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.15em; color:#ffffff; text-transform:uppercase; text-align:center; margin-bottom:12px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1); }
+.fcs-row { display:flex; flex-direction:row; align-items:stretch; gap:0; margin-bottom:0; border-radius:0; overflow:hidden; border:none; border-bottom:1px solid rgba(255,255,255,0.06); background:transparent; }
+.fcs-row:last-child { border-bottom:none; }
+.fcs-emoji-box { width:64px; min-width:64px; background:transparent; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; padding:8px; gap:2px; font-size:18px; line-height:1.3; border-right:1px solid rgba(255,255,255,0.07); }
+.fcs-mr-box { flex:1; background:transparent; padding:12px 14px; display:flex; flex-direction:column; justify-content:center; gap:3px; }
+.fcs-cn { font-family:'Noto Serif TC',serif; font-size:15px; font-weight:700; color:#ff6666; line-height:1.3; }
+.fcs-vn { font-family:'Noto Serif TC',serif; font-size:13px; color:#cc88ff; line-height:1.3; }
+.fcs-en { font-family:'Roboto',sans-serif; font-size:12px; color:#ffffff; opacity:0.85; line-height:1.3; }
+.fcs-check-box { width:32px; min-width:32px; background:rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; font-size:16px; color:#00cc44; }
+</style>
 </head>
 <body>
 
@@ -3034,560 +3970,11 @@ html, body {
 <!-- ============================================================
      JAVASCRIPT
      ============================================================ -->
+
+<!-- SPGo Shared Core Scripts -->
+<script src="https://cdn.jsdelivr.net/gh/SPGo5/Go5.SHARED@main/spgo-core.js"></script>
+
 <script>
-// ============================================================
-// STATE
-// ============================================================
-let currentUser = null;
-let currentUserName = 'Guest';
-let currentFsSubscriber = false;
-let currentHasPortal = false;
-let currentHasBara = false;
-let currentTier = 0; // 1, 2, or 3 (0 = none/guest)
-let isGuest = false;
-let mapInstance = null;
-let drawMode = false;
-let drawnLine = null;
-let drawCanvas = null;
-let drawCtx = null;
-let mapStartPt = null;
-let mapCurrentPt = null;
-let isDrawing = false;
-let currentTrueBearing = null;
-let currentMapLatLng = null; // center of map
-let currentPeriodForRuler = null;
-let kwSelectedMethod = 'quantum';
-let kwIsDrawing = false;
-let kwHistory = [];
-
-// ============================================================
-// LOGIN — Direct OAuth redirect (no library, guaranteed to work)
-// ============================================================
-// ============================================================
-// UNIFIED JSONP helper for ALL GAS calls (avoids CORS issues)
-// ============================================================
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbzA4RwYNLcv60HWAHOh2gQgeCfuOWAb0kyqP7BaiujKI5hylDQKEc4Cu6QtTs77PA7FnQ/exec';
-
-function gasJsonp(params, onSuccess, onError, timeoutMs) {
-  const cbName = 'gasCB_' + Date.now() + '_' + Math.floor(Math.random()*9999);
-  const script = document.createElement('script');
-  const url = GAS_URL + '?' + params + '&callback=' + cbName;
-  const timer = setTimeout(() => {
-    cleanup();
-    if (onError) onError('Timeout');
-  }, timeoutMs || 15000);
-  function cleanup() {
-    clearTimeout(timer);
-    delete window[cbName];
-    if (script.parentNode) script.parentNode.removeChild(script);
-  }
-  window[cbName] = function(data) { cleanup(); onSuccess(data); };
-  script.onerror = function() { cleanup(); if (onError) onError('Script load failed'); };
-  document.head.appendChild(script);
-  script.src = url;
-}
-const GOOGLE_CLIENT_ID = '427989206862-svhf1cote22nhdhkq68ff14446upp2m4.apps.googleusercontent.com';
-
-// On page load — check if returning from Google OAuth redirect
-// (runs after all functions are defined)
-function checkOAuthReturn() {
-  try {
-    // Check for saved login in localStorage (max 30 days)
-    const saved = localStorage.getItem('go_saved_user');
-    if (saved && !window.location.hash.includes('access_token')) {
-      const s = JSON.parse(saved);
-      const age = Date.now() - (s.savedAt || 0);
-      if (age < 30 * 24 * 3600 * 1000 && s.user && s.email) {
-        // Restore session immediately so user isn't logged out
-        currentUser = s.user;
-        currentUserName = s.name || s.user;
-        currentFsSubscriber = !!s.fs;
-        currentHasPortal = !!s.portal;
-        currentHasBara = !!s.hasBara;
-        currentTier = s.tier || 0;
-        isGuest = false;
-        setHomeState();
-        updateProfileCorner();
-        goTo('screen-B0');
-        // Re-fetch from GAS in background to refresh name/portal/tier
-        gasJsonp('action=validateEmail&email=' + encodeURIComponent(s.email), function(data) {
-          if (data.valid) {
-            currentUserName = data.name || currentUser;
-            currentFsSubscriber = data.fsSubscriber === true;
-            currentHasPortal = data.hasPortal === true;
-            currentHasBara = data.hasBara === true;
-            currentTier = data.tier || 0;
-            // Update cache with fresh data
-            try {
-              localStorage.setItem('go_saved_user', JSON.stringify({
-                user: currentUser, name: currentUserName,
-                fs: currentFsSubscriber, portal: currentHasPortal,
-                hasBara: currentHasBara, tier: currentTier,
-                email: s.email, savedAt: Date.now()
-              }));
-            } catch(e) {}
-            setHomeState();
-            updateProfileCorner();
-          }
-        }, null);
-        return;
-      } else {
-        localStorage.removeItem('go_saved_user');
-      }
-    }
-    const hash = window.location.hash;
-    if (!hash || !hash.includes('access_token')) return;
-    const params = new URLSearchParams(hash.replace('#', ''));
-    const token = params.get('access_token');
-    if (token) {
-      history.replaceState({}, '', window.location.pathname);
-      validateWithToken(token);
-    }
-  } catch(e) {}
-}
-
-async function validateWithToken(token) {
-  // Show full-screen verifying state
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const verifyScreen = document.getElementById('screen-B0-verify');
-  if (verifyScreen) verifyScreen.classList.add('active');
-
-  try {
-    const infoResp = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: 'Bearer ' + token }
-    });
-    const userInfo = await infoResp.json();
-    const email = userInfo.email;
-
-    if (!email) {
-      goTo('screen-B0-login');
-      showLoginError('Could not get your email from Google. Please try again.');
-      return;
-    }
-
-    // JSONP to avoid CORS with GAS
-    gasJsonp('action=validateEmail&email=' + encodeURIComponent(email), function(data) {
-      if (data.valid) {
-        currentUser = data.idCode || email;
-        currentUserName = data.name || data.idCode || email;
-        currentFsSubscriber = data.fsSubscriber === true;
-        currentHasPortal = data.hasPortal === true;
-        currentHasBara = data.hasBara === true;
-        currentTier = data.tier || 0;
-        isGuest = false;
-        try {
-          localStorage.setItem('go_saved_user', JSON.stringify({
-            user: currentUser, name: currentUserName,
-            fs: currentFsSubscriber, portal: currentHasPortal,
-            hasBara: currentHasBara, tier: currentTier,
-            email: email, savedAt: Date.now()
-          }));
-        } catch(e) {}
-        setHomeState();
-        updateProfileCorner();
-        goTo('screen-B0');
-      } else {
-        goTo('screen-B0-login');
-        showLoginError('Your account (' + email + ') is not registered. Please contact your administrator.');
-      }
-    }, function() {
-      goTo('screen-B0-login');
-      showLoginError('Connection error. Check your internet and try again.');
-    });
-  } catch(e) {
-    goTo('screen-B0-login');
-    showLoginError('Connection error. Check your internet and try again.');
-  }
-}
-
-function startGoogleLogin() {
-  // Build Google OAuth URL — implicit flow, returns access_token in hash
-  const redirectUri = window.location.origin + window.location.pathname;
-  const params = new URLSearchParams({
-    client_id: GOOGLE_CLIENT_ID,
-    redirect_uri: redirectUri,
-    response_type: 'token',
-    scope: 'email profile',
-    prompt: 'select_account'
-  });
-  // Redirect to Google — user picks account, Google redirects back with token
-  window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?' + params.toString();
-}
-
-function showLoginError(msg) {
-  const el = document.getElementById('login-error');
-  if (el) { el.textContent = msg; el.style.display = 'block'; }
-}
-
-const PROFILE_PIX_FOLDER = '1lqdsCGjE1-O51Y6JxGHuTdlhDvaFH-rA';
-let cachedProfilePicDataUri = null;
-let cachedProfilePicIsPersonal = false;
-
-function updateProfileCorner() {
-  const corner = document.getElementById('profile-corner');
-  const img = document.getElementById('profile-corner-img');
-  const code = document.getElementById('profile-corner-code');
-  if (!corner) return;
-  if (isGuest) {
-    corner.style.display = 'flex';
-    img.style.display = 'none';
-    code.innerHTML = 'Guest<br><span style="font-size:11px;">🆓</span>';
-    return;
-  }
-  if (!currentUser) { corner.style.display = 'none'; return; }
-  corner.style.display = 'flex';
-  const tierLabel = currentTier === 1 ? 'Tier 1 💎'
-                  : currentTier === 2 ? 'Tier 2'
-                  : currentTier === 3 ? 'Tier 3'
-                  : '';
-  code.innerHTML = currentUser + (tierLabel ? '<br><span style="font-size:8px;color:rgba(0,191,255,0.6);letter-spacing:0.05em;">' + tierLabel + '</span>' : '');
-  // Load from Drive via GAS (uses cache if already loaded this session)
-  loadProfilePic(currentUser, currentTier, function(dataUri, isPersonal) {
-    if (dataUri) {
-      img.src = dataUri;
-      img.style.display = 'block';
-      if (isPersonal) {
-        img.classList.remove('flower-pic');
-      } else {
-        img.classList.add('flower-pic');
-      }
-    } else { img.style.display = 'none'; }
-  });
-}
-
-function loadProfilePic(idCode, tier, callback) {
-  if (cachedProfilePicDataUri) { callback(cachedProfilePicDataUri, cachedProfilePicIsPersonal); return; }
-  gasJsonp('action=getProfilePic&idCode=' + encodeURIComponent(idCode) + '&tier=' + (tier||0), function(data) {
-    if (data.data) {
-      const uri = 'data:' + (data.mime || 'image/png') + ';base64,' + data.data;
-      const isPersonal = !!(data.isPersonal);
-      cachedProfilePicDataUri = uri;
-      cachedProfilePicIsPersonal = isPersonal;
-      callback(uri, isPersonal);
-    } else {
-      callback(null, false);
-    }
-  }, function() { callback(null, false); });
-}
-
-function toggleLogoutPopup() {
-  const popup = document.getElementById('logout-popup');
-  if (!popup) return;
-  const showing = popup.style.display === 'flex';
-  popup.style.display = showing ? 'none' : 'flex';
-}
-
-function doLogout() {
-  try { localStorage.removeItem('go_saved_user'); } catch(e) {}
-  document.getElementById('logout-popup').style.display = 'none';
-  document.getElementById('profile-corner').style.display = 'none';
-  currentUser = null; currentUserName = 'Guest';
-  currentFsSubscriber = false; currentHasPortal = false; isGuest = false;
-  goTo('screen-B0-login');
-}
-
-// Close popup when clicking elsewhere
-document.addEventListener('click', function(e) {
-  const popup = document.getElementById('logout-popup');
-  const corner = document.getElementById('profile-corner');
-  if (popup && popup.style.display === 'flex' && !popup.contains(e.target) && !corner.contains(e.target)) {
-    popup.style.display = 'none';
-  }
-});
-
-// ============================================================
-// PROFILE PIC UPLOADER
-// ============================================================
-let ppuState = { scale: 1, x: 0, y: 0, dragging: false, lastX: 0, lastY: 0, naturalW: 0, naturalH: 0 };
-const PPU_SIZE = 260; // crop circle diameter in px
-
-function showProfilePicUploader() {
-  document.getElementById('logout-popup').style.display = 'none';
-  document.getElementById('ppu-step1').style.display = 'flex';
-  document.getElementById('ppu-step2').style.display = 'none';
-  document.getElementById('ppu-status').textContent = '';
-  document.getElementById('ppu-file-input').value = '';
-  document.getElementById('profile-pic-modal').style.display = 'flex';
-}
-
-function closePpuModal() {
-  document.getElementById('profile-pic-modal').style.display = 'none';
-}
-
-function ppuFileChosen(input) {
-  if (!input.files || !input.files[0]) return;
-  const file = input.files[0];
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = document.getElementById('ppu-img');
-    img.onload = function() {
-      ppuState.naturalW = img.naturalWidth;
-      ppuState.naturalH = img.naturalHeight;
-      // Fit image to fill the circle crop area
-      const fitScale = Math.max(PPU_SIZE / img.naturalWidth, PPU_SIZE / img.naturalHeight);
-      ppuState.scale = fitScale;
-      // Center
-      ppuState.x = (PPU_SIZE - img.naturalWidth * fitScale) / 2;
-      ppuState.y = (PPU_SIZE - img.naturalHeight * fitScale) / 2;
-      ppuApplyTransform();
-      document.getElementById('ppu-step1').style.display = 'none';
-      document.getElementById('ppu-step2').style.display = 'flex';
-    };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function ppuApplyTransform() {
-  const img = document.getElementById('ppu-img');
-  img.style.width = (ppuState.naturalW * ppuState.scale) + 'px';
-  img.style.height = (ppuState.naturalH * ppuState.scale) + 'px';
-  img.style.left = ppuState.x + 'px';
-  img.style.top = ppuState.y + 'px';
-}
-
-function ppuZoom(delta) {
-  const oldScale = ppuState.scale;
-  ppuState.scale = Math.max(0.2, Math.min(10, ppuState.scale + delta * ppuState.scale));
-  // Zoom toward center of crop circle
-  const ratio = ppuState.scale / oldScale;
-  ppuState.x = PPU_SIZE/2 - ratio * (PPU_SIZE/2 - ppuState.x);
-  ppuState.y = PPU_SIZE/2 - ratio * (PPU_SIZE/2 - ppuState.y);
-  ppuApplyTransform();
-}
-
-// Drag to reposition
-(function() {
-  function setupDrag() {
-    const wrap = document.getElementById('ppu-crop-wrap');
-    if (!wrap) return;
-
-    // Mouse
-    wrap.addEventListener('mousedown', function(e) {
-      ppuState.dragging = true; ppuState.lastX = e.clientX; ppuState.lastY = e.clientY;
-      wrap.style.cursor = 'grabbing'; e.preventDefault();
-    });
-    document.addEventListener('mousemove', function(e) {
-      if (!ppuState.dragging) return;
-      ppuState.x += e.clientX - ppuState.lastX;
-      ppuState.y += e.clientY - ppuState.lastY;
-      ppuState.lastX = e.clientX; ppuState.lastY = e.clientY;
-      ppuApplyTransform();
-    });
-    document.addEventListener('mouseup', function() {
-      ppuState.dragging = false;
-      const wrap = document.getElementById('ppu-crop-wrap');
-      if (wrap) wrap.style.cursor = 'grab';
-    });
-
-    // Touch
-    wrap.addEventListener('touchstart', function(e) {
-      if (e.touches.length === 1) {
-        ppuState.dragging = true;
-        ppuState.lastX = e.touches[0].clientX; ppuState.lastY = e.touches[0].clientY;
-      }
-    }, {passive: true});
-    wrap.addEventListener('touchmove', function(e) {
-      if (!ppuState.dragging || e.touches.length !== 1) return;
-      ppuState.x += e.touches[0].clientX - ppuState.lastX;
-      ppuState.y += e.touches[0].clientY - ppuState.lastY;
-      ppuState.lastX = e.touches[0].clientX; ppuState.lastY = e.touches[0].clientY;
-      ppuApplyTransform(); e.preventDefault();
-    }, {passive: false});
-    wrap.addEventListener('touchend', function() { ppuState.dragging = false; });
-
-    // Scroll to zoom
-    wrap.addEventListener('wheel', function(e) {
-      e.preventDefault();
-      ppuZoom(e.deltaY < 0 ? 0.1 : -0.1);
-    }, {passive: false});
-  }
-  // Wait for DOM
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setupDrag);
-  else setupDrag();
-})();
-
-async function ppuUpload() {
-  const statusEl = document.getElementById('ppu-status');
-  const btn = document.getElementById('ppu-upload-btn');
-  const img = document.getElementById('ppu-img');
-  if (!img.src) return;
-
-  // Draw cropped circle to canvas at 400×400px output
-  const OUT = 400;
-  const canvas = document.createElement('canvas');
-  canvas.width = OUT; canvas.height = OUT;
-  const ctx = canvas.getContext('2d');
-
-  // Clip to circle
-  ctx.beginPath(); ctx.arc(OUT/2, OUT/2, OUT/2, 0, Math.PI*2); ctx.clip();
-
-  // Scale from PPU_SIZE coords to OUT coords
-  const scaleRatio = OUT / PPU_SIZE;
-  ctx.drawImage(img,
-    ppuState.x * scaleRatio, ppuState.y * scaleRatio,
-    ppuState.naturalW * ppuState.scale * scaleRatio,
-    ppuState.naturalH * ppuState.scale * scaleRatio
-  );
-
-  // Compress: start at quality 0.85, reduce if > 300KB
-  let quality = 0.85;
-  let dataUrl;
-  do {
-    dataUrl = canvas.toDataURL('image/png');
-    // PNG doesn't have quality param — convert to JPEG for size control
-    dataUrl = canvas.toDataURL('image/jpeg', quality);
-    quality -= 0.1;
-  } while (dataUrl.length > 400000 && quality > 0.3);
-
-  btn.disabled = true;
-  statusEl.textContent = 'Uploading…';
-
-  // Strip data URI prefix for GAS
-  const base64 = dataUrl.split(',')[1];
-
-  try {
-    const formData = new FormData();
-    formData.append('action', 'saveProfilePic');
-    formData.append('idCode', currentUser);
-    formData.append('data', base64);
-    const response = await fetch(GAS_URL, {
-      method: 'POST',
-      body: formData
-    });
-    const res = await response.json();
-    btn.disabled = false;
-    if (res.success) {
-      statusEl.textContent = '✅ Saved! Refreshing…';
-      cachedProfilePicDataUri = null;
-      cachedProfilePicIsPersonal = false;
-      setTimeout(function() {
-        updateProfileCorner();
-        closePpuModal();
-      }, 1500);
-    } else {
-      statusEl.textContent = '❌ Error: ' + (res.error || 'Upload failed');
-    }
-  } catch(err) {
-    btn.disabled = false;
-    statusEl.textContent = '❌ Connection error. Try again.';
-  }
-}
-
-function showIdInput() {}
-function loginWithId() {}
-function handleGoogleLogin() {}
-function initGoogleAuth() {}
-
-function guestLogin() {
-  currentUser = null;
-  currentUserName = 'Guest';
-  currentFsSubscriber = false;
-  currentHasPortal = false;
-  isGuest = true;
-  try { localStorage.removeItem('go_saved_user'); } catch(e) {}
-  setHomeState();
-  updateProfileCorner();
-  goTo('screen-B0');
-}
-
-function getTimeGreeting() {
-  const h = new Date().getHours();
-  if (h >= 5 && h < 12) return 'Good morning';
-  if (h >= 12 && h < 17) return 'Good afternoon';
-  if (h >= 17 && h < 21) return 'Good evening';
-  return 'Good night';
-}
-
-function setHomeState() {
-  const b3 = document.getElementById('card-b3');
-  const b4 = document.getElementById('card-b4');
-  const b6 = document.getElementById('card-b6');
-
-  if (isGuest) {
-    b3.classList.add('grayed');
-    b4.classList.add('grayed');
-    b6.classList.add('grayed');
-    const _baraCard = document.getElementById('card-bara');
-    const _baraNote = document.getElementById('bara-sub-note');
-    if (_baraCard) { _baraCard.classList.add('grayed'); if (_baraNote) _baraNote.style.display = 'block'; }
-    document.getElementById('home-greeting').textContent = 'Welcome, Guest';
-  } else {
-    b3.classList.remove('grayed');
-    b4.classList.remove('grayed');
-    // Personal portal: column C = X (hasPortal)
-    if (currentHasPortal) {
-      b6.classList.remove('grayed');
-    } else {
-      b6.classList.add('grayed');
-    }
-    // Bara: column G = X (hasBara)
-    const baraCard = document.getElementById('card-bara');
-    const baraNote = document.getElementById('bara-sub-note');
-    if (baraCard) {
-      if (currentHasBara) {
-        baraCard.classList.remove('grayed');
-        if (baraNote) baraNote.style.display = 'none';
-        const baraNote2 = document.getElementById('bara-sub-note2');
-        if (baraNote2) baraNote2.style.display = 'none';
-      } else {
-        baraCard.classList.add('grayed');
-        if (baraNote) baraNote.style.display = 'block';
-        const baraNote2 = document.getElementById('bara-sub-note2');
-        if (baraNote2) baraNote2.style.display = 'block';
-      }
-    }
-    document.getElementById('home-greeting').textContent = getTimeGreeting() + ', ' + currentUserName;
-  }
-
-  // Gate fengshui tools
-  applyFsSubscriberGating();
-  // Gate tier-based features
-  applyTierGating();
-
-  // Visit counter (localStorage)
-  let visits = parseInt(localStorage.getItem('go_portal_visits') || '0') + 1;
-  localStorage.setItem('go_portal_visits', visits);
-  document.getElementById('visit-count').textContent = visits.toLocaleString() + ' visits';
-}
-
-function applyTierGating() {
-  // "See what Lot says" — grayed for Tier 3 and guests
-  const linkEl = document.getElementById('kw-lot-link');
-  const noteEl = document.getElementById('kw-tier-note');
-  const canSeeLink = !isGuest && (currentTier === 1 || currentTier === 2);
-  if (linkEl) {
-    linkEl.style.pointerEvents = canSeeLink ? 'auto' : 'none';
-    linkEl.style.opacity = canSeeLink ? '1' : '0.3';
-    linkEl.style.cursor = canSeeLink ? 'pointer' : 'default';
-  }
-  if (noteEl) noteEl.style.display = canSeeLink ? 'none' : 'block';
-}
-
-function applyFsSubscriberGating() {
-  // Cards inside B4 screen that require FS (ii) Shage subscription
-  const fsToolCards = document.querySelectorAll('.fs-tool-gated');
-  const fsNote = document.querySelectorAll('.fs-subscriber-note');
-  if (!isGuest && currentFsSubscriber) {
-    fsToolCards.forEach(el => el.classList.remove('grayed'));
-    fsNote.forEach(el => el.style.display = 'none');
-  } else {
-    fsToolCards.forEach(el => el.classList.add('grayed'));
-    fsNote.forEach(el => el.style.display = 'block');
-  }
-}
-
-function openPersonalPortal() {
-  if (!isGuest && currentUser) {
-    window.open('https://sites.google.com/view/fsvi' + currentUser.toLowerCase(), '_blank');
-  }
-}
-
-document.addEventListener('keydown', function(e) {
-  const inp = document.getElementById('idInput');
-  if (inp && inp.style.display === 'block' && e.key === 'Enter') loginWithId();
-});
-
 // ============================================================
 // FENGSHUI DATA
 // ============================================================
@@ -5664,8 +6051,6 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-
-
 </script>
 
 </body>
