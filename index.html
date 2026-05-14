@@ -2374,6 +2374,7 @@ html, body {
 </div>
 <div id="logout-popup">
   <button onclick="showProfilePicUploader()" style="background:none;border:1px solid rgba(0,191,255,0.4);color:rgba(0,191,255,0.85);font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;padding:10px 14px;border-radius:8px;cursor:pointer;text-align:left;">📷 Change profile pic</button>
+  <button onclick="useDefaultProfilePic()" style="background:none;border:1px solid rgba(0,191,255,0.3);color:rgba(0,191,255,0.65);font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;padding:10px 14px;border-radius:8px;cursor:pointer;text-align:left;">🌸 Use default profile pic</button>
   <button onclick="doLogout()">⟵ Log out</button>
 </div>
 
@@ -2381,7 +2382,7 @@ html, body {
 <div id="profile-pic-modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,40,0.92); flex-direction:column; align-items:center; justify-content:center; padding:24px;">
   <div style="background:#000073; border:1px solid rgba(0,191,255,0.3); border-radius:16px; padding:24px; width:100%; max-width:380px; display:flex; flex-direction:column; align-items:center; gap:16px;">
     <div style="font-family:'Cinzel',serif; font-size:14px; color:var(--sky); letter-spacing:0.12em;">Change Profile Pic</div>
-    <div style="font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; color:rgba(255,100,100,0.8); text-align:center;">Note: your current profile pic will be replaced.</div>
+    <div style="font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; color:rgba(255,100,100,0.8); text-align:center;">Replacing this photo permanently deletes it. There's no profile album like Facebook.</div>
 
     <!-- Step 1: file pick -->
     <div id="ppu-step1" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:12px;">
