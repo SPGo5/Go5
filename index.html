@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>🔮 觀音靈簽 GYO · Divination (i) Tsutsuji</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Beau+Rivage&family=Ma+Shan+Zheng&family=Klee+One&family=Corinthia&family=Aleo:wght@300;400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="alternate" type="application/json+oembed" href="https://SPGo5.github.io/Go5.GYO/oembed.json" title="觀音靈簽 GYO · Divination (i) Tsutsuji">
-  <meta property="og:title" content="🔮 觀音靈簽 GYO · Guanyin Oracle">
-  <meta property="og:description" content="Divination (i) Tsutsuji — Guanyin Oracle">
-  <meta property="og:image" content="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/Wb0KsPF7/Lladro-Guan-Yin-64x64-for-avatar-icon.png">
-  <link rel="apple-touch-icon" href="https://i.postimg.cc/CK7JtjmC/Lladro-GYGlow-Green-Med.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#000073">
+<title>五 Go · Super Portal</title>
+<link rel="alternate" type="application/json+oembed"
+  href="https://SPGo5.github.io/Go5/oembed.json"
+  title="五 Go Super Portal">
+<meta property="og:title" content="五 Go · Super Portal">
+<meta property="og:description" content="QMDJ, Divination, Fengshui, Life Study — your personal super portal.">
+<meta property="og:image" content="https://i.postimg.cc/fRdF8YCj/Hibiscus_orange_5.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="https://i.postimg.cc/ryZgWswz/Go5_favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400&family=Ma+Shan+Zheng&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Beau+Rivage&family=Klee+One&family=Corinthia&family=Aleo:wght@300;400;700&family=Grey+Qo&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://spgo5.github.io/Go5.SHARED/spgo-core.css">
 
-  <link rel="stylesheet" href="https://spgo5.github.io/Go5.SHARED/spgo-core.css">
 <style>
-
 /* Global touch feedback — every button gets a press feel */
 button:active, a.card:active, [onclick]:active {
   opacity: 0.75 !important;
@@ -43,6 +48,16 @@ button:active, a.card:active, [onclick]:active {
   object-fit: cover;
   border: 2px solid rgba(0,191,255,0.5);
   box-shadow: 0 0 10px rgba(0,191,255,0.3);
+}
+#profile-corner img.flower-pic {
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  object-fit: contain;
+  box-shadow: none;
+  filter: drop-shadow(0 0 6px rgba(0,191,255,0.7)) drop-shadow(0 0 14px rgba(0,191,255,0.4));
+  width: 42px;
+  height: 42px;
 }
 #profile-corner-code {
   font-family: 'Cinzel', serif;
@@ -86,12 +101,6 @@ button:active, a.card:active, [onclick]:active {
   text-align: left;
 }
 #logout-popup button:active { opacity: 0.7; }
-/* Explicit active for inline copy/action buttons */
-.kw-action-btn:active, .copy-btn-pair button:active {
-  transform: scale(0.94) !important;
-  opacity: 0.7 !important;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4) !important;
-}
 
 /* ============================================================
    RESET & VARIABLES
@@ -149,6 +158,12 @@ html, body {
 @keyframes verifyPulse {
   0%,100% { opacity:0.7; transform:scale(1); filter:drop-shadow(0 0 14px rgba(0,191,255,0.5)); }
   50%      { opacity:1;   transform:scale(1.08); filter:drop-shadow(0 0 28px rgba(0,191,255,0.9)); }
+}
+@keyframes verifyDots {
+  0%  { content:'Verifying'; }
+  25% { content:'Verifying.'; }
+  50% { content:'Verifying..'; }
+  75% { content:'Verifying...'; }
 }
 #verify-text::after {
   content:'';
@@ -261,9 +276,33 @@ html, body {
   color: var(--sky);
   margin-bottom: 3px;
 }
+.card-alias {
+  font-family: 'Grey Qo', cursive;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+}
 .card-desc { font-size: 13px; color: rgba(255,255,255,0.5); }
 .card-desc2 { font-size: 12px; color: var(--sky); margin-top: 4px; opacity: 0.7; }
 .card-arrow { color: var(--sky); font-size: 20px; flex-shrink: 0; }
+
+/* ── Node-type card colours (per SPGo design system) ── */
+.card-hub      { background: #000073; border-color: #00BFFF; box-shadow: 0 2px 12px rgba(0,191,255,0.3); }
+.card-portal   { background: #0CDD08; border-color: #09AA05; box-shadow: 0 2px 12px rgba(12,221,8,0.3); }
+.card-ext      { background: #E0B0FF; border-color: #8833CC; box-shadow: 0 2px 12px rgba(136,51,204,0.3); }
+.card-tool     { background: #00BFFF; border-color: #0090CC; box-shadow: 0 2px 12px rgba(0,191,255,0.35); }
+.card-hub    .card-title { color: #ffffff; }
+.card-portal .card-title { color: #ffffff; }
+.card-ext    .card-title { color: #9900ff; }
+.card-tool   .card-title { color: #ffffff; }
+.card-hub    .card-arrow,
+.card-portal .card-arrow,
+.card-tool   .card-arrow { color: rgba(255,255,255,0.7); }
+.card-ext    .card-arrow { color: #8833CC; }
+.card-hub    .card-desc,
+.card-portal .card-desc,
+.card-tool   .card-desc  { color: rgba(255,255,255,0.75); }
+.card-ext    .card-desc  { color: rgba(80,0,120,0.85); }
 
 /* INNER SCREEN HEADER */
 .inner-header {
@@ -295,6 +334,7 @@ html, body {
   flex: 1;
 }
 
+/* SECTION DIVIDER */
 .section-divider {
   width: 100%;
   max-width: 420px;
@@ -303,6 +343,76 @@ html, body {
   margin: 8px 0;
 }
 
+/* COLLAPSIBLE TOOLS SECTION */
+.tools-section {
+  width: 100%;
+  max-width: 420px;
+}
+.tools-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.tools-toggle-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--sky);
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+.tools-toggle-arrow {
+  color: var(--sky);
+  font-size: 14px;
+  opacity: 0.7;
+  transition: transform 0.2s;
+}
+.tools-toggle-arrow.open { transform: rotate(90deg); }
+.tools-inner {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+.tools-inner.open { display: flex; }
+
+/* VISIT COUNTER */
+.visit-counter {
+  margin-top: 60px;
+  text-align: center;
+}
+.visit-label {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+}
+.visit-num {
+  font-size: 22px;
+  color: rgba(255,255,255,0.6);
+  display: block;
+  margin-top: 4px;
+}
+
+/* USER BADGE */
+.user-badge {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  background: rgba(0,191,255,0.1);
+  border: 1px solid rgba(0,191,255,0.25);
+  border-radius: 20px;
+  padding: 6px 14px;
+  margin-bottom: 28px;
+  margin-top: 8px;
+}
+
+/* BUTTONS */
 .btn-primary {
   width: 75%;
   height: 56px;
@@ -337,6 +447,7 @@ html, body {
 }
 .btn-secondary:hover { border-color: var(--sky); color: rgba(255,255,255,0.7); }
 
+/* FORM ELEMENTS */
 .dropdown-wrap {
   width: 100%;
   max-width: 420px;
@@ -378,6 +489,7 @@ html, body {
 }
 .dropdown-wrap { position: relative; }
 
+/* RESULT IMAGE DISPLAY */
 .chart-result {
   width: 100%;
   max-width: 420px;
@@ -402,6 +514,9 @@ html, body {
   letter-spacing: 0.1em;
 }
 
+/* ============================================================
+   SCREEN 0 — LOGIN
+   ============================================================ */
 #screen-B0-login .id-input {
   width: 100%;
   max-width: 420px;
@@ -421,7 +536,22 @@ html, body {
 }
 #screen-B0-login .id-input::placeholder { color: rgba(255,255,255,0.25); }
 #screen-B0-login .id-input:focus { border-color: var(--sky); }
-
+#btn-go-id {
+  width: 100%;
+  max-width: 420px;
+  padding: 14px;
+  background: var(--sky);
+  color: var(--navy);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: none;
+  margin-top: 10px;
+}
 .login-note {
   font-size: 13px;
   color: var(--text-mid);
@@ -431,49 +561,19 @@ html, body {
   line-height: 1.7;
 }
 
-.portal-footer {
-  margin-top: 60px;
-  width: 100%;
-  max-width: 420px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  text-align: center;
-}
-.footer-credit {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
-  font-style: italic;
-  line-height: 1.8;
-}
-.footer-credit strong { color: rgba(0,191,255,0.5); font-style: normal; font-weight: 400; }
-.footer-copy {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.2);
-  margin-top: 4px;
-}
-
-.red-note { color: var(--red); font-size: 13px; text-align: center; margin-top: 8px; }
-
-.coming-soon-tag {
-  font-size: 10px;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.08em;
-  background: rgba(255,215,0,0.1);
-  border: 1px solid rgba(255,215,0,0.3);
-  color: var(--gold);
-  border-radius: 6px;
-  padding: 2px 8px;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-
 /* ============================================================
-   UNIVERSAL LOADING STATE
+   UNIVERSAL LOADING STATE — SPGo Super Portal Design System
+   All loading/status text across the portal must use:
+   - Font: Crimson Pro, italic
+   - Color: #ccff00 (lime) while loading, rgba(255,255,255,0.5) on error
+   - Animation: haircutPulse 1.2s ease-in-out infinite
+   - Text: "Loading…" (never "Loading your charts...", "Searching...", etc.)
+   - Apply class "sp-loading" to any loading text element
+   - Apply class "sp-loading-img" to any logo image shown while loading
+   The verifying screen also follows this pattern.
    ============================================================ */
 .sp-loading {
-  font-family: 'IM Fell English', serif !important;
+  font-family: 'Crimson Pro', serif !important;
   font-style: italic !important;
   font-size: 15px !important;
   color: #ccff00 !important;
@@ -483,6 +583,7 @@ html, body {
 .sp-loading-img {
   animation: haircutGlowBlob 1.6s ease-in-out infinite !important;
 }
+
 @keyframes haircutGlowBlob {
   0%,100% { filter: drop-shadow(0 0 6px rgba(204,255,0,0.9)) drop-shadow(0 0 20px rgba(204,255,0,0.5)); transform: scale(1); }
   50%      { filter: drop-shadow(0 0 18px rgba(204,255,0,1)) drop-shadow(0 0 40px rgba(204,255,0,0.7)); transform: scale(1.07); }
@@ -491,340 +592,98 @@ html, body {
   0%,100% { opacity: 1; }
   50%      { opacity: 0.3; }
 }
-
-/* ============================================================
-   B2.2 — KWANYIN
-   ============================================================ */
-#screen-B2-2-2-T2 {
-  padding-bottom: 60px;
-}
-.kwanyin-title {
-  font-family: 'Klee One', 'Ma Shan Zheng', 'KaiTi', cursive;
-  font-size: 24px;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 0.12em;
-  color: #f5f0e8;
-  text-shadow: 0 0 4px rgba(255,245,80,0.95), 0 0 22px rgba(255,248,140,0.45), 0 0 80px rgba(255,253,210,0.08);
-  margin: 20px 0 10px;
-}
-.kwanyin-img {
-  display: block;
-  margin: 0 auto 30px;
-  max-height: 180px;
-  width: auto;
-  filter: drop-shadow(0 0 6px rgba(204,255,0,0.9)) drop-shadow(0 0 22px rgba(204,255,0,0.5)) drop-shadow(0 0 50px rgba(204,255,0,0.2));
-}
-.kw-methods {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  max-width: 420px;
-  margin-bottom: 16px;
-}
-.kw-method-card {
-  flex: 1;
-  background: #ffffff;
-  border: 1.5px solid #ffffff;
-  border-radius: 12px;
-  padding: 14px 4px;
-  cursor: pointer;
-  text-align: center;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  min-width: 0;
-}
-.kw-method-card:hover { background: #e8e8f5; }
-.kw-method-card.active {
-  border: 2.5px solid #000073;
-  background: #e8e8f5;
-  box-shadow: 0 0 0 3px rgba(0,0,115,0.25), inset 0 2px 6px rgba(0,0,0,0.15);
-}
-.kw-method-icon { font-size: 22px; display: block; margin-bottom: 4px; }
-.kw-method-name {
-  font-family: 'IM Fell English', serif;
-  font-size: clamp(11px, 3vw, 28px);
-  font-weight: 700;
-  display: block;
-  color: #000073;
-  margin-bottom: 3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.kw-method-desc { font-size: clamp(9px, 2.5vw, 14px); font-style: italic; color: #000073; }
-
-.kw-stage {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 14px;
-  padding: 24px 20px 28px;
-  text-align: center;
-  width: 100%;
-  max-width: 420px;
-}
-.kw-number {
-  font-family: 'Ma Shan Zheng', 'IM Fell English', serif;
-  font-size: 110px;
-  font-weight: 400;
-  line-height: 1;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f5f0e8;
-  text-shadow: 0 0 4px rgba(255,245,80,0.95), 0 0 22px rgba(255,248,140,0.45);
-}
-.kw-number.rolling { animation: kw-flicker 0.08s infinite; }
-@keyframes kw-flicker {
-  0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; }
-}
-.kw-fate {
-  font-size: 18px;
-  font-style: italic;
-  color: #c8c0b0;
-  min-height: 26px;
-  margin-bottom: 20px;
-}
-.kw-btn {
-  font-family: 'IM Fell English', serif;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #000073;
-  background: #fffde0;
-  border: 1.5px solid #fff9a0;
-  border-radius: 8px;
-  padding: 14px 0;
-  width: 66%;
-  cursor: pointer;
-  box-shadow: 0 0 4px rgba(255,245,80,0.95), 0 0 22px rgba(255,248,140,0.45);
-  transition: background 0.15s, transform 0.1s;
-}
-.kw-btn:hover { background: #fffaaa; }
-.kw-btn:active { transform: scale(0.98); }
-.kw-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-.kw-status { margin-top: 10px; font-size: 16px; font-style: italic; color: #a09888; min-height: 20px; }
-.kw-history {
-  width: 100%;
-  max-width: 420px;
-  margin-top: 16px;
-}
-.kw-history-title {
-  font-family: 'IM Fell English', serif;
-  font-size: 16px;
-  letter-spacing: 0.1em;
-  color: #a09888;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.kw-chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-.kw-chip {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 16px;
-  color: #c8c0b0;
-}
-.kw-chip b { font-family: 'Ma Shan Zheng', serif; font-size: 18px; color: #f5f0e8; font-weight: 700; }
-.kw-chip small { font-size: 12px; opacity: 0.5; margin-left: 3px; }
-
-.kw-method-card.active {
-  border: 2.5px solid #000073;
-  background: #e8e8f5;
-  box-shadow: 0 0 0 3px rgba(0,0,115,0.3), 0 0 18px rgba(0,100,255,0.5), inset 0 2px 6px rgba(0,0,0,0.15);
-  transform: scale(1.06);
-  animation: kwMethodGlow 1.4s ease-in-out infinite alternate;
-}
-@keyframes kwMethodGlow {
-  from { box-shadow: 0 0 0 3px rgba(0,0,115,0.2), 0 0 12px rgba(0,100,255,0.35); }
-  to   { box-shadow: 0 0 0 4px rgba(0,0,115,0.4), 0 0 28px rgba(0,100,255,0.7); }
-}
-.kw-method-card:not(.active) { opacity: 0.55; transform: scale(1); }
-
-.haircut-box {
-  width: 100%;
-  max-width: 420px;
-  border: 1px solid rgba(0,191,255,0.2);
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 20px;
-  background: var(--dim2);
-}
-.haircut-date-input {
-  width: 100%;
-  height: 46px;
-  border-radius: 8px;
-  border: 1px solid rgba(0,191,255,0.3);
-  background: rgba(0,0,0,0.35);
-  color: white;
-  font-size: 14px;
-  padding: 0 14px;
-  outline: none;
-  margin-bottom: 12px;
-}
-.haircut-date-input:focus { border-color: var(--sky); }
-
-/* ── GYO Standalone overrides ── */
-.screen:not(.active) { display: none; }
-.screen.active { display: flex; }
-
-#screen-gyo-login {
-  background: linear-gradient(180deg, #000073 0%, #00004a 100%);
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 24px;
-  text-align: center;
-}
-  </style>
+.fcs-container { border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); margin-bottom:16px; background:rgba(255,255,255,0.04); }
+.fcs-section-label { font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.15em; color:#ffffff; text-transform:uppercase; text-align:center; margin-bottom:12px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1); }
+.fcs-row { display:flex; flex-direction:row; align-items:stretch; gap:0; margin-bottom:0; border-radius:0; overflow:hidden; border:none; border-bottom:1px solid rgba(255,255,255,0.06); background:transparent; }
+.fcs-row:last-child { border-bottom:none; }
+.fcs-emoji-box { width:64px; min-width:64px; background:transparent; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; padding:8px; gap:2px; font-size:18px; line-height:1.3; border-right:1px solid rgba(255,255,255,0.07); }
+.fcs-mr-box { flex:1; background:transparent; padding:12px 14px; display:flex; flex-direction:column; justify-content:center; gap:3px; }
+.fcs-cn { font-family:'Noto Serif TC',serif; font-size:15px; font-weight:700; color:#ff6666; line-height:1.3; }
+.fcs-vn { font-family:'Noto Serif TC',serif; font-size:13px; color:#cc88ff; line-height:1.3; }
+.fcs-en { font-family:'Roboto',sans-serif; font-size:12px; color:#ffffff; opacity:0.85; line-height:1.3; }
+.fcs-check-box { width:32px; min-width:32px; background:rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; font-size:16px; color:#00cc44; }
+</style>
 </head>
 <body>
 
-<!-- Profile corner -->
-<div id="profile-corner" onclick="toggleLogoutPopup()" style="display:none; position:fixed; top:12px; right:14px; z-index:9999; flex-direction:column; align-items:center; cursor:pointer;">
-  <img id="profile-corner-img" src="" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,191,255,0.5);">
-  <div id="profile-corner-code" style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.08em;color:rgba(0,191,255,0.7);margin-top:3px;max-width:50px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></div>
+<!-- Profile pic corner (shown when logged in) -->
+<div id="profile-corner" onclick="toggleLogoutPopup()">
+  <img id="profile-corner-img" src="" alt="">
+  <div id="profile-corner-code"></div>
 </div>
-<div id="logout-popup" style="display:none; position:fixed; top:60px; right:10px; z-index:9999; background:rgba(0,0,60,0.97); border:1px solid rgba(0,191,255,0.35); border-radius:12px; padding:14px 18px; flex-direction:column; gap:10px; box-shadow:0 8px 24px rgba(0,0,0,0.5); min-width:160px;">
-  <button onclick="doLogout()" style="background:none;border:1px solid rgba(255,80,80,0.5);color:rgba(255,150,150,0.9);font-family:'Cinzel',serif;font-size:12px;letter-spacing:0.1em;padding:10px 14px;border-radius:8px;cursor:pointer;">⟵ Log out</button>
+<div id="logout-popup">
+  <button onclick="showProfilePicUploader()" style="background:none;border:1px solid rgba(0,191,255,0.4);color:rgba(0,191,255,0.85);font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;padding:10px 14px;border-radius:8px;cursor:pointer;text-align:left;">👤 Change profile pic</button>
+  <button onclick="useDefaultProfilePic()" style="background:none;border:1px solid rgba(0,191,255,0.3);color:rgba(0,191,255,0.65);font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;padding:10px 14px;border-radius:8px;cursor:pointer;text-align:left;">👤 Use default profile pic</button>
+  <button onclick="doLogout()">⟵ Log out</button>
 </div>
 
-<!-- LOGIN SCREEN -->
-<div id="screen-gyo-login" class="screen active">
-  <img src="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png" alt="Guanyin"
-    style="width:110px;height:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(204,255,0,0.9)) drop-shadow(0 0 28px rgba(204,255,0,0.5));margin-bottom:20px;">
-  <div style="font-family:'Klee One','Ma Shan Zheng',cursive;font-size:26px;color:#f5f0e8;text-shadow:0 0 8px rgba(255,245,80,0.8);margin-bottom:6px;">觀音靈簽</div>
-  <div style="font-family:'Aleo',serif;font-size:18px;color:var(--sky,#00BFFF);letter-spacing:0.08em;margin-bottom:4px;">GYO</div>
-  <div style="font-family:'Cinzel',serif;font-size:12px;color:#e0b0ff;letter-spacing:0.2em;margin-bottom:40px;">Divination (i) Tsutsuji</div>
-  <div class="card" onclick="startGoogleLogin()" style="max-width:320px;width:100%;justify-content:center;gap:12px;cursor:pointer;">
-    <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-    <span style="font-family:'Cinzel',serif;font-size:14px;color:white;">Sign in with Google</span>
+<!-- Profile Pic Uploader Modal -->
+<div id="profile-pic-modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,40,0.92); flex-direction:column; align-items:center; justify-content:center; padding:24px;">
+  <div style="background:#000073; border:1px solid rgba(0,191,255,0.3); border-radius:16px; padding:24px; width:100%; max-width:380px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+    <div style="font-family:'Cinzel',serif; font-size:14px; color:var(--sky); letter-spacing:0.12em;">Change Profile Pic</div>
+    <div style="font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; color:rgba(255,100,100,0.8); text-align:center;">Replacing this photo permanently deletes it. There's no profile album like Facebook.</div>
+
+    <!-- Step 1: file pick -->
+    <div id="ppu-step1" style="width:100%; display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <label style="width:100%; padding:14px; background:rgba(0,191,255,0.1); border:1px dashed rgba(0,191,255,0.4); border-radius:10px; text-align:center; cursor:pointer; font-family:'Crimson Pro',serif; font-size:14px; color:var(--sky);">
+        📁 Pick a photo
+        <input type="file" accept="image/*" id="ppu-file-input" style="display:none;" onchange="ppuFileChosen(this)">
+      </label>
+    </div>
+
+    <!-- Step 2: crop UI -->
+    <div id="ppu-step2" style="display:none; width:100%; flex-direction:column; align-items:center; gap:12px;">
+      <div style="font-family:'Crimson Pro',serif; font-size:12px; color:rgba(255,255,255,0.6); text-align:center;">Drag to reposition · Pinch or scroll to zoom</div>
+      <div style="font-family:'Crimson Pro',serif; font-size:11px; color:rgba(204,255,0,0.6); text-align:center; font-style:italic; margin-top:-6px;">Tap the circle to pick a different photo</div>
+      <div id="ppu-crop-wrap" style="position:relative; width:260px; height:260px; border-radius:50%; overflow:hidden; border:3px solid rgba(204,255,0,0.8); cursor:grab; touch-action:none; flex-shrink:0;" ondblclick="document.getElementById('ppu-file-input').click()">
+        <img id="ppu-img" style="position:absolute; transform-origin:top left;" draggable="false">
+      </div>
+      <div style="display:flex; gap:10px; width:100%;">
+        <button onclick="ppuZoom(-0.1)" style="flex:1; padding:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:white; border-radius:8px; font-size:18px; cursor:pointer;">−</button>
+        <button onclick="ppuZoom(0.1)"  style="flex:1; padding:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:white; border-radius:8px; font-size:18px; cursor:pointer;">+</button>
+      </div>
+      <button id="ppu-fit-btn" onclick="ppuFitObject()" style="width:100%; padding:10px; background:rgba(204,255,0,0.12); border:1px solid rgba(204,255,0,0.5); color:#ccff00; border-radius:8px; font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.1em; cursor:pointer;">⊡ Fit object inside circle</button>
+      <button onclick="ppuUpload()" id="ppu-upload-btn" style="width:100%; padding:14px; background:var(--sky); color:#000073; font-family:'Cinzel',serif; font-size:13px; font-weight:700; border:none; border-radius:10px; cursor:pointer; letter-spacing:0.1em;">Save & Upload</button>
+      <div id="ppu-status" style="font-family:'Crimson Pro',serif; font-size:13px; color:rgba(255,255,255,0.7); font-style:italic; text-align:center; min-height:20px;"></div>
+    </div>
+
+    <button onclick="closePpuModal()" style="background:none; border:none; color:rgba(255,255,255,0.4); font-family:'Cinzel',serif; font-size:11px; cursor:pointer; letter-spacing:0.1em;">✕ Cancel</button>
   </div>
-  <div id="login-error-gyo" style="color:#ff8a80;font-size:13px;margin-top:16px;display:none;max-width:320px;text-align:center;"></div>
-  <div style="font-family:'Crimson Pro',serif;font-size:11px;font-style:italic;color:rgba(255,255,255,0.3);margin-top:48px;">GYO · Divination (i) Tsutsuji · SPGo</div>
 </div>
 
-<!-- VERIFYING SCREEN -->
-<div id="screen-gyo-verify" class="screen" style="background:linear-gradient(180deg,#000073,#00004a);min-height:100dvh;display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;">
-  <img src="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png" class="sp-loading-img" style="width:80px;height:auto;object-fit:contain;">
-  <div class="sp-loading">Loading…</div>
-</div>
-
-<!-- GYO SPLASH SCREEN -->
-<div id="screen-B2-2-2-splash" class="screen" style="padding:0; position:relative; overflow:hidden;">
-  <div style="position:absolute; inset:0; background-image: url('https://i.postimg.cc/QNzjqmR1/Draw-AKwan-Yin-Lot.png'); background-size: auto 100%; background-repeat: no-repeat; background-position: center; z-index:0;"></div>
-  <div style="position:absolute; inset:0; background: rgba(0,0,50,0.45); z-index:1;"></div>
-  <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100dvh; padding: 40px 20px; text-align:center;" onclick="gyoEnter()">
-    <div style="font-family:'Klee One','Ma Shan Zheng',cursive; font-size:52px; color:#f5f0e8; text-shadow: 0 0 8px rgba(255,245,80,0.9), 0 0 30px rgba(255,243,100,0.6); margin-bottom:20px;">觀音靈簽</div>
-    <img src="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png" alt="Kwanyin" style="max-height:200px; width:auto; filter:drop-shadow(0 0 8px rgba(204,255,0,0.95)) drop-shadow(0 0 28px rgba(204,255,0,0.55)) drop-shadow(0 0 60px rgba(204,255,0,0.25)); margin-bottom:30px;">
-    <div style="font-family:'IM Fell English',serif; font-size:18px; font-style:italic; color:rgba(255,245,220,0.8); margin-bottom:40px;">Tap anywhere to enter</div>
-  </div>
-</div>
-
-<!-- DRAW + RESULT SCREENS -->
-<div id="screen-B2-2-2-T2" class="screen">
-  <div class="inner-header" style="max-width:420px; width:100%;">
-    <button class="back-btn" onclick="goBack()">‹</button>
-    <span class="inner-title">Draw a lot</span>
-  </div>
-
-  <div id="kw-main-view" style="display:flex; flex-direction:column; align-items:center; width:100%;">
-    <div class="kwanyin-title">觀音靈簽</div>
-    <img class="kwanyin-img" src="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png" alt="Kwanyin">
-
-    <p style="font-size:14px; font-style:italic; color:#c8c0b0; text-align:center; margin-bottom:18px;">Choose your source of randomness</p>
-
-    <div class="kw-methods">
-      <div class="kw-method-card active" onclick="kwSelectMethod('quantum')" id="kw-card-quantum">
-        <span class="kw-method-icon">⚛️</span>
-        <span class="kw-method-name">Quantum</span>
-        <span class="kw-method-desc">Quantum vacuum</span>
-      </div>
-      <div class="kw-method-card" onclick="kwSelectMethod('random-org')" id="kw-card-random-org">
-        <span class="kw-method-icon">📡</span>
-        <span class="kw-method-name">Atm.</span>
-        <span class="kw-method-desc">Atmospheric noise</span>
-      </div>
-      <div class="kw-method-card" onclick="kwSelectMethod('crypto')" id="kw-card-crypto">
-        <span class="kw-method-icon">🔐</span>
-        <span class="kw-method-name">Crypto</span>
-        <span class="kw-method-desc">Hardware entropy</span>
-      </div>
-    </div>
-
-    <div style="width:100%; max-width:420px; margin-bottom:16px;">
-      <label style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); display:block; margin-bottom:8px;">Type your question here:</label>
-      <textarea id="kw-question" rows="3" placeholder="What would you like to ask Her Holy's Wisdom?" style="width:100%; border-radius:10px; border:1px solid rgba(0,191,255,0.3); background:rgba(0,0,0,0.35); color:white; font-size:16px; font-family:'Crimson Pro',serif; font-size:16px; padding:12px 14px; outline:none; resize:none; line-height:1.5; min-height:60px; overflow:hidden;" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
-    </div>
-
-    <div class="kw-stage">
-      <p style="font-size:14px; font-style:italic; color:rgba(255,245,220,0.75); text-align:center; margin-bottom:18px; line-height:1.6;">Focus your mind on your question</p>
-      <button class="kw-btn" id="kw-btn" onclick="kwDraw()">Draw a lot</button>
-      <div class="kw-fate" id="kw-fate" style="margin-top:20px; min-height:22px;"></div>
-      <div class="kw-status" id="kw-status"></div>
-      <div class="kw-number" id="kw-number" style="margin-top:8px; color:#ccff00; font-family:'Cormorant Garamond',serif; font-weight:700; font-size:128px; line-height:1; text-shadow:0 0 8px rgba(204,255,0,0.95), 0 0 30px rgba(204,255,0,0.6), 0 0 60px rgba(204,255,0,0.3);">—</div>
-      <button id="kw-print-btn" onclick="kwShowResult()" style="display:none; margin-top:20px; font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.12em; color:var(--navy); background:var(--sky); border:none; border-radius:10px; padding:12px 28px; cursor:pointer; font-weight:700;">Print the Result</button>
-    </div>
-
-    <!-- Unreachable popup -->
-    <div id="kw-unreachable-popup" style="display:none; width:100%; max-width:420px; margin-top:16px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,100,100,0.4); border-radius:14px; padding:20px 18px; text-align:center;">
-      <div style="font-family:'Cinzel',serif; font-size:13px; color:#ff8a80; letter-spacing:0.08em; margin-bottom:6px;">⚠ Quantum source unreachable</div>
-      <div style="font-family:'Crimson Pro',serif; font-size:13px; font-style:italic; color:rgba(255,255,255,0.6); margin-bottom:16px;">The quantum vacuum API is not responding at this moment.</div>
-      <div style="display:flex; flex-direction:column; gap:10px;">
-        <button onclick="kwRetryQuantum()" style="width:100%; padding:12px; background:rgba(0,191,255,0.15); border:1px solid rgba(0,191,255,0.4); color:#00BFFF; font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.1em; border-radius:10px; cursor:pointer;">↺ Try Again</button>
-        <div style="display:flex; gap:10px;">
-          <button onclick="kwSwitchTo('random-org')" style="flex:1; padding:12px 8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.08em; border-radius:10px; cursor:pointer;">📡 Use Atm.</button>
-          <button onclick="kwSwitchTo('crypto')" style="flex:1; padding:12px 8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.8); font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.08em; border-radius:10px; cursor:pointer;">🔐 Use Crypto</button>
-        </div>
-      </div>
-    </div>
-
-    <div style="text-align:center; margin-top:32px; padding-bottom:16px;">
-      <img src="https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png" alt="Tsutsuji" style="width:56px; height:56px; object-fit:contain; opacity:0.75;">
-    </div>
+<!-- ============================================================
+     SCREEN 0: LOGIN
+     ============================================================ -->
+<div id="screen-B0-login" class="screen active">
+  <div class="site-label">SUPER PORTAL</div>
+  <div class="logo-wrap">
+    <img src="https://i.postimg.cc/fRdF8YCj/Hibiscus_orange_5.png" alt="Go">
+    <div style="font-family:'Aleo',serif; font-size:22px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.08em; line-height:1.2;">SUPER PORTAL</div>
+    <div style="font-family:'Cinzel',serif; font-size:18px; font-weight:400; color:#e0b0ff; text-align:center; letter-spacing:0.25em; line-height:1.5;">五 GO</div>
   </div>
 
-  <div id="kw-result-view" style="display:none; flex-direction:column; align-items:center; width:100%; position:relative; min-height:80dvh;">
-    <div style="position:fixed; inset:0; z-index:-1; background-image:url('https://i.postimg.cc/QNzjqmR1/Draw-AKwan-Yin-Lot.png'); background-size:cover; background-position:center;"></div>
-    <div style="position:fixed; inset:0; z-index:-1; background:rgba(0,0,40,0.6);"></div>
-    <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; padding:28px 24px 48px; text-align:center; width:100%; max-width:420px;">
-      <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:600; letter-spacing:0.15em; color:rgba(255,245,220,0.9); margin-bottom:14px;">Divination (i) Tsutsuji</div>
-      <img src="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png" alt="Kwanyin" style="max-height:120px; width:auto; filter:drop-shadow(0 0 8px rgba(204,255,0,0.95)) drop-shadow(0 0 28px rgba(204,255,0,0.55)) drop-shadow(0 0 60px rgba(204,255,0,0.25)); margin-bottom:10px;">
-      <div style="font-family:'Klee One','Ma Shan Zheng',cursive; font-size:24px; color:#f5f0e8; text-shadow:0 0 8px rgba(255,245,80,0.8); margin-bottom:14px;">觀音靈簽</div>
-      <div id="kw-result-datetime" style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.12em; color:rgba(255,245,220,0.55); margin-bottom:14px;"></div>
-      <div style="width:100%; margin-bottom:10px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); border-radius:12px; padding:20px 22px; text-align:left;">
-        <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,245,220,0.5); margin-bottom:12px;">The answer to your question:</div>
-        <div id="kw-result-question" style="font-family:'Corinthia',cursive; font-size:28px; color:#00E5FF; line-height:1.5; margin-bottom:14px; font-style:normal;"></div>
-        <div style="font-family:'Cinzel',serif; font-size:12px; color:rgba(255,245,220,0.5); margin-bottom:6px;">is:</div>
-        <div id="kw-result-lot-label" style="font-family:'Cormorant Garamond',serif; font-weight:300; color:#c8a96e; line-height:1.2;">
-          <span style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:#c8a96e;">Lot</span><span style="display:inline-block; width:16px;"></span><span id="kw-result-lot-num" style="font-family:'Cormorant Garamond',serif; font-size:72px; font-weight:700; color:#ccff00; line-height:1; text-shadow:0 0 8px rgba(204,255,0,0.95), 0 0 30px rgba(204,255,0,0.6), 0 0 60px rgba(204,255,0,0.3);"></span>
-        </div>
+  <div class="cards" style="margin-top: 24px;">
+
+    <div class="card" id="btn-google-login" onclick="startGoogleLogin()">
+      <div class="card-icon">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:32px; height:32px; object-fit:contain; display:block; margin:0 auto;">
       </div>
-      <div id="kw-result-source" style="font-family:'Crimson Pro',serif; font-style:italic; font-size:12px; color:rgba(255,245,220,0.45); text-align:center; margin-bottom:14px;"></div>
-      <img src="https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png" alt="Tsutsuji" style="width:48px; height:48px; object-fit:contain; opacity:0.75; margin-bottom:16px;">
-      <a id="kw-lot-link" href="#" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:14px; background:rgba(255,245,220,0.12); border:1px solid rgba(255,245,220,0.3); border-radius:10px; font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.1em; color:rgba(255,245,220,0.8); text-decoration:none; margin-bottom:4px; cursor:pointer;">
-        <img src="https://i.postimg.cc/kgmb9JGx/tsutsuji_1_no_leave_2.png" style="width:20px;height:20px;object-fit:contain;">
-        <span id="kw-lot-link-text">See what this Lot says ↗</span>
-      </a>
-      <div id="kw-tier-note" style="display:none; color:#ff6666; font-size:12px; font-family:'Crimson Pro',serif; font-style:italic; text-align:center; margin-bottom:12px;">Reserved for subscribed users</div>
-      <div style="width:100%; height:1px; background:rgba(255,255,255,0.15); margin-bottom:16px;"></div>
-      <div style="display:flex; gap:10px; width:100%; margin-bottom:2px;">
-        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
-          <button onclick="kwCopyResultImage()" style="width:100%; padding:12px 8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:white; font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.08em; border-radius:10px; cursor:pointer; backdrop-filter:blur(4px);">Copy Result 📷</button>
-          <span id="kw-img-copy-confirm" style="font-size:11px; color:rgba(255,255,255,0.6); font-style:italic; opacity:0; transition:opacity 0.3s; height:16px;">Downloaded!</span>
-        </div>
-        <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
-          <button onclick="kwCopyResult()" style="width:100%; padding:12px 8px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:white; font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.08em; border-radius:10px; cursor:pointer; backdrop-filter:blur(4px);">Copy Result 📄</button>
-          <span id="kw-result-copy-confirm" style="font-size:11px; color:rgba(255,255,255,0.6); font-style:italic; opacity:0; transition:opacity 0.3s; height:16px;">Copied!</span>
-        </div>
+      <div class="card-text">
+        <div class="card-title">Log in with Gmail</div>
+        <div class="card-desc">Login is handled completely by Google OAuth.</div>
       </div>
-      <div style="width:100%; height:1px; background:rgba(255,255,255,0.15); margin:12px 0 16px;"></div>
-      <button onclick="kwAskAnother()" style="width:100%; padding:13px; background:rgba(255,245,220,0.08); border:1px solid rgba(255,245,220,0.2); color:rgba(255,245,220,0.7); font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.12em; border-radius:10px; cursor:pointer; margin-bottom:10px;">Ask Another Question</button>
-      <div style="font-size:12px; color:#ff6666; text-align:center; margin-bottom:20px; font-style:italic;">Do not ask the same question again.</div>
-      <div style="font-size:11px; color:rgba(255,245,220,0.3); text-align:center; font-family:'Cinzel',serif; letter-spacing:0.1em;">You're using Super Portal 五 Go</div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <p id="login-error" style="display:none; color:var(--red); font-size:12px; text-align:center; margin-top:-4px; max-width:360px; line-height:1.6;"></p>
+
+    <div class="card" onclick="guestLogin()">
+      <div class="card-icon">👤</div>
+      <div class="card-text">
+        <div class="card-title">Access as guest</div>
+        <div class="card-desc">Limited access — some tools unavailable</div>
+      </div>
+      <div class="card-arrow">›</div>
     </div>
   </div>
 
@@ -834,555 +693,1077 @@ html, body {
   </div>
 </div>
 
-<script src="https://spgo5.github.io/Go5.SHARED/spgo-core.js"></script>
+<!-- VERIFYING OVERLAY (shown during OAuth check) -->
+<div id="screen-B0-verify" class="screen" style="justify-content:center; align-items:center; background:radial-gradient(ellipse at 50% 30%,rgba(0,191,255,0.12) 0%,transparent 65%),linear-gradient(180deg,#000073 0%,#00004a 100%);">
+  <img src="https://i.postimg.cc/fRdF8YCj/Hibiscus_orange_5.png" alt="Go" style="width:90px;height:90px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(0,191,255,0.6));animation:verifyPulse 1.4s ease-in-out infinite;margin-bottom:28px;">
+  <div class="sp-loading" id="verify-text" style="margin-top:20px;">Loading…</div>
+</div>
+
+<!-- ============================================================
+     SCREEN 1: HOMEPAGE
+     ============================================================ -->
+<div id="screen-B0" class="screen">
+  <div class="site-label">SUPER PORTAL</div>
+  <div class="logo-wrap" style="cursor:pointer; margin-top:8px;" onclick="goTo('screen-B0-login')">
+    <img src="https://i.postimg.cc/fRdF8YCj/Hibiscus_orange_5.png" alt="Go">
+    <div style="font-family:'Aleo',serif; font-size:22px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.08em; line-height:1.2;">SUPER PORTAL</div>
+    <div style="font-family:'Cinzel',serif; font-size:18px; font-weight:400; color:#e0b0ff; text-align:center; letter-spacing:0.25em; line-height:1.5;">五 GO</div>
+    <div class="logo-sub" id="home-greeting" style="margin-bottom:32px;">Welcome to Go, your super portal</div>
+  </div>
+
+  <div class="cards">
+    <!-- B1 -->
+    <div class="card card-portal" onclick="goTo('SPGo-L1-P1-DS')">
+      <div class="card-icon"><img src="https://i.postimg.cc/15ky2Vyf/ajisai-DS.png" alt="DS"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">📅 Date Selection</span> <span class="card-alias" style="color:#e0b0ff;">Ajisai</span></div>
+        <div class="card-desc">Date Selection Tools &amp; Sites</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- B2 -->
+    <div class="card card-hub" onclick="goTo('SPGo-L1-H1-QMDJ-Divination')">
+      <div class="card-icon" style="display:flex;flex-direction:column;align-items:center;gap:4px;"><img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="QMDJ" style="width:36px;height:36px;object-fit:contain;"><img src="https://i.postimg.cc/kgmb9JGx/tsutsuji_1_no_leave_2.png" alt="Tsutsuji" style="width:28px;height:28px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">☯️ QMDJ &amp; 🔮 Divination</span></div>
+        <div class="card-desc">QMDJ sites, Divination Tools 🛠️, Divination sites</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- B3 — locked for guest -->
+    <div class="card card-hub" id="card-b3" onclick="goTo('SPGo-L1-H2-ILS')">
+      <div class="card-icon"><img src="https://i.postimg.cc/TwN0qW23/Rose-Thao-Dien-Mam-03-26.png" alt="Life" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🎭 Individual Life Study</span></div>
+        <div class="card-desc">Bazi &amp; Vedic sites &amp; Tools 🛠️</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- B4 — locked for guest -->
+    <div class="card card-portal" id="card-b4" onclick="window.location.href='https://spgo5.github.io/Go5.FS/'">
+      <div class="card-icon" style="display:flex;flex-direction:column;align-items:center;gap:4px;"><img src="https://i.postimg.cc/13SDRFLD/FS-i-Manju.png" alt="FS" style="width:36px;height:36px;object-fit:contain;"><img src="https://i.postimg.cc/VsSqKmq5/FS_ii_Shage.png" alt="Shage" style="width:28px;height:28px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🏘️ Fengshui Portal</span> <span class="card-alias" style="color:#e0b0ff;">Manjushage</span></div>
+        <div class="card-desc">Fengshui Sites &amp; Tools 🛠️</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- B5 — grayed -->
+    <div class="card grayed">
+      <div class="card-icon"><img src="https://i.postimg.cc/g0MQdmBz/Yijing_I_tenjiku.png" alt="Yijing"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">☯ Yijing</span> <span class="card-alias" style="color:#e0b0ff;">Tenjiku</span> <span class="coming-soon-tag">Soon</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <div class="section-divider" style="margin: 4px 0;"></div>
+
+    <!-- B6 — personal portal, locked for guest -->
+    <div class="card card-ext" id="card-b6" onclick="openPersonalPortal()">
+      <div class="card-icon"><img src="https://i.postimg.cc/ZnmgZHzM/FS-vi-Kuchinashi-2.png" alt="Kuchinashi"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">👤 Your Personal Portal</span> <span class="card-alias" style="color:#e0b0ff;">Kuchinashi</span></div>
+        <div class="card-desc-2 card-desc2" id="portal-link-text">🌐 Portal site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="visit-counter">
+    <div class="visit-label">VISITS</div>
+    <span class="visit-num" id="visit-count">—</span>
+  </div>
+
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B1: DATE SELECTION
+     ============================================================ -->
+<div id="SPGo-L1-P1-DS" class="screen">
+  <div class="inner-header">
+    <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
+    <span class="inner-title">五 Go Main Menu</span>
+  </div>
+
+  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">📅 擇日 Date Selection</div>
+  <div style="margin-bottom:8px; display:flex; justify-content:center;">
+    <img src="https://i.postimg.cc/kD3H57dt/Ajisai-Portal-2Heads.png" alt="Ajisai" style="width:70px;height:70px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(12,221,8,0.4));">
+  </div>
+  <div style="font-family:'Cinzel',serif; font-size:16px; color:#e0b0ff; text-align:center; letter-spacing:0.2em; margin-top:6px; margin-bottom:16px;">Ajisai</div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🛠️ Tools</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards">
+    <!-- P1.T1 Today Snapshot — Soon -->
+    <div class="card grayed">
+      <div class="card-icon">🗓</div>
+      <div class="card-text">
+        <div class="card-title">Today Snapshot <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">Daily date selection snapshot</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- P1.T2 Current Hour — Soon -->
+    <div class="card grayed">
+      <div class="card-icon">🕒</div>
+      <div class="card-text">
+        <div class="card-title">🕒 Current Hour <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">Current hour date selection</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- P1.T3 FS Charts for DS — Soon -->
+    <div class="card grayed">
+      <div class="card-icon">⏳</div>
+      <div class="card-text">
+        <div class="card-title">⏳ FS Charts For DS <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">Fengshui charts for date selection</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- P1.T4 Monthly Calendar — Live -->
+    <div class="card grayed">
+      <div class="card-icon">📅</div>
+      <div class="card-text">
+        <div class="card-title">📅 Monthly Calendar <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">Monthly date selection calendar</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- P1.T5 Tibetan Haircut — Live -->
+    <div class="card card-tool" onclick="goTo('SPGo-L2-P1.T5-Tibetan-Haircut-splash')">
+      <div class="card-icon"><img src="https://i.postimg.cc/Jn0gckSD/Boddhisattva-cutting-hai.png" alt="Haircut" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title">💇🏻‍♀️ Tibetan Haircut Advice</div>
+        <div class="card-desc">Best days for a haircut by Tibetan calendar</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px; margin-top:12px;">🌐 Sites</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards">
+    <!-- P1.S1 DS (iii) Ajisai — External Link -->
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/dsiiiajisai','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/15ky2Vyf/ajisai-DS.png" alt="Ajisai DS" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">💠 DS (iii) Ajisai</span></div>
+        <div class="card-desc">Date selection site · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- P1.S2 Auxiliary Stars Sora — External Link -->
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/auxiliarystarssora','_blank')">
+      <div class="card-icon">〇</div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">〇 Auxiliary Stars</span> <span class="card-alias" style="color:#e0b0ff;">Sora</span></div>
+        <div class="card-desc">Auxiliary stars reference · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- P1.S3 Chn (i) Ginkgo — External Link -->
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/chniginkgo','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/fRm85t91/Ginkgo-Chn-i.png" alt="Ginkgo" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🔤 Chn (i)</span> <span class="card-alias" style="color:#e0b0ff;">Ginkgo</span></div>
+        <div class="card-desc">Chinese resource site · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B1.4: HAIRCUT ADVICE
+     ============================================================ -->
+<!-- ============================================================
+     SCREEN: HAIRCUT SPLASH
+     ============================================================ -->
+<div id="SPGo-L2-P1.T5-Tibetan-Haircut-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="haircutSplashContinue()">
+  <div style="position:absolute; inset:0; background-image:url('https://i.postimg.cc/6pZ3W739/Boddhisattva-haircut-fpmt-org-image.png'); background-size:auto 100%; background-repeat:no-repeat; background-position:center; z-index:0;"></div>
+  <div style="position:absolute; inset:0; background:rgba(0,0,50,0.45); z-index:1;"></div>
+  <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100dvh; padding:40px 20px; text-align:center;">
+    <div style="font-family:'IM Fell English',serif; font-size:18px; font-style:italic; color:rgba(255,245,220,0.8); margin-bottom:40px;">
+      Tap anywhere to continue
+    </div>
+    <div style="position:absolute; bottom:28px; font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; color:rgba(255,255,255,0.4); letter-spacing:0.08em;">fpmt.org image, enhanced by Gemini</div>
+  </div>
+</div>
+
+<div id="SPGo-L2-P1.T5-Tibetan-Haircut" class="screen">
+  <div class="inner-header" style="max-width:420px; width:100%;">
+    <button class="back-btn" onclick="goTo('SPGo-L1-P1-DS')">‹</button>
+    <span class="inner-title">📅 DS Portal Ajisai</span>
+  </div>
+
+  <!-- Bodhisattva logo with lime glow -->
+  <div style="text-align:center; margin-bottom:20px;">
+    <img id="haircut-logo-img" src="https://i.postimg.cc/Jn0gckSD/Boddhisattva-cutting-hai.png"
+      style="width:90px; height:90px; object-fit:contain; filter:drop-shadow(0 0 6px rgba(204,255,0,0.9)) drop-shadow(0 0 22px rgba(204,255,0,0.5));"
+      alt="Bodhisattva">
+  </div>
+
+  <div class="haircut-box">
+    <div class="haircut-box-label" style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(0,191,255,0.6); margin-bottom:8px;">Advice for Today</div>
+    <div class="haircut-date-display" id="haircut-today-date" style="font-family:'Cinzel',serif; font-size:15px; color:var(--sky); margin-bottom:10px;">Loading…</div>
+    <div class="haircut-advice sp-loading" id="haircut-today-advice">Loading…</div>
+  </div>
+
+  <div class="haircut-box" style="width:100%; max-width:420px;">
+    <div class="haircut-box-label" style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(0,191,255,0.6); margin-bottom:8px;">Look Up Another Date</div>
+    <input type="date" class="haircut-date-input" id="haircut-date-picker" onchange="checkHaircutDate()" style="cursor:pointer;">
+    <button class="btn-primary" style="width:100%; height:46px; font-size:14px;" onclick="checkHaircutDate()">Lookup Date</button>
+    <div id="haircut-custom-result" style="margin-top:28px; display:none;">
+      <div class="haircut-box-label" style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(0,191,255,0.6); margin-bottom:8px;">Advice for Selected Date</div>
+      <div class="haircut-date-display" id="haircut-custom-date-label" style="font-family:'Cinzel',serif; font-size:15px; color:var(--sky); margin-bottom:10px;"></div>
+      <div class="haircut-advice" id="haircut-custom-advice" style="font-weight:400;"></div>
+    </div>
+  </div>
+
+  <p class="haircut-note" style="margin-top:20px;">
+    You can look up any date in the current year.<br>
+    Historical data available back to 2025.<br>
+    <br>
+    <em>Thanks to 🌐 Rabten.eu for the Tibetan calendar 🙏</em>
+  </p>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B2: QMDJ & DIVINATIONS
+     ============================================================ -->
+<div id="SPGo-L1-H1-QMDJ-Divination" class="screen">
+  <div class="inner-header">
+    <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
+    <span class="inner-title">五 Go Main Menu</span>
+  </div>
+
+  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">☯️ QMDJ & 🔮 Divination</div>
+  <div style="margin-bottom:8px; display:flex; justify-content:center; gap:14px;">
+    <img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="" style="width:64px;height:64px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(0,191,255,0.4));">
+    <img src="https://i.postimg.cc/kgmb9JGx/tsutsuji_1_no_leave_2.png" alt="" style="width:56px;height:56px;object-fit:contain; filter:drop-shadow(0 0 10px rgba(255,100,150,0.4));">
+  </div>
+  <div style="margin-bottom:20px;"></div>
+
+  <!-- EXACTLY 2 BUTTONS per Excel Level ID B2.2.1 and B2.2.2 -->
+  <div class="cards">
+    <!-- B2.2.1: QMDJ -->
+    <div class="card card-hub" onclick="goTo('SPGo-L2-H1.H1-QMDJ')">
+      <div class="card-icon"><img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="Botan" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">☯️ 奇門遁甲 QMDJ</span></div>
+        <div class="card-desc">QMDJ sites, Divination Tools 🛠️</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- B2.2.2: Divination Portal Tsutsuji -->
+    <div class="card card-portal" onclick="goTo('SPGo-L2-H1.P1-Divination')">
+      <div class="card-icon"><img src="https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png" alt="Tsutsuji" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🔮 Divination Portal</span> <span class="card-alias" style="color:#e0b0ff;">Tsutsuji</span></div>
+        <div class="card-desc">🔮 觀音靈簽 Guan Yin Oracle, 🎲 Dice Roller</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B2-2-1: QMDJ Sites
+     ============================================================ -->
+<div id="SPGo-L2-H1.H1-QMDJ" class="screen">
+  <div class="inner-header">
+    <button class="back-btn" onclick="goTo('SPGo-L1-H1-QMDJ-Divination')">‹</button>
+    <span class="inner-title">☯️ QMDJ</span>
+  </div>
+
+  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">☯️ 奇門遁甲 QMDJ</div>
+  <div style="margin-bottom:8px; display:flex; justify-content:center;">
+    <img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="" style="width:70px;height:70px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(0,191,255,0.4));">
+  </div>
+  <div style="margin-bottom:20px;"></div>
+
+  <div class="cards">
+    <div class="card grayed">
+      <div class="card-icon" style="width:42px;flex-shrink:0;"></div>
+      <div class="card-text">
+        <div class="card-title">奇門遁甲 Charts <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">QMDJ Y/M/D/H charts</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🌐 Sites:</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards">
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/qmdjibotan','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="Botan" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">QMDJ (i)</span> <span class="card-alias" style="color:#e0b0ff;">Botan</span></div>
+        <div class="card-desc">QMDJ foundation · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/qmdjiitake','_blank')">
+      <div class="card-icon">🌸</div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">QMDJ (ii)</span> <span class="card-alias" style="color:#e0b0ff;">Take</span></div>
+        <div class="card-desc">🔮 QMDJ divination · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/qmdjvmiiishobu','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/0ygb2Fbw/Iris-Shobu-logo-web.png" alt="Shobu" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">QMDJ (iii)</span> <span class="card-alias" style="color:#e0b0ff;">Shobu</span></div>
+        <div class="card-desc">🏘️ QMDJ fengshui · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/qmdjivtsubaki','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/vHr8vzQj/Tsubaki-3.png" alt="Tsubaki" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">QMDJ (iv)</span> <span class="card-alias" style="color:#e0b0ff;">Tsubaki</span></div>
+        <div class="card-desc">QMDJ charting · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/qmdjvmizuka/','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/15ybjZP5/Mizuka.png" alt="Mizuka" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">QMDJ (v)</span> <span class="card-alias" style="color:#e0b0ff;">Mizuka</span></div>
+        <div class="card-desc">♟️ QMDJ Formations · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B2-2-2 (Divination Portal Tsutsuji)
+     ============================================================ -->
+<div id="SPGo-L2-H1.P1-Divination" class="screen">
+  <div class="inner-header">
+    <button class="back-btn" onclick="goTo('SPGo-L1-H1-QMDJ-Divination')">‹</button>
+    <span class="inner-title">🔮 Divination Portal</span>
+  </div>
+
+  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">🔮 Divination Portal</div>
+  <div style="margin-bottom:8px; display:flex; justify-content:center;">
+    <img src="https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png" alt="Tsutsuji" style="width:70px;height:70px;object-fit:contain; filter:drop-shadow(0 0 10px rgba(255,100,150,0.5));">
+  </div>
+  <div style="font-family:'Cinzel',serif; font-size:16px; color:#e0b0ff; text-align:center; letter-spacing:0.2em; margin-top:6px; margin-bottom:20px;">Tsutsuji</div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🛠️ Tools</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards">
+    <div class="card card-tool" onclick="window.location.href='https://spgo5.github.io/Go5.DICEROLLER/'">
+      <div class="card-icon"><img src="https://i.postimg.cc/2Sw1KPTF/2_d6.png" alt="Dice" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🎲 Dice Roller</span></div>
+        <div class="card-desc">QMDJ Divine Wisdom Sourcing</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card card-tool" onclick="window.location.href='https://spgo5.github.io/Go5.GYO/'">
+      <div class="card-icon"><img src="https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png" alt="Kwanyin" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🔮 觀音靈簽 Guan Yin Oracle</span></div>
+        <div class="card-desc">Kwan-Yin Oracle · 🌐 Go to portal ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+    <div class="card grayed">
+      <div class="card-icon">🔮</div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400;">🔮 郭璞數 Oracle</span> <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">From one of Fengshui's greatest Grandmasters</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- H1.P1.T4 Fortune Wheel Fukubiki — redirect to standalone -->
+    <div class="card grayed" onclick="window.location.href='https://spgo5.github.io/Go5.FW/'">
+      <div class="card-icon">🎡</div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400;">Fortune Wheel</span> <span class="card-alias" style="color:#e0b0ff;">Fukubiki</span> <span class="coming-soon-tag">Soon</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🌐 Sites</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards">
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/divinationitsutsuji','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/kgmb9JGx/tsutsuji_1_no_leave_2.png" alt="Tsutsuji" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">Divination (i)</span> <span class="card-alias" style="color:#e0b0ff;">Tsutsuji</span></div>
+        <div class="card-desc">Divination overview & 100 觀音靈簽 Lots · 🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B3: INDIVIDUAL LIFE STUDY
+     ============================================================ -->
+<div id="SPGo-L1-H2-ILS" class="screen">
+  <div class="inner-header">
+    <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
+    <span class="inner-title">五 Go Main Menu</span>
+  </div>
+
+  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">🎭 Individual Life Study</div>
+  <div style="margin-bottom:8px; display:flex; justify-content:center;"><div style="display:flex;align-items:center;justify-content:center;gap:14px;">
+      <img src="https://i.postimg.cc/TwN0qW23/Rose-Thao-Dien-Mam-03-26.png" alt="" style="width:64px;height:64px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(0,191,255,0.4));">
+      <img src="https://i.postimg.cc/7YhrDb9B/Fuki-portal-image.png" alt="" style="width:56px;height:56px;object-fit:contain; filter:drop-shadow(0 0 10px rgba(255,100,150,0.4));">
+    </div></div><div style="margin-bottom:16px;"></div>
+
+  <div class="cards">
+    <!-- B3 Button 1: Bazi Portal Bara -->
+    <div class="card card-hub" id="card-bara" onclick="goTo('SPGo-L2-H2.H1-Bara-splash')">
+      <div class="card-icon"><img src="https://i.postimg.cc/SR1By1WK/Bara-Orange.png" alt="Bara" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title">🎭 Bazi Portal Bara</div>
+        <div class="card-desc">2Hs Subportal, Bazi (i) Bara, Bazi (ii) Ran, Bazi (iii) Yuri, etc.</div>
+        <div id="bara-sub-note" style="display:none; color:#ff6666; font-size:12px; font-family:'Crimson Pro',serif; font-style:italic; margin-top:3px;">Subscription required</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- B3 Button 2: Vedic Portal Fuki -->
+    <div class="card card-portal" onclick="goTo('SPGo-L2-H2.P1-Fuki')">
+      <div class="card-icon"><img src="https://i.postimg.cc/7YhrDb9B/Fuki-portal-image.png" alt="Vedic" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title">Vedic Portal Fuki</div>
+        <div class="card-desc">VA (i) Fuki, Vedic Tools, etc.</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B3-BAZI: Bazi sub-menu
+     ============================================================ -->
+<!-- ============================================================
+     SCREEN B2-3-1-splash: Bazi Portal full-screen overlay
+     ============================================================ -->
+<div id="SPGo-L2-H2.H1-Bara-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="goTo('SPGo-L2-H2.H1-Bara')">
+  <div style="position:absolute; inset:0; background-image:url('https://i.postimg.cc/0jWNNPCf/Rose-Leaning-Medium.jpg'); background-size:cover; background-position:center; z-index:0;"></div>
+  <div style="position:absolute; inset:0; background:rgba(0,0,80,0.45); z-index:1;"></div>
+  <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100dvh; padding:40px 20px; text-align:center;">
+    <div style="font-family:'IM Fell English',serif; font-size:18px; font-style:italic; color:rgba(255,245,220,0.8); margin-bottom:40px;">Tap anywhere to enter</div>
+    <div style="position:absolute; bottom:28px; font-family:'Crimson Pro',serif; font-size:12px; font-style:italic; color:rgba(255,255,255,0.4);">🎭 Bazi Portal</div>
+  </div>
+</div>
+
+<div id="SPGo-L2-H2.H1-Bara" class="screen">
+  <div class="inner-header">
+    <button class="back-btn" onclick="goTo('SPGo-L1-H2-ILS')">‹</button>
+    <span class="inner-title">八字 Bazi</span>
+  </div>
+
+  <div class="site-label" style="margin-bottom:10px;">BAZI PORTAL</div>
+  <div class="logo-wrap" style="margin-bottom:20px;">
+    <img src="https://i.postimg.cc/Px5KwMj4/Rose-Thao-Dien-07-25-25-2.png" alt="Bazi" style="width:64px;height:64px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(255,100,150,0.5));">
+  </div>
+
+  <div class="cards">
+    <!-- 3.1: Bazi (i) Bara — go to site -->
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/baziibara/home','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/5NJLmvn2/bazi_i_Bara.png" alt="Bara" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title">Bazi (i) Bara</div>
+        <div class="card-desc">🌐 Go to site ↗</div>
+        <div id="bara-sub-note2" style="display:none; color:#ff6666; font-size:11px; margin-top:3px; font-style:italic;">Subscription required</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <!-- 3.2: 2Hs Subportal — redirect to standalone portal -->
+    <div class="card card-portal" onclick="window.location.href='https://spgo5.github.io/Go5.2Hs/'">
+      <div class="card-icon" style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <img src="https://i.postimg.cc/MZsnjcLC/Blue_Orchid_Web_Email.png" alt="2Hs" style="width:36px;height:36px;object-fit:contain;">
+        <img src="https://i.postimg.cc/K8kWmKK7/Kisuge-single-web-email.png" alt="Kisuge" style="width:28px;height:28px;object-fit:contain;">
+      </div>
+      <div class="card-text">
+        <div class="card-title">2Hs Subportal</div>
+        <div class="card-desc">Bazi (ii) Ran, Bazi (iii) Yuri</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SCREEN B3.3: VEDIC ASTROLOGY
+     ============================================================ -->
+<div id="SPGo-L2-H2.P1-Fuki" class="screen">
+  <div class="inner-header" style="max-width:420px; width:100%;">
+    <button class="back-btn" onclick="goTo('SPGo-L1-H2-ILS')">‹</button>
+    <span class="inner-title">Vedic Portal Fuki</span>
+  </div>
+
+  <div class="site-label" style="margin-bottom:10px;">VEDIC PORTAL FUKI</div>
+  <div class="logo-wrap" style="margin-bottom:20px;">
+    <img src="https://i.postimg.cc/7YhrDb9B/Fuki-portal-image.png" alt="Fuki Portal" style="width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(0,191,255,0.5));">
+  </div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🛠️ Your Tools</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards" style="margin-bottom:20px;">
+    <div class="card card-tool" onclick="goTo('SPGo-L3-H2.P1.T1-Chart-Data')">
+      <div class="card-icon"><img src="https://i.postimg.cc/bwm6CsPv/Fuki_1.png" alt="Charts" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title">Your Divisional Chart Data</div>
+        <div class="card-desc">Copy your D1, D9, ... chart data to feed to AI for reading</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+    <div class="card grayed">
+      <div class="card-icon">🗺</div>
+      <div class="card-text">
+        <div class="card-title">Your Divisional Charts Images <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">Visual chart display</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🌐 Sites:</div>
+  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
+
+  <div class="cards">
+    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/vaifuki','_blank')">
+      <div class="card-icon"><img src="https://i.postimg.cc/pLs0GpvV/Fuki_2.png" alt="VA Fuki" style="width:42px;height:42px;object-fit:contain;"></div>
+      <div class="card-text">
+        <div class="card-title">VA (i) Fuki</div>
+        <div class="card-desc">🌐 Go to site ↗</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCREEN B3.3.1: VEDIC CHART DATA
+     ============================================================ -->
+<div id="SPGo-L3-H2.P1.T1-Chart-Data" class="screen">
+  <div class="inner-header" style="max-width:420px; width:100%;">
+    <button class="back-btn" onclick="goTo('SPGo-L2-H2.P1-Fuki')">‹</button>
+    <span class="inner-title">VA (i) Fuki</span>
+  </div>
+
+  <div style="width:100%; max-width:420px;">
+    <div class="logo-wrap" style="margin-bottom:16px;">
+      <img src="https://i.postimg.cc/pLs0GpvV/Fuki_2.png" alt="Fuki" style="width:50px;height:50px; filter:drop-shadow(0 0 14px rgba(0,191,255,0.4));">
+      <div style="font-family:'Cinzel',serif; font-size:15px; color:var(--sky);">VA (i) FUKI</div>
+      <div class="user-badge" id="vedic-user-badge"></div>
+    </div>
+
+    <div id="vedic-loading" style="text-align:center; padding:20px 0; display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <img src="https://i.postimg.cc/bwm6CsPv/Fuki_1.png" id="vedic-loading-img"
+        class="sp-loading-img"
+        style="width:64px;height:64px;object-fit:contain;"
+        alt="Loading">
+      <div class="sp-loading">Loading…</div>
+    </div>
+
+    <div id="vedic-not-subscribed" style="display:none; text-align:center; padding:20px 0;">
+      <p class="red-note" style="margin-bottom:12px;">You haven't subscribed to this service yet.</p>
+      <p style="color:var(--text-mid); font-size:13px; line-height:1.7;">Please contact your administrator to subscribe.</p>
+    </div>
+
+    <div id="vedic-chart-cards" class="cards" style="display:none;"></div>
+  </div>
+
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- Vedic chart data detail screen -->
+<div id="SPGo-L3-H2.P1.T1-Chart-Data-data" class="screen">
+  <div class="inner-header" style="max-width:420px; width:100%;">
+    <button class="back-btn" onclick="goTo('SPGo-L3-H2.P1.T1-Chart-Data')">‹</button>
+    <span class="inner-title">VA (i) Fuki</span>
+  </div>
+  <div style="width:100%; max-width:420px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; gap:10px;">
+      <div style="font-family:'Cinzel',serif; font-size:15px; font-weight:700; color:var(--sky);" id="vedic-data-title"></div>
+      <button id="vedic-copy-btn" onclick="vedicCopyData()" style="background:var(--sky); color:var(--navy); border:none; border-radius:10px; padding:10px 20px; font-family:'Cinzel',serif; font-size:13px; font-weight:700; cursor:pointer;">Copy All</button>
+    </div>
+    <div id="vedic-data-box" style="background:rgba(255,255,255,0.05); border:1px solid rgba(0,191,255,0.15); border-radius:12px; padding:16px; font-family:'Courier New',monospace; font-size:13px; line-height:2; color:rgba(255,255,255,0.85); white-space:pre-wrap; word-break:break-word;"></div>
+  </div>
+  <div class="portal-footer">
+    <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
+    <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ============================================================ -->
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+
+<!-- SPGo Shared Core Scripts -->
+<script src="https://spgo5.github.io/Go5.SHARED/spgo-core.js?v=2"></script>
+
 <script>
-// ================================================================
-// 🔮 GYO — Guanyin Oracle Standalone · Divination (i) Tsutsuji
-// ================================================================
+// ============================================================
+// B1.4 HAIRCUT ADVICE
+// Uses Google Apps Script backend from B1.4. tab
+// The APPS_SCRIPT_URL below must be set to your deployed GAS web app URL
+// ============================================================
+const HAIRCUT_GAS_URL = GAS_URL; // unified backend
 
-const PROFILE_PIC_BASE = 'https://raw.githubusercontent.com/SPGo5/Go5/main/Profile%20Pix/';
-
-let currentUser = null;
-let currentUserName = 'Guest';
-let currentFsSubscriber = false;
-let currentHasPortal = false;
-let currentHasBara = false;
-let currentTier = 0;
-let isGuest = false;
-
-// ── Screen navigation ──
-function goTo(screenId) {
-  document.querySelectorAll('.screen').forEach(s => {
-    s.classList.remove('active');
-    s.style.display = 'none';
-  });
-  const el = document.getElementById(screenId);
-  if (el) { el.style.display = 'flex'; el.classList.add('active'); window.scrollTo(0, 0); }
-  if (screenId === 'screen-B2-2-2-T2') resetKwanyin();
-}
-function goBack() {}
-
-// ── JSONP helper ──
-function gasJsonp(params, onSuccess, onError, timeoutMs) {
-  const cbName = 'gasCB_' + Date.now() + '_' + Math.floor(Math.random()*9999);
-  const script = document.createElement('script');
-  const timer = setTimeout(() => { cleanup(); if (onError) onError('Timeout'); }, timeoutMs || 15000);
-  function cleanup() { clearTimeout(timer); delete window[cbName]; if (script.parentNode) script.parentNode.removeChild(script); }
-  window[cbName] = function(data) { cleanup(); onSuccess(data); };
-  script.onerror = function() { cleanup(); if (onError) onError('Script load failed'); };
-  document.head.appendChild(script);
-  script.src = GAS_URL + '?' + params + '&callback=' + cbName;
-}
-
-// ── Login error display ──
-function showLoginError(msg) {
-  const el = document.getElementById('login-error-gyo');
-  if (el) { el.textContent = msg; el.style.display = 'block'; }
-  goTo('screen-gyo-login');
-}
-
-// ── Verifying screen ──
-function showVerifying() {
-  goTo('screen-gyo-verify');
-}
-
-// ── Start Google login ──
-function startGoogleLogin() {
-  const el = document.getElementById('login-error-gyo');
-  if (el) el.style.display = 'none';
-  const redirectUri = window.location.origin + '/Go5.GYO/index.html';
-  const params = new URLSearchParams({
-    client_id: GOOGLE_CLIENT_ID,
-    redirect_uri: redirectUri,
-    response_type: 'token',
-    scope: 'email profile',
-    prompt: 'select_account'
-  });
-  window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?' + params.toString();
-}
-
-// ── Validate token with Google then GAS ──
-async function validateWithToken(token) {
-  showVerifying();
-  try {
-    const resp = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
-      headers: { Authorization: 'Bearer ' + token }
-    });
-    const info = await resp.json();
-    const email = info.email;
-    if (!email) { showLoginError('Could not get your email. Please try again.'); return; }
-
-    gasJsonp('action=validateEmail&email=' + encodeURIComponent(email), function(data) {
-      if (data.valid) {
-        currentUser = data.idCode || email;
-        currentUserName = data.name || data.idCode || email;
-        currentFsSubscriber = data.fsSubscriber === true;
-        currentHasPortal = data.hasPortal === true;
-        currentHasBara = data.hasBara === true;
-        currentTier = data.tier || 0;
-        isGuest = false;
-        try {
-          localStorage.setItem('go_saved_user', JSON.stringify({
-            user: currentUser, name: currentUserName,
-            fs: currentFsSubscriber, portal: currentHasPortal,
-            hasBara: currentHasBara, tier: currentTier,
-            email: email, savedAt: Date.now()
-          }));
-        } catch(e) {}
-        setHomeState();
-        updateProfileCorner();
-      } else {
-        showLoginError('Your account (' + email + ') is not registered.');
-      }
-    }, function() {
-      showLoginError('Connection error. Please try again.');
-    });
-  } catch(e) {
-    showLoginError('Connection error. Please try again.');
-  }
-}
-
-// ── Check OAuth token or saved session on load ──
-function checkOAuthReturn() {
-  const hash = window.location.hash;
-  if (hash && hash.includes('access_token')) {
-    const params = new URLSearchParams(hash.substring(1));
-    const token = params.get('access_token');
-    if (token) {
-      history.replaceState({}, '', window.location.pathname);
-      validateWithToken(token);
-      return;
-    }
-  }
-  try {
-    const saved = localStorage.getItem('go_saved_user');
-    if (saved) {
-      const s = JSON.parse(saved);
-      const age = Date.now() - (s.savedAt || 0);
-      if (age < 30 * 24 * 3600 * 1000 && s.user && s.email) {
-        currentUser = s.user;
-        currentUserName = s.name || s.user;
-        currentFsSubscriber = !!s.fs;
-        currentHasPortal = !!s.portal;
-        currentHasBara = !!s.hasBara;
-        currentTier = s.tier || 0;
-        isGuest = false;
-        setHomeState();
-        updateProfileCorner();
-        return;
-      } else {
-        localStorage.removeItem('go_saved_user');
-      }
-    }
-  } catch(e) {}
-  goTo('screen-gyo-login');
-}
-
-// ── Set home state: go to GYO splash ──
-function setHomeState() {
-  goTo('screen-B2-2-2-splash');
-  updateProfileCorner();
-  applyTierGating();
-}
-
-// ── Profile corner ──
-function updateProfileCorner() {
-  const corner = document.getElementById('profile-corner');
-  const img = document.getElementById('profile-corner-img');
-  const code = document.getElementById('profile-corner-code');
-  if (!corner) return;
-  if (!currentUser) { corner.style.display = 'none'; return; }
-  corner.style.display = 'flex';
-  const tierLabel = currentTier === 1 ? 'Tier 1 💎' : currentTier === 2 ? 'Tier 2' : currentTier === 3 ? 'Tier 3' : '';
-  code.innerHTML = currentUser + (tierLabel ? '<br><span style="font-size:8px;color:rgba(0,191,255,0.6);">' + tierLabel + '</span>' : '');
-  const picUrl = PROFILE_PIC_BASE + encodeURIComponent(currentUser) + '-Profile-Pic-R.png';
-  if (img) {
-    img.onerror = function() { img.src = ''; img.style.display = 'none'; };
-    img.onload = function() { img.style.display = 'block'; };
-    img.src = picUrl;
-  }
-}
-
-// ── Logout ──
-function toggleLogoutPopup() {
-  const popup = document.getElementById('logout-popup');
-  if (!popup) return;
-  popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
-}
-
-function doLogout() {
-  try { localStorage.removeItem('go_saved_user'); } catch(e) {}
-  const popup = document.getElementById('logout-popup');
-  if (popup) popup.style.display = 'none';
-  currentUser = null; currentUserName = 'Guest';
-  currentFsSubscriber = false; currentHasPortal = false;
-  currentHasBara = false; currentTier = 0; isGuest = false;
-  updateProfileCorner();
-  goTo('screen-gyo-login');
-}
-
-// ── Tier gating ──
-function applyTierGating() {
-  const linkEl = document.getElementById('kw-lot-link');
-  const noteEl = document.getElementById('kw-tier-note');
-  const canSeeLink = !isGuest && (currentTier === 1 || currentTier === 2);
-  if (linkEl) { linkEl.style.pointerEvents = canSeeLink ? 'auto' : 'none'; linkEl.style.opacity = canSeeLink ? '1' : '0.3'; }
-  if (noteEl) noteEl.style.display = canSeeLink ? 'none' : 'block';
-}
-
-function applyFsSubscriberGating() {}
-function guestLogin() {}
-function showIdInput() {}
-function loginWithId() {}
-function handleGoogleLogin() {}
-function initGoogleAuth() {}
-function getTimeGreeting() { const h = new Date().getHours(); return h<12?'Good morning':h<17?'Good afternoon':h<21?'Good evening':'Good night'; }
-
-// ── GYO navigation ──
-function gyoEnter() { goTo('screen-B2-2-2-T2'); }
-
-// ================================================================
-// GYO — Kwanyin Oracle Logic
-// ================================================================
-let kwSelectedMethod = 'quantum';
-let kwIsDrawing = false;
-let kwLastNumber = null;
-let kwLastSource = null;
-let kwResultDateTime = '';
-
-function kwRetryQuantum() {
-  const popup = document.getElementById('kw-unreachable-popup');
-  if (popup) popup.style.display = 'none';
-  kwDraw();
-}
-
-function kwSwitchTo(method) {
-  const popup = document.getElementById('kw-unreachable-popup');
-  if (popup) popup.style.display = 'none';
-  kwSelectMethod(method);
-  kwDraw();
-}
-
-function kwSelectMethod(m) {
-  kwSelectedMethod = m;
-  document.querySelectorAll('.kw-method-card').forEach(c => c.classList.remove('active'));
-  const card = document.getElementById('kw-card-' + m);
-  if (card) card.classList.add('active');
-}
-
-function resetKwanyin() {
-  kwLastNumber = null; kwLastSource = null; kwResultDateTime = '';
-  const popup = document.getElementById('kw-unreachable-popup');
-  if (popup) popup.style.display = 'none';
-  const numEl = document.getElementById('kw-number'); if (numEl) numEl.textContent = '—';
-  const fateEl = document.getElementById('kw-fate'); if (fateEl) fateEl.textContent = '';
-  const statusEl = document.getElementById('kw-status'); if (statusEl) statusEl.textContent = '';
-  const qEl = document.getElementById('kw-question'); if (qEl) qEl.value = '';
-  const printBtn = document.getElementById('kw-print-btn'); if (printBtn) printBtn.style.display = 'none';
-  const btn = document.getElementById('kw-btn'); if (btn) { btn.disabled = false; btn.textContent = 'Draw a lot'; }
-  kwSelectedMethod = 'quantum'; kwIsDrawing = false;
-  document.querySelectorAll('.kw-method-card').forEach(c => c.classList.remove('active'));
-  const qCard = document.getElementById('kw-card-quantum'); if (qCard) qCard.classList.add('active');
-  const mv = document.getElementById('kw-main-view'); if (mv) mv.style.display = 'flex';
-  const rv = document.getElementById('kw-result-view'); if (rv) rv.style.display = 'none';
-}
-
-async function quantumFetchN(max) {
-  const r = await fetch('https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint16');
-  const j = await r.json();
-  return (j.data[0] % max) + 1;
-}
-async function randomOrgFetchN(max) {
-  const r = await fetch('https://www.random.org/integers/?num=1&min=1&max=' + max + '&col=1&base=10&format=plain&rnd=new');
-  return parseInt(await r.text());
-}
-function cryptoRandN(max) {
-  const arr = new Uint32Array(1); crypto.getRandomValues(arr);
-  return (arr[0] % max) + 1;
-}
-
-async function kwDraw() {
-  if (kwIsDrawing) return;
-  kwIsDrawing = true;
-  const btn = document.getElementById('kw-btn');
-  const numEl = document.getElementById('kw-number');
-  const fateEl = document.getElementById('kw-fate');
-  const statusEl = document.getElementById('kw-status');
-  btn.disabled = true; btn.textContent = 'Drawing…';
-  if (fateEl) fateEl.textContent = '';
-  if (statusEl) statusEl.textContent = '';
-  if (numEl) numEl.textContent = '—';
-  const popup = document.getElementById('kw-unreachable-popup');
-  if (popup) popup.style.display = 'none';
-  let number, sourceUsed = kwSelectedMethod;
-  try {
-    if (kwSelectedMethod === 'crypto') {
-      await new Promise(r => setTimeout(r, 200));
-      number = cryptoRandN(100);
-    } else if (kwSelectedMethod === 'random-org') {
-      if (statusEl) statusEl.textContent = 'Contacting random.org…';
-      try { number = await randomOrgFetchN(100); }
-      catch { if (statusEl) statusEl.textContent = 'Atm. unreachable — using crypto'; number = cryptoRandN(100); sourceUsed = 'crypto'; }
-    } else {
-      if (statusEl) statusEl.textContent = 'Querying quantum vacuum…';
-      try { number = await quantumFetchN(100); }
-      catch {
-        // Show unreachable popup instead of silent fallback
-        if (statusEl) statusEl.textContent = '';
-        btn.disabled = false; btn.textContent = 'Draw a lot'; kwIsDrawing = false;
-        const popup = document.getElementById('kw-unreachable-popup');
-        if (popup) popup.style.display = 'block';
-        return;
-      }
-    }
-    if (numEl) numEl.classList.add('rolling');
-    const end = Date.now() + 900;
-    await new Promise(resolve => {
-      const tick = () => {
-        if (numEl) numEl.textContent = Math.floor(Math.random() * 100) + 1;
-        if (Date.now() < end) requestAnimationFrame(tick);
-        else { if (numEl) numEl.classList.remove('rolling'); resolve(); }
-      };
-      requestAnimationFrame(tick);
-    });
-    if (numEl) numEl.textContent = number;
-    kwLastNumber = number; kwLastSource = sourceUsed;
-    const now = new Date();
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    kwResultDateTime = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear()
-      + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
-    const fates = { crypto: 'Hardware entropy has decided:', 'random-org': 'The atmosphere has chosen:', quantum: 'Quantum chance has decided:' };
-    if (fateEl) fateEl.textContent = fates[sourceUsed];
-    if (statusEl && !statusEl.textContent.includes('unreachable')) statusEl.textContent = '';
-    btn.disabled = false; btn.textContent = 'Draw a lot'; kwIsDrawing = false;
-    const printBtn = document.getElementById('kw-print-btn'); if (printBtn) printBtn.style.display = 'inline-flex';
-  } catch(err) {
-    if (fateEl) fateEl.textContent = 'The oracle is silent';
-    if (statusEl) statusEl.textContent = 'Error: ' + err.message;
-    btn.disabled = false; btn.textContent = 'Draw a lot'; kwIsDrawing = false;
-  }
-}
-
-function kwSmartCapitalise(text) {
-  if (!text) return '';
-  text = text.trim();
-  text = text.charAt(0).toUpperCase() + text.slice(1);
-  if (!/[.!?]$/.test(text)) text += '.';
-  return text.replace(/([.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
-}
-
-function kwShowResult() {
-  if (!kwLastNumber) return;
-  const mv = document.getElementById('kw-main-view'); if (mv) mv.style.display = 'none';
-  const rv = document.getElementById('kw-result-view'); if (rv) rv.style.display = 'flex';
-  // Stop infinite animations on hidden elements to save resources
-  document.querySelectorAll('.kw-method-card').forEach(c => c.style.animation = 'none');
-  const rawQ = (document.getElementById('kw-question') || {}).value || '';
-  const smartQ = kwSmartCapitalise(rawQ);
-  const qEl = document.getElementById('kw-result-question'); if (qEl) qEl.textContent = smartQ || '(No question entered)';
-  const lotEl = document.getElementById('kw-result-lot-num'); if (lotEl) lotEl.textContent = kwLastNumber;
-  const dtEl = document.getElementById('kw-result-datetime'); if (dtEl) dtEl.textContent = kwResultDateTime;
-  const LOT_BASE = 'https://sites.google.com/view/divinationitsutsuji/%E8%A7%80%E9%9F%B3%E9%9D%88%E7%B0%BD-guan-yin-fortune-divination-quan-%C3%A2m-linh-thi%C3%AAm/lots/';
-  const linkEl = document.getElementById('kw-lot-link'); if (linkEl) linkEl.href = LOT_BASE + kwLastNumber;
-  const linkTextEl = document.getElementById('kw-lot-link-text'); if (linkTextEl) linkTextEl.textContent = 'See what Lot ' + kwLastNumber + ' says ↗';
-  applyTierGating();
-  const srcLabels = { 'quantum': '⚛️ Quantum', 'random-org': '📡 Atm.', 'crypto': '🔐 Crypto' };
-  const srcEl = document.getElementById('kw-result-source'); if (srcEl) srcEl.textContent = 'Randomness provided by ' + (srcLabels[kwLastSource] || kwLastSource || 'Unknown');
-  window.scrollTo(0, 0);
-}
-
-function kwAskAnother() {
-  const rv = document.getElementById('kw-result-view'); if (rv) rv.style.display = 'none';
-  const mv = document.getElementById('kw-main-view'); if (mv) mv.style.display = 'flex';
-  // Restore animations
-  document.querySelectorAll('.kw-method-card').forEach(c => c.style.animation = '');
-  resetKwanyin();
-  window.scrollTo(0, 0);
-}
-
-function kwCopyResult() {
-  if (!kwLastNumber) return;
-  const rawQ = (document.getElementById('kw-question') || {}).value || '';
-  const smartQ = kwSmartCapitalise(rawQ);
-  const text = 'Divination (i) Tsutsuji\n觀音靈簽\n' + kwResultDateTime
-    + '\n\nThe answer to your question:\n"' + (smartQ || '(No question entered)') + '"\nis:\nLot ' + kwLastNumber;
-  navigator.clipboard.writeText(text).then(() => {
-    const el = document.getElementById('kw-result-copy-confirm');
-    if (el) { el.style.opacity = '1'; setTimeout(() => el.style.opacity = '0', 2200); }
-  });
-}
-
-function kwRoundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath(); ctx.moveTo(x+r, y);
-  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
-  ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-  ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
-  ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y); ctx.closePath();
-}
-function kwWrapText(ctx, text, x, y, maxW, lineH) {
-  const words = text.split(' '); let line = '';
-  for (let i = 0; i < words.length; i++) {
-    const test = line + words[i] + ' ';
-    if (ctx.measureText(test).width > maxW && i > 0) { ctx.fillText(line, x, y); line = words[i] + ' '; y += lineH; }
-    else line = test;
-  }
-  ctx.fillText(line, x, y);
-}
-
-function kwCopyResultImage() {
-  if (!kwLastNumber) return;
-  const rawQ = (document.getElementById('kw-question') || {}).value || '';
-  const smartQ = kwSmartCapitalise(rawQ);
-  const question = smartQ || '(No question entered)';
-  const lotNum = kwLastNumber;
-  const dt = kwResultDateTime;
-  const src = kwLastSource;
-  const SCALE = 2, SW = 420, W = SW * SCALE;
-  const tmpC = document.createElement('canvas'); tmpC.width = W;
-  const tmpCtx = tmpC.getContext('2d');
-  const qFontSize = 28 * SCALE;
-  const qFont = '' + qFontSize + 'px Corinthia, cursive';
-  tmpCtx.font = qFont;
-  const boxPad = 22 * SCALE;
-  const boxInnerW = W - 2 * (20 * SCALE) - 2 * boxPad;
-  const qLineH = Math.round(28 * 1.5 * SCALE);
-  let qLine = '', qLines = 1;
-  const qWords = question.split(' ');
-  for (let i = 0; i < qWords.length; i++) {
-    const test = qLine + qWords[i] + ' ';
-    if (tmpCtx.measureText(test).width > boxInnerW && i > 0) { qLine = qWords[i] + ' '; qLines++; } else qLine = test;
-  }
-  const qTextH = qLines * qLineH;
-  const px = n => n * SCALE;
-  const titleY = px(56), imgTop = px(78), imgH = px(120);
-  const kanjiY = imgTop + imgH + px(28), dateY = kanjiY + px(44), boxTop = dateY + px(28);
-  const boxLabelH = px(32), isLabelH = px(32), lotH = px(90), boxPadV = px(20);
-  const boxH_content = boxPadV + boxLabelH + qTextH + isLabelH + lotH + boxPadV;
-  const boxBottom = boxTop + boxH_content;
-  const srcNoteY = boxBottom + px(24), flowerY = srcNoteY + px(40), footerY = flowerY + px(64);
-  const H = footerY + px(30);
-  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = H;
-  const ctx = canvas.getContext('2d');
-  const bg = ctx.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, '#000073'); bg.addColorStop(1, '#00004a');
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-  const guanyinUrl = 'https://i.postimg.cc/cLc0dSD1/Kwan-Yin.png';
-  const tsutsujiUrl = 'https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png';
-  const profileUrl = currentUser ? PROFILE_PIC_BASE + encodeURIComponent(currentUser) + '-Profile-Pic-R.png' : null;
-  let guanyinImg = null, tsutsujiImg = null, profileImg = null;
-  const totalToLoad = profileUrl ? 3 : 2; let loaded = 0;
-  function onLoaded() { loaded++; if (loaded >= totalToLoad) draw(); }
-  function draw() {
-    const mid = W / 2;
-    if (profileImg && currentUser) {
-      const pR = px(25), pX = W - px(40), pY = px(46);
-      ctx.save(); ctx.beginPath(); ctx.arc(pX, pY, pR, 0, Math.PI*2); ctx.clip();
-      ctx.drawImage(profileImg, pX-pR, pY-pR, pR*2, pR*2); ctx.restore();
-    }
-    ctx.fillStyle = 'rgba(255,245,220,0.9)'; ctx.font = '600 ' + px(15) + 'px Cinzel, serif';
-    ctx.textAlign = 'center'; ctx.fillText('Divination (i) Tsutsuji', mid, titleY);
-    if (guanyinImg) {
-      const ratio = guanyinImg.width / guanyinImg.height, iH = imgH, iW = ratio * iH;
-      ctx.save(); ctx.shadowColor = 'rgba(204,255,0,0.9)'; ctx.shadowBlur = px(14);
-      ctx.drawImage(guanyinImg, mid - iW/2, imgTop, iW, iH); ctx.restore();
-    }
-    ctx.fillStyle = '#f5f0e8'; ctx.font = px(24) + 'px "Klee One", serif'; ctx.textAlign = 'center';
-    ctx.save(); ctx.shadowColor = 'rgba(255,245,80,0.8)'; ctx.shadowBlur = px(4);
-    ctx.fillText('觀音靈簽', mid, kanjiY); ctx.restore();
-    ctx.fillStyle = 'rgba(255,245,220,0.55)'; ctx.font = px(11) + 'px Cinzel, serif'; ctx.textAlign = 'center';
-    ctx.fillText(dt, mid, dateY);
-    const bx = px(20), bw = W - bx*2, by = boxTop, bh = boxH_content;
-    ctx.fillStyle = 'rgba(255,255,255,0.07)'; kwRoundRect(ctx, bx, by, bw, bh, px(12)); ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = px(1); kwRoundRect(ctx, bx, by, bw, bh, px(12)); ctx.stroke();
-    ctx.fillStyle = 'rgba(255,245,220,0.5)'; ctx.font = px(11) + 'px Cinzel, serif'; ctx.textAlign = 'left';
-    ctx.fillText('THE ANSWER TO YOUR QUESTION:', bx + boxPad, by + boxPadV + px(18));
-    ctx.fillStyle = '#00E5FF'; ctx.font = qFont;
-    kwWrapText(ctx, question, bx + boxPad, by + boxPadV + boxLabelH + qLineH * 0.75, boxInnerW, qLineH);
-    ctx.fillStyle = 'rgba(255,245,220,0.5)'; ctx.font = px(12) + 'px Cinzel, serif';
-    const isY = by + boxPadV + boxLabelH + qTextH + px(20); ctx.fillText('is:', bx + boxPad, isY);
-    ctx.fillStyle = '#c8a96e'; ctx.font = '300 ' + px(28) + 'px "Cormorant Garamond", serif';
-    const lotLineY = isY + px(32) + px(52); ctx.fillText('Lot', bx + boxPad, lotLineY);
-    ctx.fillStyle = '#ccff00'; ctx.font = '700 ' + px(72) + 'px "Cormorant Garamond", serif';
-    ctx.save(); ctx.shadowColor = 'rgba(204,255,0,0.9)'; ctx.shadowBlur = px(8);
-    ctx.fillText(String(lotNum), bx + boxPad + px(80), lotLineY); ctx.restore();
-    const srcLabels = { 'quantum': '⚛️ Quantum', 'random-org': '📡 Atm.', 'crypto': '🔐 Crypto' };
-    ctx.fillStyle = 'rgba(255,245,220,0.45)'; ctx.font = 'italic ' + px(12) + 'px "Crimson Pro", serif';
-    ctx.textAlign = 'center'; ctx.fillText('Randomness provided by ' + (srcLabels[src] || src || 'Unknown'), mid, srcNoteY);
-    if (tsutsujiImg) { const tH = px(48), tW = tsutsujiImg.width * (tH / tsutsujiImg.height); ctx.globalAlpha = 0.85; ctx.drawImage(tsutsujiImg, mid - tW/2, flowerY, tW, tH); ctx.globalAlpha = 1; }
-    ctx.fillStyle = 'rgba(255,245,220,0.2)'; ctx.font = px(11) + 'px "Cinzel", serif'; ctx.textAlign = 'center';
-    ctx.fillText("You're using Super Portal 五 Go", mid, footerY);
-    const now = new Date();
-    const mm = String(now.getMonth()+1).padStart(2,'0'), dd2 = String(now.getDate()).padStart(2,'0');
-    const yy = String(now.getFullYear()).slice(2), hh = String(now.getHours()).padStart(2,'0'), mn = String(now.getMinutes()).padStart(2,'0');
-    const link = document.createElement('a');
-    link.download = 'GYO ' + (currentUser||'Go') + ' Result Card ' + mm+dd2+yy+' '+hh+mn + '.png';
-    link.href = canvas.toDataURL('image/png'); link.click();
-    const imgEl = document.getElementById('kw-img-copy-confirm');
-    if (imgEl) { imgEl.style.opacity = '1'; setTimeout(() => imgEl.style.opacity = '0', 2500); }
-  }
-  const gi = new Image(); gi.crossOrigin = 'anonymous'; gi.onload = () => { guanyinImg = gi; onLoaded(); }; gi.onerror = () => onLoaded(); gi.src = guanyinUrl;
-  const ti = new Image(); ti.crossOrigin = 'anonymous'; ti.onload = () => { tsutsujiImg = ti; onLoaded(); }; ti.onerror = () => onLoaded(); ti.src = tsutsujiUrl;
-  if (profileUrl) { const pi = new Image(); pi.crossOrigin = 'anonymous'; pi.onload = () => { profileImg = pi; onLoaded(); }; pi.onerror = () => onLoaded(); pi.src = profileUrl; }
-}
-
-// ── Haircut ──
 function haircutFormatDate(d) {
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  return days[d.getDay()] + ', ' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + '/' + d.getFullYear();
+  const day = days[d.getDay()];
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const dd = String(d.getDate()).padStart(2,'0');
+  const yyyy = d.getFullYear();
+  return day + ', ' + mm + '/' + dd + '/' + yyyy;
 }
+
+function haircutSplashContinue() {
+  goTo('SPGo-L2-P1.T5-Tibetan-Haircut');
+}
+
 function loadTodayHaircut() {
   const now = new Date();
-  const todayEl = document.getElementById('haircut-today-date'), adviceEl = document.getElementById('haircut-today-advice'), logo = document.getElementById('haircut-logo-img');
+  const todayEl = document.getElementById('haircut-today-date');
+  const adviceEl = document.getElementById('haircut-today-advice');
+  const logo = document.getElementById('haircut-logo-img');
   if (todayEl) todayEl.textContent = haircutFormatDate(now);
-  if (adviceEl) { adviceEl.textContent = 'Loading…'; adviceEl.style.color='#ccff00'; }
+  if (adviceEl) { adviceEl.textContent = 'Loading…'; adviceEl.classList.add('loading-state'); adviceEl.style.color='#ccff00'; }
+  if (logo) logo.classList.add('loading');
   gasJsonp('action=today', function(data) {
     const text = data.advice || data.result || data.text || data.answer || data.message || 'No data returned.';
     if (adviceEl) applyHaircutAdvice(adviceEl, text);
   }, function() {
-    if (adviceEl) { adviceEl.textContent = 'Unable to load — check connection.'; adviceEl.style.color='rgba(255,255,255,0.5)'; }
+    if (adviceEl) { adviceEl.textContent = 'Unable to load — check connection.'; adviceEl.classList.remove('loading-state'); adviceEl.style.color='rgba(255,255,255,0.5)'; }
+    if (logo) logo.classList.remove('loading');
   });
 }
+
 function checkHaircutDate() {
-  const picker = document.getElementById('haircut-date-picker'); if (!picker || !picker.value) return;
+  const picker = document.getElementById('haircut-date-picker');
+  if (!picker.value) return;
   const d = new Date(picker.value + 'T12:00:00');
-  const dateLabel = document.getElementById('haircut-custom-date-label'), adviceEl = document.getElementById('haircut-custom-advice'), resultEl = document.getElementById('haircut-custom-result');
+  const dateLabel = document.getElementById('haircut-custom-date-label');
+  const adviceEl = document.getElementById('haircut-custom-advice');
+  const resultEl = document.getElementById('haircut-custom-result');
+  const logo = document.getElementById('haircut-logo-img');
   if (dateLabel) dateLabel.textContent = haircutFormatDate(d);
-  if (adviceEl) { adviceEl.textContent = 'Loading…'; adviceEl.style.color='#ccff00'; }
+  if (adviceEl) { adviceEl.textContent = 'Loading…'; adviceEl.classList.add('loading-state'); adviceEl.style.color='#ccff00'; }
   if (resultEl) resultEl.style.display = 'block';
+  if (logo) logo.classList.add('loading');
   gasJsonp('action=date&date=' + encodeURIComponent(picker.value), function(data) {
     const text = data.advice || data.result || data.text || data.answer || data.message || 'No data returned.';
     if (adviceEl) applyHaircutAdvice(adviceEl, text);
   }, function() {
-    if (adviceEl) { adviceEl.textContent = 'Unable to load.'; adviceEl.style.color='rgba(255,255,255,0.5)'; }
+    if (adviceEl) { adviceEl.textContent = 'Unable to load — check connection.'; adviceEl.classList.remove('loading-state'); adviceEl.style.color='rgba(255,255,255,0.5)'; }
+    if (logo) logo.classList.remove('loading');
   });
 }
+
 function cleanHaircutText(text) {
-  return text.replace(/\u2019/g,'').replace(/\u2018/g,'').replace(/'/g,'').replace(/⬛\s*/g,'').replace(/🔵\s*/g,'').replace(/^\s*['"]\s*/gm,'').replace(/\s*['"]\s*$/gm,'').trim();
+  return text
+    .replace(/\u2019/g, '')
+    .replace(/\u2018/g, '')
+    .replace(/'/g, '')
+    .replace(/⬛\s*/g, '')
+    .replace(/🔵\s*/g, '')
+    .replace(/^\s*['"]\s*/gm, '')
+    .replace(/\s*['"]\s*$/gm, '')
+    .trim();
 }
+
 function applyHaircutAdvice(el, text) {
-  const isRed = text && text.includes('⬛'), isGreen = text && text.includes('🔵');
-  el.innerHTML = cleanHaircutText(text); el.style.animation = '';
+  const isRed = text && text.includes('⬛');
+  const isGreen = text && text.includes('🔵');
+  const cleaned = cleanHaircutText(text);
+  el.innerHTML = cleaned;
+  el.classList.remove('loading-state');
+  el.classList.remove('sp-loading');
+  el.style.animation = '';
+  el.style.fontSize = '';
   if (isRed) el.style.color = '#FF3131';
   else if (isGreen) el.style.color = '#ccff00';
   else el.style.color = '';
-  const logo = document.getElementById('haircut-logo-img'); if (logo) logo.classList.remove('loading');
+  const logo = document.getElementById('haircut-logo-img');
+  if (logo) logo.classList.remove('loading');
 }
 
-// ── Init ──
-document.addEventListener('click', function(e) {
-  const popup = document.getElementById('logout-popup');
-  const corner = document.getElementById('profile-corner');
-  if (popup && popup.style.display === 'flex' && corner && !popup.contains(e.target) && !corner.contains(e.target)) {
-    popup.style.display = 'none';
+// ============================================================
+// NAVIGATION HISTORY + BROWSER BACK + SWIPE
+// ============================================================
+const navStack = ['screen-B0-login'];
+
+function goTo(screenId) {
+  const current = navStack[navStack.length - 1];
+  if (current !== screenId) navStack.push(screenId);
+
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // Push browser history state
+  history.pushState({ screenId }, '', '#' + screenId);
+
+  if (screenId === 'SPGo-L2-P1.T5-Tibetan-Haircut-splash') {
+    // Start loading haircut data in background while on splash
+    loadTodayHaircut();
+  }
+  if (screenId === 'SPGo-L2-P1.T5-Tibetan-Haircut') {
+    // Reset custom date picker and result when returning
+    const picker = document.getElementById('haircut-date-picker');
+    if (picker) picker.value = '';
+    const customResult = document.getElementById('haircut-custom-result');
+    if (customResult) customResult.style.display = 'none';
+    const customAdvice = document.getElementById('haircut-custom-advice');
+    if (customAdvice) { customAdvice.textContent = ''; customAdvice.style.color = ''; customAdvice.classList.remove('loading-state'); }
+    const customDate = document.getElementById('haircut-custom-date-label');
+    if (customDate) customDate.textContent = '';
+  }
+  if (screenId === 'SPGo-L3-H2.P1.T1-Chart-Data') loadVedicCharts();
+
+  if (screenId === 'screen-B0-login') {
+    // Clear saved login so user can switch accounts
+    try { localStorage.removeItem('go_saved_user'); } catch(e) {}
+    currentUser = null; currentUserName = 'Guest'; isGuest = false;
+    currentFsSubscriber = false; currentHasPortal = false;
+  }
+}
+
+function goBack() {
+  if (navStack.length > 1) {
+    navStack.pop();
+    const prev = navStack[navStack.length - 1];
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(prev);
+    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  }
+}
+
+// Browser back button
+window.addEventListener('popstate', function(e) {
+  if (navStack.length > 1) {
+    navStack.pop();
+    const prev = navStack[navStack.length - 1];
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(prev);
+    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  } else {
+    // Stay on the page rather than exiting
+    history.pushState({ screenId: navStack[0] }, '', '#' + navStack[0]);
   }
 });
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', checkOAuthReturn);
-} else {
-  checkOAuthReturn();
+// Swipe left-to-right = go back
+let swipeStartX = 0, swipeStartY = 0;
+document.addEventListener('touchstart', e => {
+  swipeStartX = e.touches[0].clientX;
+  swipeStartY = e.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - swipeStartX;
+  const dy = e.changedTouches[0].clientY - swipeStartY;
+  // Only trigger if horizontal swipe is dominant and large enough
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2) {
+    // Don't trigger swipe on map canvas
+    const active = document.querySelector('.screen.active');
+    if (dx > 0) goBack(); // swipe right = back
+    // swipe left = forward (re-enter last screen if available) — noop for now, standard Android behaviour
+  }
+}, { passive: true });
+
+// Push initial state so back button works from the start
+// BUT only if NOT returning from Google OAuth (which puts access_token in the hash)
+if (!window.location.hash.includes('access_token')) {
+  history.replaceState({ screenId: 'screen-B0-login' }, '', '#screen-B0-login');
 }
 
+// ============================================================
+// MAP ARROW NODE EDITING
+// ============================================================
+let selectedNode = null; // 'start' | 'end' | null
+const NODE_RADIUS = 16;
+
+function getNodeAtPos(x, y) {
+  if (!drawnLine) return null;
+  const dxS = x - drawnLine.x1, dyS = y - drawnLine.y1;
+  if (Math.sqrt(dxS*dxS + dyS*dyS) < NODE_RADIUS) return 'start';
+  const dxE = x - drawnLine.x2, dyE = y - drawnLine.y2;
+  if (Math.sqrt(dxE*dxE + dyE*dyE) < NODE_RADIUS) return 'end';
+  return null;
+}
+
+function onDrawStart(e) {
+  if (!drawMode) return;
+  const p = getCanvasPos(e);
+
+  if (drawnLine) {
+    const node = getNodeAtPos(p.x, p.y);
+    if (node) {
+      selectedNode = node;
+      isDrawing = true;
+      return;
+    }
+  }
+
+  // Start fresh line
+  selectedNode = null;
+  isDrawing = true;
+  mapStartPt = p;
+  mapCurrentPt = p;
+}
+
+function onDrawMove(e) {
+  if (!drawMode || !isDrawing) return;
+  const p = getCanvasPos(e);
+
+  if (selectedNode && drawnLine) {
+    if (selectedNode === 'start') {
+      drawnLine.x1 = p.x; drawnLine.y1 = p.y;
+    } else {
+      drawnLine.x2 = p.x; drawnLine.y2 = p.y;
+    }
+    redrawLine(drawnLine.x1, drawnLine.y1, drawnLine.x2, drawnLine.y2, false);
+    drawNodes();
+    showBearingResult();
+    return;
+  }
+
+  mapCurrentPt = p;
+  redrawLine(mapStartPt.x, mapStartPt.y, p.x, p.y, true);
+}
+
+function onDrawEnd(e) {
+  if (!drawMode || !isDrawing) return;
+  isDrawing = false;
+
+  if (selectedNode) {
+    selectedNode = null;
+    drawNodes();
+    return;
+  }
+
+  const p = getCanvasPos(e);
+  mapCurrentPt = p;
+  const dx = p.x - mapStartPt.x, dy = p.y - mapStartPt.y;
+  if (Math.sqrt(dx*dx + dy*dy) < 10) return;
+  drawnLine = { x1: mapStartPt.x, y1: mapStartPt.y, x2: p.x, y2: p.y };
+  redrawLine(drawnLine.x1, drawnLine.y1, drawnLine.x2, drawnLine.y2, false);
+  drawNodes();
+  showBearingResult();
+}
+
+function drawNodes() {
+  if (!drawnLine || !drawCtx) return;
+  // Draw two handle nodes
+  const pts = [
+    { x: drawnLine.x1, y: drawnLine.y1, label: '○' },
+    { x: drawnLine.x2, y: drawnLine.y2, label: '●' },
+  ];
+  pts.forEach(pt => {
+    drawCtx.save();
+    drawCtx.beginPath();
+    drawCtx.arc(pt.x, pt.y, NODE_RADIUS * 0.75, 0, Math.PI * 2);
+    drawCtx.fillStyle = 'rgba(255,80,80,0.25)';
+    drawCtx.fill();
+    drawCtx.strokeStyle = 'rgba(255,255,255,0.9)';
+    drawCtx.lineWidth = 2;
+    drawCtx.stroke();
+    drawCtx.restore();
+  });
+}
+
+// ============================================================
+// VEDIC — load chart list from GAS based on logged-in user ID
+// ============================================================
+const VEDIC_APP_FOLDER_ID = "1zremwI3revG-7JXVrNBbVPIDr2XoD1N7";
+let vedicCurrentData = '';
+
+function loadVedicCharts() {
+  const badge = document.getElementById('vedic-user-badge');
+  const loading = document.getElementById('vedic-loading');
+  const notSub = document.getElementById('vedic-not-subscribed');
+  const cards = document.getElementById('vedic-chart-cards');
+
+  if (badge) badge.textContent = currentUser || '—';
+
+  if (!currentUser || isGuest) {
+    if (loading) loading.style.display = 'none';
+    if (notSub) notSub.style.display = 'block';
+    return;
+  }
+
+  if (loading) loading.style.display = 'block';
+  if (notSub) notSub.style.display = 'none';
+  if (cards) cards.style.display = 'none';
+
+  gasJsonp('action=vedicCharts&idCode=' + encodeURIComponent(currentUser), function(data) {
+    if (loading) loading.style.display = 'none';
+    if (!data.charts || data.charts.length === 0) {
+      if (notSub) {
+        notSub.style.display = 'block';
+        notSub.innerHTML = '<p style="color:rgba(255,150,150,0.9); font-size:13px; margin-bottom:8px;">No charts found for ID: ' + currentUser + '</p><p style="color:var(--text-mid); font-size:12px;">GAS response: ' + JSON.stringify(data) + '</p>';
+      }
+      return;
+    }
+    if (cards) {
+      cards.innerHTML = '';
+      cards.style.display = 'flex';
+      data.charts.forEach(chartName => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<div class="card-icon"><img src="https://i.postimg.cc/bwm6CsPv/Fuki_1.png" alt="" style="width:42px;height:42px;object-fit:contain;"></div><div class="card-text"><div class="card-title">${chartName}</div><div class="card-desc">Tap to view & copy</div></div><div class="card-arrow">›</div>`;
+        card.onclick = () => loadVedicChart(chartName);
+        cards.appendChild(card);
+      });
+    }
+  }, function(err) {
+    if (loading) loading.style.display = 'none';
+    if (notSub) {
+      notSub.style.display = 'block';
+      notSub.innerHTML = '<p style="color:rgba(255,150,150,0.9); font-size:13px;">Error loading charts: ' + err + '</p><p style="color:var(--text-mid); font-size:12px;">ID used: ' + currentUser + '</p>';
+    }
+  });
+}
+
+function loadVedicChart(chartName) {
+  const title = document.getElementById('vedic-data-title');
+  const box = document.getElementById('vedic-data-box');
+  const btn = document.getElementById('vedic-copy-btn');
+  if (title) title.textContent = chartName;
+  if (box) { box.textContent = 'Loading…'; box.className = 'sp-loading'; }
+  if (btn) { btn.textContent = 'Copy All'; btn.style.background = 'var(--sky)'; }
+  vedicCurrentData = '';
+  // Navigate to data detail screen
+  goTo('SPGo-L3-H2.P1.T1-Chart-Data-data');
+
+  gasJsonp('action=vedicData&idCode=' + encodeURIComponent(currentUser) + '&chart=' + encodeURIComponent(chartName), function(data) {
+    vedicCurrentData = data.data || '';
+    if (box) {
+      box.textContent = vedicCurrentData;
+      box.className = ''; // remove sp-loading
+    }
+  }, function() {
+    if (box) { box.textContent = 'Error loading. Please try again.'; box.className = ''; }
+  });
+}
+
+function vedicCopyData() {
+  if (!vedicCurrentData) return;
+  navigator.clipboard.writeText(vedicCurrentData).then(() => {
+    const btn = document.getElementById('vedic-copy-btn');
+    btn.textContent = 'Copied!';
+    btn.style.background = '#34a853';
+    setTimeout(() => { btn.textContent = 'Copy All'; btn.style.background = 'var(--sky)'; }, 2000);
+  });
+}
+
+// ============================================================
+// INIT on DOM ready
+// ============================================================
+window.addEventListener('DOMContentLoaded', function() {
+  checkOAuthReturn();
+  // Debug profile pic
+  const _origLoad = window.loadProfilePic;
+  window.loadProfilePic = function(idCode, tier, callback) {
+    gasJsonp('action=getProfilePic&idCode=' + encodeURIComponent(idCode) + '&tier=' + (tier||0), function(data) {
+      console.log('Profile pic GAS response:', JSON.stringify(data));
+      if (data.data) {
+        callback('data:' + (data.mime||'image/png') + ';base64,' + data.data, !!data.isPersonal);
+      } else {
+        console.log('Profile pic: no data returned, error:', data.error);
+        callback(null, false);
+      }
+    }, function(err) {
+      console.log('Profile pic JSONP failed:', err);
+      callback(null, false);
+    });
+  };
+});
 </script>
+
 </body>
 </html>
