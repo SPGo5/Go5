@@ -1011,7 +1011,7 @@ html, body {
 
   <div class="cards">
     <!-- B1 -->
-    <div class="card" onclick="goTo('SPGo-L1-P1-DS')">
+    <div class="card" onclick="goTo('screen-B1-1')">
       <div class="card-icon"><img src="https://i.postimg.cc/15ky2Vyf/ajisai-DS.png" alt="DS"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">📅 Date Selection</span> <span style="font-family:'Cinzel',serif; font-size:13px; color:#e0b0ff; letter-spacing:0.05em;">Ajisai</span></div>
@@ -1021,7 +1021,7 @@ html, body {
     </div>
 
     <!-- B2 -->
-    <div class="card" onclick="goTo('SPGo-L1-H1-QMDJ-Divination')">
+    <div class="card" onclick="goTo('screen-B1-2')">
       <div class="card-icon" style="display:flex;flex-direction:column;align-items:center;gap:4px;"><img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="QMDJ" style="width:36px;height:36px;object-fit:contain;"><img src="https://i.postimg.cc/kgmb9JGx/tsutsuji_1_no_leave_2.png" alt="Tsutsuji" style="width:28px;height:28px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">☯️ QMDJ &amp; 🔮 Divination</span></div>
@@ -1031,7 +1031,7 @@ html, body {
     </div>
 
     <!-- B3 — locked for guest -->
-    <div class="card" id="card-b3" onclick="goTo('SPGo-L1-H2-ILS')">
+    <div class="card" id="card-b3" onclick="goTo('screen-B1-3')">
       <div class="card-icon"><img src="https://i.postimg.cc/TwN0qW23/Rose-Thao-Dien-Mam-03-26.png" alt="Life" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🎭 Individual Life Study</span></div>
@@ -1041,7 +1041,7 @@ html, body {
     </div>
 
     <!-- B4 — locked for guest -->
-    <div class="card" id="card-b4" onclick="goTo('SPGo-L1-P2-FS')">
+    <div class="card" id="card-b4" onclick="goTo('screen-B1-4')">
       <div class="card-icon" style="display:flex;flex-direction:column;align-items:center;gap:4px;"><img src="https://i.postimg.cc/13SDRFLD/FS-i-Manju.png" alt="FS" style="width:36px;height:36px;object-fit:contain;"><img src="https://i.postimg.cc/VsSqKmq5/FS_ii_Shage.png" alt="Shage" style="width:28px;height:28px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🏘️ Fengshui Portal</span> <span style="font-family:'Cinzel',serif; font-size:13px; color:#e0b0ff; letter-spacing:0.05em;">Manjushage</span></div>
@@ -1087,103 +1087,79 @@ html, body {
 <!-- ============================================================
      SCREEN B1: DATE SELECTION
      ============================================================ -->
-<div id="SPGo-L1-P1-DS" class="screen">
+<div id="screen-B1-1" class="screen">
   <div class="inner-header">
     <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
     <span class="inner-title">五 Go Main Menu</span>
   </div>
 
-  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">📅 擇日 Date Selection</div>
+  <div style="font-family:'Aleo',serif; font-size:20px; font-weight:400; color:var(--sky); text-align:center; letter-spacing:0.05em; margin-bottom:12px;">📅 DS Portal</div>
   <div style="margin-bottom:8px; display:flex; justify-content:center;">
-    <img src="https://i.postimg.cc/kD3H57dt/Ajisai-Portal-2Heads.png" alt="Ajisai" style="width:70px;height:70px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(12,221,8,0.4));">
+    <img src="https://i.postimg.cc/Sx8v5zcW/Ajisai-Portal-2.png" alt="Ajisai" style="width:70px;height:70px;object-fit:contain; filter:drop-shadow(0 0 12px rgba(0,191,255,0.5));">
   </div>
   <div style="font-family:'Cinzel',serif; font-size:16px; color:#e0b0ff; text-align:center; letter-spacing:0.2em; margin-top:6px; margin-bottom:16px;">Ajisai</div>
 
-  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🛠️ Tools</div>
-  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
-
   <div class="cards">
-    <!-- P1.T1 Today Snapshot — Soon -->
     <div class="card grayed">
       <div class="card-icon">🗓</div>
       <div class="card-text">
         <div class="card-title">Today Snapshot <span class="coming-soon-tag">Soon</span></div>
-        <div class="card-desc">Daily date selection snapshot</div>
+        <div class="card-desc">...</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
-    <!-- P1.T2 Current Hour — Soon -->
     <div class="card grayed">
       <div class="card-icon">🕒</div>
       <div class="card-text">
-        <div class="card-title">🕒 Current Hour <span class="coming-soon-tag">Soon</span></div>
-        <div class="card-desc">Current hour date selection</div>
+        <div class="card-title">Current Hour <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">...</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
-    <!-- P1.T3 FS Charts for DS — Soon -->
     <div class="card grayed">
-      <div class="card-icon">⏳</div>
+      <div class="card-icon">風</div>
       <div class="card-text">
-        <div class="card-title">⏳ FS Charts For DS <span class="coming-soon-tag">Soon</span></div>
-        <div class="card-desc">Fengshui charts for date selection</div>
+        <div class="card-title">Fengshui Charts <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">...</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
-    <!-- P1.T4 Monthly Calendar — Live -->
+    <div class="card" onclick="goTo('screen-B2-1-T5-splash')">
+      <div class="card-icon">💇🏻</div>
+      <div class="card-text">
+        <div class="card-title">Haircut Advice</div>
+        <div class="card-desc">Best days for a haircut</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
     <div class="card grayed">
       <div class="card-icon">📅</div>
       <div class="card-text">
-        <div class="card-title">📅 Monthly Calendar <span class="coming-soon-tag">Soon</span></div>
-        <div class="card-desc">Monthly date selection calendar</div>
+        <div class="card-title">Monthly Calendars <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">...</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
-    <!-- P1.T5 Tibetan Haircut — Live -->
-    <div class="card" onclick="goTo('SPGo-L2-P1.T5-Tibetan-Haircut-splash')">
-      <div class="card-icon"><img src="https://i.postimg.cc/Jn0gckSD/Boddhisattva-cutting-hai.png" alt="Haircut" style="width:42px;height:42px;object-fit:contain;"></div>
-      <div class="card-text">
-        <div class="card-title">💇🏻‍♀️ Tibetan Haircut Advice</div>
-        <div class="card-desc">Best days for a haircut by Tibetan calendar</div>
-      </div>
-      <div class="card-arrow">›</div>
-    </div>
-  </div>
+    <div class="section-divider" style="margin: 4px 0;"></div>
 
-  <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px; margin-top:12px;">🌐 Sites</div>
-  <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
-
-  <div class="cards">
-    <!-- P1.S1 DS (iii) Ajisai — External Link -->
-    <div class="card" onclick="window.open('https://sites.google.com/view/dsiiiajisai','_blank')">
-      <div class="card-icon"><img src="https://i.postimg.cc/15ky2Vyf/ajisai-DS.png" alt="Ajisai DS" style="width:42px;height:42px;object-fit:contain;"></div>
+    <div class="card grayed">
+      <div class="card-icon">☯</div>
       <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">💠 DS (iii) Ajisai</span></div>
-        <div class="card-desc">Date selection site · 🌐 Go to site ↗</div>
+        <div class="card-title">Your Current Bazi Luck Period <span class="coming-soon-tag">Soon</span></div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
-    <!-- P1.S2 Auxiliary Stars Sora — External Link -->
-    <div class="card" onclick="window.open('https://sites.google.com/view/auxiliarystarssora','_blank')">
-      <div class="card-icon">〇</div>
+    <div class="card grayed">
+      <div class="card-icon">⭐</div>
       <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">〇 Auxiliary Stars</span> <span style="font-family:'Cinzel',serif; font-size:13px; color:#e0b0ff;">Sora</span></div>
-        <div class="card-desc">Auxiliary stars reference · 🌐 Go to site ↗</div>
-      </div>
-      <div class="card-arrow">›</div>
-    </div>
-
-    <!-- P1.S3 Chn (i) Ginkgo — External Link -->
-    <div class="card" onclick="window.open('https://sites.google.com/view/chniginkgo','_blank')">
-      <div class="card-icon"><img src="https://i.postimg.cc/fRm85t91/Ginkgo-Chn-i.png" alt="Ginkgo" style="width:42px;height:42px;object-fit:contain;"></div>
-      <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🔤 Chn (i)</span> <span style="font-family:'Cinzel',serif; font-size:13px; color:#e0b0ff;">Ginkgo</span></div>
-        <div class="card-desc">Chinese resource site · 🌐 Go to site ↗</div>
+        <div class="card-title">Planetary Transits <span class="coming-soon-tag">Soon</span></div>
+        <div class="card-desc">Vedic Astrology</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
@@ -1201,7 +1177,7 @@ html, body {
 <!-- ============================================================
      SCREEN: HAIRCUT SPLASH
      ============================================================ -->
-<div id="SPGo-L2-P1.T5-Tibetan-Haircut-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="haircutSplashContinue()">
+<div id="screen-B2-1-T5-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="haircutSplashContinue()">
   <div style="position:absolute; inset:0; background-image:url('https://i.postimg.cc/6pZ3W739/Boddhisattva-haircut-fpmt-org-image.png'); background-size:auto 100%; background-repeat:no-repeat; background-position:center; z-index:0;"></div>
   <div style="position:absolute; inset:0; background:rgba(0,0,50,0.45); z-index:1;"></div>
   <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100dvh; padding:40px 20px; text-align:center;">
@@ -1212,9 +1188,9 @@ html, body {
   </div>
 </div>
 
-<div id="SPGo-L2-P1.T5-Tibetan-Haircut" class="screen">
+<div id="screen-B2-1-T5" class="screen">
   <div class="inner-header" style="max-width:420px; width:100%;">
-    <button class="back-btn" onclick="goTo('SPGo-L1-P1-DS')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-1')">‹</button>
     <span class="inner-title">📅 DS Portal Ajisai</span>
   </div>
 
@@ -1258,7 +1234,7 @@ html, body {
 <!-- ============================================================
      SCREEN B2: QMDJ & DIVINATIONS
      ============================================================ -->
-<div id="SPGo-L1-H1-QMDJ-Divination" class="screen">
+<div id="screen-B1-2" class="screen">
   <div class="inner-header">
     <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
     <span class="inner-title">五 Go Main Menu</span>
@@ -1274,7 +1250,7 @@ html, body {
   <!-- EXACTLY 2 BUTTONS per Excel Level ID B2.2.1 and B2.2.2 -->
   <div class="cards">
     <!-- B2.2.1: QMDJ -->
-    <div class="card" onclick="goTo('SPGo-L2-H1.H1-QMDJ')">
+    <div class="card" onclick="goTo('screen-B2-2-1')">
       <div class="card-icon"><img src="https://i.postimg.cc/SRYGBpwy/QMDJ-i-Botan.png" alt="Botan" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">☯️ 奇門遁甲 QMDJ</span></div>
@@ -1284,7 +1260,7 @@ html, body {
     </div>
 
     <!-- B2.2.2: Divination Portal Tsutsuji -->
-    <div class="card" onclick="goTo('SPGo-L2-H1.P1-Divination')">
+    <div class="card" onclick="goTo('screen-B2-2-2')">
       <div class="card-icon"><img src="https://i.postimg.cc/Qd3Ts8C0/tsutsuji_2.png" alt="Tsutsuji" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🔮 Divination Portal</span> <span style="font-family:'Cinzel',serif; font-size:13px; color:#e0b0ff; letter-spacing:0.05em;">Tsutsuji</span></div>
@@ -1303,9 +1279,9 @@ html, body {
 <!-- ============================================================
      SCREEN B2-2-1: QMDJ Sites
      ============================================================ -->
-<div id="SPGo-L2-H1.H1-QMDJ" class="screen">
+<div id="screen-B2-2-1" class="screen">
   <div class="inner-header">
-    <button class="back-btn" onclick="goTo('SPGo-L1-H1-QMDJ-Divination')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-2')">‹</button>
     <span class="inner-title">☯️ QMDJ</span>
   </div>
 
@@ -1381,9 +1357,9 @@ html, body {
 <!-- ============================================================
      SCREEN B2-2-2 (Divination Portal Tsutsuji)
      ============================================================ -->
-<div id="SPGo-L2-H1.P1-Divination" class="screen">
+<div id="screen-B2-2-2" class="screen">
   <div class="inner-header">
-    <button class="back-btn" onclick="goTo('SPGo-L1-H1-QMDJ-Divination')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-2')">‹</button>
     <span class="inner-title">🔮 Divination Portal</span>
   </div>
 
@@ -1421,15 +1397,6 @@ html, body {
       </div>
       <div class="card-arrow">›</div>
     </div>
-
-    <!-- H1.P1.T4 Fortune Wheel Fukubiki — redirect to standalone -->
-    <div class="card grayed" onclick="window.location.href='https://spgo5.github.io/Go5.FW/'">
-      <div class="card-icon">🎡</div>
-      <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400;">Fortune Wheel</span> <span style="font-family:'Cinzel',serif; font-size:13px; color:#e0b0ff;">Fukubiki</span> <span class="coming-soon-tag">Soon</span></div>
-      </div>
-      <div class="card-arrow">›</div>
-    </div>
   </div>
 
   <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🌐 Sites</div>
@@ -1455,7 +1422,7 @@ html, body {
 <!-- ============================================================
      SCREEN B3: INDIVIDUAL LIFE STUDY
      ============================================================ -->
-<div id="SPGo-L1-H2-ILS" class="screen">
+<div id="screen-B1-3" class="screen">
   <div class="inner-header">
     <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
     <span class="inner-title">五 Go Main Menu</span>
@@ -1469,7 +1436,7 @@ html, body {
 
   <div class="cards">
     <!-- B3 Button 1: Bazi Portal Bara -->
-    <div class="card" id="card-bara" onclick="goTo('SPGo-L2-H2.H1-Bara-splash')">
+    <div class="card" id="card-bara" onclick="goTo('screen-B2-3-1-splash')">
       <div class="card-icon"><img src="https://i.postimg.cc/SR1By1WK/Bara-Orange.png" alt="Bara" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title">🎭 Bazi Portal Bara</div>
@@ -1480,7 +1447,7 @@ html, body {
     </div>
 
     <!-- B3 Button 2: Vedic Portal Fuki -->
-    <div class="card" onclick="goTo('SPGo-L2-H2.P1-Fuki')">
+    <div class="card" onclick="goTo('screen-B2-3-2')">
       <div class="card-icon"><img src="https://i.postimg.cc/7YhrDb9B/Fuki-portal-image.png" alt="Vedic" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title">Vedic Portal Fuki</div>
@@ -1502,7 +1469,7 @@ html, body {
 <!-- ============================================================
      SCREEN B2-3-1-splash: Bazi Portal full-screen overlay
      ============================================================ -->
-<div id="SPGo-L2-H2.H1-Bara-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="goTo('SPGo-L2-H2.H1-Bara')">
+<div id="screen-B2-3-1-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="goTo('screen-B2-3-1')">
   <div style="position:absolute; inset:0; background-image:url('https://i.postimg.cc/0jWNNPCf/Rose-Leaning-Medium.jpg'); background-size:cover; background-position:center; z-index:0;"></div>
   <div style="position:absolute; inset:0; background:rgba(0,0,80,0.45); z-index:1;"></div>
   <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100dvh; padding:40px 20px; text-align:center;">
@@ -1511,9 +1478,9 @@ html, body {
   </div>
 </div>
 
-<div id="SPGo-L2-H2.H1-Bara" class="screen">
+<div id="screen-B2-3-1" class="screen">
   <div class="inner-header">
-    <button class="back-btn" onclick="goTo('SPGo-L1-H2-ILS')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-3')">‹</button>
     <span class="inner-title">八字 Bazi</span>
   </div>
 
@@ -1558,9 +1525,9 @@ html, body {
 <!-- ============================================================
      SCREEN B3.3: VEDIC ASTROLOGY
      ============================================================ -->
-<div id="SPGo-L2-H2.P1-Fuki" class="screen">
+<div id="screen-B2-3-2" class="screen">
   <div class="inner-header" style="max-width:420px; width:100%;">
-    <button class="back-btn" onclick="goTo('SPGo-L1-H2-ILS')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-3')">‹</button>
     <span class="inner-title">Vedic Portal Fuki</span>
   </div>
 
@@ -1573,7 +1540,7 @@ html, body {
   <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
 
   <div class="cards" style="margin-bottom:20px;">
-    <div class="card" onclick="goTo('SPGo-L3-H2.P1.T1-Chart-Data')">
+    <div class="card" onclick="goTo('screen-B3-3-2-T1')">
       <div class="card-icon"><img src="https://i.postimg.cc/bwm6CsPv/Fuki_1.png" alt="Charts" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title">Your Divisional Chart Data</div>
@@ -1615,9 +1582,9 @@ html, body {
 <!-- ============================================================
      SCREEN B3.3.1: VEDIC CHART DATA
      ============================================================ -->
-<div id="SPGo-L3-H2.P1.T1-Chart-Data" class="screen">
+<div id="screen-B3-3-2-T1" class="screen">
   <div class="inner-header" style="max-width:420px; width:100%;">
-    <button class="back-btn" onclick="goTo('SPGo-L2-H2.P1-Fuki')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B2-3-2')">‹</button>
     <span class="inner-title">VA (i) Fuki</span>
   </div>
 
@@ -1651,9 +1618,9 @@ html, body {
 </div>
 
 <!-- Vedic chart data detail screen -->
-<div id="SPGo-L3-H2.P1.T1-Chart-Data-data" class="screen">
+<div id="screen-B3-3-2-T1-data" class="screen">
   <div class="inner-header" style="max-width:420px; width:100%;">
-    <button class="back-btn" onclick="goTo('SPGo-L3-H2.P1.T1-Chart-Data')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B3-3-2-T1')">‹</button>
     <span class="inner-title">VA (i) Fuki</span>
   </div>
   <div style="width:100%; max-width:420px;">
@@ -1672,7 +1639,7 @@ html, body {
 <!-- ============================================================
      SCREEN B4: FENGSHUI
      ============================================================ -->
-<div id="SPGo-L1-P2-FS" class="screen">
+<div id="screen-B1-4" class="screen">
   <div class="inner-header">
     <button class="back-btn" onclick="goTo('screen-B0')">‹</button>
     <span class="inner-title">五 Go Main Menu</span>
@@ -1689,7 +1656,7 @@ html, body {
     <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🛠️ Your Tools</div>
     <p class="fs-subscriber-note" style="display:none; font-size:12px; color:rgba(255,150,150,0.8); font-style:italic; margin-bottom:10px; padding:8px 12px; background:rgba(255,0,0,0.08); border:1px solid rgba(255,0,0,0.2); border-radius:8px;">For subscribers of FS (ii) Shage only</p>
 
-    <div class="card fs-tool-gated" onclick="goTo('SPGo-L2-P2.T1-House-Facing')">
+    <div class="card fs-tool-gated" onclick="goTo('screen-B2-4-T1')">
       <div class="card-icon"><img src="https://i.postimg.cc/VsSqKmq5/FS-ii-Shage.png" alt="Ruler"></div>
       <div class="card-text">
         <div class="card-title">🧭 House Facing Ruler</div>
@@ -1698,7 +1665,7 @@ html, body {
       <div class="card-arrow">›</div>
     </div>
 
-    <div class="card fs-tool-gated" onclick="goTo('SPGo-L2-P2.T2-Flying-Stars')">
+    <div class="card fs-tool-gated" onclick="goTo('screen-B2-4-T2')">
       <div class="card-icon"><img src="https://i.postimg.cc/nr5T0JbR/2NW1_1.png" alt="Flying Star" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
         <div class="card-title">Flying Star Charts</div>
@@ -1783,9 +1750,9 @@ html, body {
 <!-- ============================================================
      SCREEN B4.3: HOUSE FACING RULER (FINLAY + SK COMBINED)
      ============================================================ -->
-<div id="SPGo-L2-P2.T1-House-Facing" class="screen" style="padding-bottom: 80px;">
+<div id="screen-B2-4-T1" class="screen" style="padding-bottom: 80px;">
   <div class="inner-header" style="max-width:700px; width:100%;">
-    <button class="back-btn" onclick="goTo('SPGo-L1-P2-FS')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-4')">‹</button>
     <span class="inner-title">Fengshui Menu</span>
   </div>
 
@@ -1913,9 +1880,9 @@ html, body {
 <!-- ============================================================
      SCREEN B4.4: FLYING STAR CHART LOOKUP (standalone)
      ============================================================ -->
-<div id="SPGo-L2-P2.T2-Flying-Stars" class="screen">
+<div id="screen-B2-4-T2" class="screen">
   <div class="inner-header" style="max-width:420px; width:100%;">
-    <button class="back-btn" onclick="goTo('SPGo-L1-P2-FS')">‹</button>
+    <button class="back-btn" onclick="goTo('screen-B1-4')">‹</button>
     <span class="inner-title">Fengshui Menu</span>
   </div>
 
@@ -2331,7 +2298,7 @@ function haircutFormatDate(d) {
 }
 
 function haircutSplashContinue() {
-  goTo('SPGo-L2-P1.T5-Tibetan-Haircut');
+  goTo('screen-B2-1-T5');
 }
 
 function loadTodayHaircut() {
@@ -2419,12 +2386,12 @@ function goTo(screenId) {
   // Push browser history state
   history.pushState({ screenId }, '', '#' + screenId);
 
-  if (screenId === 'SPGo-L2-P2.T1-House-Facing') initMap();
-  if (screenId === 'SPGo-L2-P1.T5-Tibetan-Haircut-splash') {
+  if (screenId === 'screen-B2-4-T1') initMap();
+  if (screenId === 'screen-B2-1-T5-splash') {
     // Start loading haircut data in background while on splash
     loadTodayHaircut();
   }
-  if (screenId === 'SPGo-L2-P1.T5-Tibetan-Haircut') {
+  if (screenId === 'screen-B2-1-T5') {
     // Reset custom date picker and result when returning
     const picker = document.getElementById('haircut-date-picker');
     if (picker) picker.value = '';
@@ -2435,8 +2402,8 @@ function goTo(screenId) {
     const customDate = document.getElementById('haircut-custom-date-label');
     if (customDate) customDate.textContent = '';
   }
-  if (screenId === 'SPGo-L1-P2-FS') applyFsSubscriberGating();
-  if (screenId === 'SPGo-L3-H2.P1.T1-Chart-Data') loadVedicCharts();
+  if (screenId === 'screen-B1-4') applyFsSubscriberGating();
+  if (screenId === 'screen-B3-3-2-T1') loadVedicCharts();
 
   if (screenId === 'screen-B0-login') {
     // Clear saved login so user can switch accounts
@@ -2445,10 +2412,10 @@ function goTo(screenId) {
     currentFsSubscriber = false; currentHasPortal = false;
   }
   // Item 32: Reset flying star when leaving the screen
-  if (screenId === 'SPGo-L1-P2-FS' || (current === 'SPGo-L2-P2.T2-Flying-Stars' && screenId !== 'SPGo-L2-P2.T2-Flying-Stars')) {
+  if (screenId === 'screen-B1-4' || (current === 'screen-B2-4-T2' && screenId !== 'screen-B2-4-T2')) {
     resetFlyingStarScreen();
   }
-  if (screenId === 'SPGo-L2-P2.T2-Flying-Stars') {
+  if (screenId === 'screen-B2-4-T2') {
     resetFlyingStarScreen();
   }
 }
@@ -2491,7 +2458,7 @@ document.addEventListener('touchend', e => {
   if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2) {
     // Don't trigger swipe on map canvas
     const active = document.querySelector('.screen.active');
-    if (active && active.id === 'SPGo-L2-P2.T1-House-Facing') return;
+    if (active && active.id === 'screen-B2-4-T1') return;
     if (dx > 0) goBack(); // swipe right = back
     // swipe left = forward (re-enter last screen if available) — noop for now, standard Android behaviour
   }
@@ -2865,7 +2832,7 @@ function loadVedicChart(chartName) {
   if (btn) { btn.textContent = 'Copy All'; btn.style.background = 'var(--sky)'; }
   vedicCurrentData = '';
   // Navigate to data detail screen
-  goTo('SPGo-L3-H2.P1.T1-Chart-Data-data');
+  goTo('screen-B3-3-2-T1-data');
 
   gasJsonp('action=vedicData&idCode=' + encodeURIComponent(currentUser) + '&chart=' + encodeURIComponent(chartName), function(data) {
     vedicCurrentData = data.data || '';
