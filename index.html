@@ -279,7 +279,8 @@ html, body {
 .card-alias {
   font-family: 'Grey Qo', cursive;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 26px;
+  line-height: 1;
 }
 .card-desc { font-size: 13px; color: rgba(255,255,255,0.5); }
 .card-desc2 { font-size: 12px; color: var(--sky); margin-top: 4px; opacity: 0.7; }
@@ -1745,6 +1746,22 @@ function vedicCopyData() {
 // ============================================================
 window.addEventListener('DOMContentLoaded', function() {
   checkOAuthReturn();
+  // Debug profile pic
+  const _origLoad = window.loadProfilePic;
+  window.loadProfilePic = function(idCode, tier, callback) {
+    gasJsonp('action=getProfilePic&idCode=' + encodeURIComponent(idCode) + '&tier=' + (tier||0), function(data) {
+      console.log('Profile pic GAS response:', JSON.stringify(data));
+      if (data.data) {
+        callback('data:' + (data.mime||'image/png') + ';base64,' + data.data, !!data.isPersonal);
+      } else {
+        console.log('Profile pic: no data returned, error:', data.error);
+        callback(null, false);
+      }
+    }, function(err) {
+      console.log('Profile pic JSONP failed:', err);
+      callback(null, false);
+    });
+  };
 });
 </script>
 
