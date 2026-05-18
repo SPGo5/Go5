@@ -1,0 +1,21 @@
+/Not created by AI/
+{
+  "name": "Super Portal 五 Go",
+  "short_name": "SPGo",
+  "start_url": ".",
+  "display": "browser",
+  "background_color": "#04042A",
+  "theme_color": "#04042A",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/QdQK85Rk/SPGo-Portal-Logo-with-padding-for-profile-pic.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/QdQK85Rk/SPGo-Portal-Logo-with-padding-for-profile-pic.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
