@@ -1,4 +1,29 @@
 <!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  SPGo PORTAL — DESIGN SYSTEM RULES FOR CLAUDE
+  ════════════════════════════════════════════════════════════════
+  This file is part of the SPGo design system.
+  All shared design tokens (colours, fonts, button styles,
+  card types, header, footer) are defined in:
+
+    https://spgo5.github.io/Go5.SHARED/spgo-core.css
+    https://spgo5.github.io/Go5.SHARED/spgo-core.js
+
+  RULES:
+  1. NEVER redefine .card-hub, .card-portal, .card-ext,
+     .card-tool, .card-screen, or .card-alias locally.
+     Edit spgo-core.css instead.
+  2. NEVER redefine .portal-footer, .footer-credit,
+     or .footer-copy locally. Footer is shared.
+  3. NEVER redefine .inner-header locally.
+  4. To change any button colour, font, or style globally,
+     edit the CSS variable in spgo-core.css :root block.
+  5. Portal-specific CSS is allowed in the local <style>
+     block only if it does not override any shared token
+     or class.
+  ════════════════════════════════════════════════════════════════
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,13 +37,12 @@
   title="五 Go Super Portal">
 <meta property="og:title" content="五 Go · Super Portal">
 <meta property="og:description" content="QMDJ, Divination, Fengshui, Life Study — your personal super portal.">
-<meta property="og:image" content="https://i.postimg.cc/6qX8RQsh/SPGo-Portal-Logo-with-padding-for-profile-pic.png">
+<meta property="og:image" content="https://i.postimg.cc/fRdF8YCj/Hibiscus_orange_5.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<link rel="icon" type="image/png" href=https://i.postimg.cc/6qX8RQsh/SPGo-Portal-Logo-with-padding-for-profile-pic.png">
+<link rel="icon" type="image/png" href="https://i.postimg.cc/ryZgWswz/Go5_favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400&family=Ma+Shan+Zheng&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Beau+Rivage&family=Klee+One&family=Corinthia&family=Aleo:wght@300;400;700&family=Grey+Qo&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400&family=Ma+Shan+Zheng&family=IM+Fell+English:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Beau+Rivage&family=Klee+One&family=Corinthia&family=Aleo:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://spgo5.github.io/Go5.SHARED/spgo-core.css">
 
 <style>
@@ -276,33 +300,12 @@ html, body {
   color: var(--sky);
   margin-bottom: 3px;
 }
-.card-alias {
-  font-family: 'Grey Qo', cursive;
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 1;
-}
+/* .card-alias: defined in spgo-core.css */
 .card-desc { font-size: 13px; color: rgba(255,255,255,0.5); }
 .card-desc2 { font-size: 12px; color: var(--sky); margin-top: 4px; opacity: 0.7; }
 .card-arrow { color: var(--sky); font-size: 20px; flex-shrink: 0; }
 
-/* ── Node-type card colours (per SPGo design system) ── */
-.card-hub      { background: #000073; border-color: #00BFFF; box-shadow: 0 2px 12px rgba(0,191,255,0.3); }
-.card-portal   { background: #0CDD08; border-color: #09AA05; box-shadow: 0 2px 12px rgba(12,221,8,0.3); }
-.card-ext      { background: #E0B0FF; border-color: #8833CC; box-shadow: 0 2px 12px rgba(136,51,204,0.3); }
-.card-tool     { background: #00BFFF; border-color: #0090CC; box-shadow: 0 2px 12px rgba(0,191,255,0.35); }
-.card-hub    .card-title { color: #ffffff; }
-.card-portal .card-title { color: #ffffff; }
-.card-ext    .card-title { color: #9900ff; }
-.card-tool   .card-title { color: #ffffff; }
-.card-hub    .card-arrow,
-.card-portal .card-arrow,
-.card-tool   .card-arrow { color: rgba(255,255,255,0.7); }
-.card-ext    .card-arrow { color: #8833CC; }
-.card-hub    .card-desc,
-.card-portal .card-desc,
-.card-tool   .card-desc  { color: rgba(255,255,255,0.75); }
-.card-ext    .card-desc  { color: rgba(80,0,120,0.85); }
+/* card-type colours: defined in spgo-core.css */
 
 /* INNER SCREEN HEADER */
 .inner-header {
@@ -1379,7 +1382,7 @@ html, body {
      ============================================================ -->
 
 <!-- SPGo Shared Core Scripts -->
-<script src="https://spgo5.github.io/Go5.SHARED/spgo-core.js?v=2"></script>
+<script src="https://spgo5.github.io/Go5.SHARED/spgo-core.js"></script>
 
 <script>
 // ============================================================
@@ -1746,22 +1749,7 @@ function vedicCopyData() {
 // ============================================================
 window.addEventListener('DOMContentLoaded', function() {
   checkOAuthReturn();
-  // Debug profile pic
-  const _origLoad = window.loadProfilePic;
-  window.loadProfilePic = function(idCode, tier, callback) {
-    gasJsonp('action=getProfilePic&idCode=' + encodeURIComponent(idCode) + '&tier=' + (tier||0), function(data) {
-      console.log('Profile pic GAS response:', JSON.stringify(data));
-      if (data.data) {
-        callback('data:' + (data.mime||'image/png') + ';base64,' + data.data, !!data.isPersonal);
-      } else {
-        console.log('Profile pic: no data returned, error:', data.error);
-        callback(null, false);
-      }
-    }, function(err) {
-      console.log('Profile pic JSONP failed:', err);
-      callback(null, false);
-    });
-  };
+  hsLoadClients();
 });
 </script>
 
