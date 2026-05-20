@@ -756,18 +756,20 @@ html, body {
     </div>
 
     <!-- B5 — grayed -->
-    <div class="card grayed">
-      <div class="card-icon"><img src="https://i.postimg.cc/g0MQdmBz/Yijing_I_tenjiku.png" alt="Yijing"></div>
-      <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">☯ Yijing</span> <span class="card-alias" style="color:#e0b0ff;">Tenjiku</span> <span class="coming-soon-tag">Soon</span></div>
-      </div>
-      <div class="card-arrow">›</div>
-    </div>
 
     <div class="section-divider" style="margin: 4px 0;"></div>
 
     <!-- B6 — personal portal, locked for guest -->
-    <div class="card card-ext" id="card-b6" onclick="openPersonalPortal()">
+    <!-- H5: Yi Jing — external link, gated col M -->
+    <div class="card card-ext grayed" onclick="window.open('https://sites.google.com/view/yijingtenjiku','_blank')">
+      <div class="card-icon">☯</div>
+      <div class="card-text">
+        <div class="card-title">☯ 易經 Yi Jing <span class="card-alias">Tenjiku</span> <span class="coming-soon-tag">Soon</span></div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>
+
+        <div class="card card-ext" id="card-b6" onclick="openPersonalPortal()">
       <div class="card-icon"><img src="https://i.postimg.cc/ZnmgZHzM/FS-vi-Kuchinashi-2.png" alt="Kuchinashi"></div>
       <div class="card-text">
         <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">👤 Your Personal Portal</span> <span class="card-alias" style="color:#e0b0ff;">Kuchinashi</span></div>
@@ -809,7 +811,7 @@ html, body {
 
   <div class="cards">
     <!-- P1.T1 Today Snapshot — Soon -->
-    <div class="card grayed">
+    <div class="card card-tool grayed">
       <div class="card-icon">🗓</div>
       <div class="card-text">
         <div class="card-title">Today Snapshot <span class="coming-soon-tag">Soon</span></div>
@@ -819,7 +821,7 @@ html, body {
     </div>
 
     <!-- P1.T2 Current Hour — Soon -->
-    <div class="card grayed">
+    <div class="card card-tool grayed">
       <div class="card-icon">🕒</div>
       <div class="card-text">
         <div class="card-title">🕒 Current Hour <span class="coming-soon-tag">Soon</span></div>
@@ -829,7 +831,7 @@ html, body {
     </div>
 
     <!-- P1.T3 FS Charts for DS — Soon -->
-    <div class="card grayed">
+    <div class="card card-tool grayed">
       <div class="card-icon">⏳</div>
       <div class="card-text">
         <div class="card-title">⏳ FS Charts For DS <span class="coming-soon-tag">Soon</span></div>
@@ -838,8 +840,8 @@ html, body {
       <div class="card-arrow">›</div>
     </div>
 
-    <!-- P1.T4 Monthly Calendar — Live -->
-    <div class="card grayed">
+    <!-- P1.T4 Monthly Calendar — Soon -->
+    <div class="card card-tool grayed">
       <div class="card-icon">📅</div>
       <div class="card-text">
         <div class="card-title">📅 Monthly Calendar <span class="coming-soon-tag">Soon</span></div>
@@ -864,30 +866,30 @@ html, body {
 
   <div class="cards">
     <!-- P1.S1 DS (iii) Ajisai — External Link -->
-    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/dsiiiajisai','_blank')">
+    <div class="card card-ext external" onclick="window.open('https://sites.google.com/view/dsiiiajisai','_blank')">
       <div class="card-icon"><img src="https://i.postimg.cc/15ky2Vyf/ajisai-DS.png" alt="Ajisai DS" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">💠 DS (iii) Ajisai</span></div>
+        <div class="card-title">💠 DS (iii) Ajisai</div>
         <div class="card-desc">Date selection site · 🌐 Go to site ↗</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
     <!-- P1.S2 Auxiliary Stars Sora — External Link -->
-    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/auxiliarystarssora','_blank')">
+    <div class="card card-ext external" onclick="window.open('https://sites.google.com/view/auxiliarystarssora','_blank')">
       <div class="card-icon">〇</div>
       <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">〇 Auxiliary Stars</span> <span class="card-alias" style="color:#e0b0ff;">Sora</span></div>
+        <div class="card-title">〇 Auxiliary Stars <span class="card-alias">Sora</span></div>
         <div class="card-desc">Auxiliary stars reference · 🌐 Go to site ↗</div>
       </div>
       <div class="card-arrow">›</div>
     </div>
 
     <!-- P1.S3 Chn (i) Ginkgo — External Link -->
-    <div class="card card-ext" onclick="window.open('https://sites.google.com/view/chniginkgo','_blank')">
+    <div class="card card-ext external" onclick="window.open('https://sites.google.com/view/chniginkgo','_blank')">
       <div class="card-icon"><img src="https://i.postimg.cc/fRm85t91/Ginkgo-Chn-i.png" alt="Ginkgo" style="width:42px;height:42px;object-fit:contain;"></div>
       <div class="card-text">
-        <div class="card-title"><span style="font-family:'Aleo',serif; font-weight:400; color:white;">🔤 Chn (i)</span> <span class="card-alias" style="color:#e0b0ff;">Ginkgo</span></div>
+        <div class="card-title">🔤 Chn (i) <span class="card-alias">Ginkgo</span></div>
         <div class="card-desc">Chinese resource site · 🌐 Go to site ↗</div>
       </div>
       <div class="card-arrow">›</div>
@@ -898,14 +900,7 @@ html, body {
     <div class="footer-credit">Developed by <strong>Claude</strong> · Conceived &amp; directed by <strong>SPGo</strong></div>
     <div class="footer-copy">© 2026 · SPGo · All rights reserved</div>
   </div>
-</div>
 
-<!-- ============================================================
-     SCREEN B1.4: HAIRCUT ADVICE
-     ============================================================ -->
-<!-- ============================================================
-     SCREEN: HAIRCUT SPLASH
-     ============================================================ -->
 <div id="SPGo-L2-P1.T5-Tibetan-Haircut-splash" class="screen" style="padding:0; position:relative; overflow:hidden;" onclick="haircutSplashContinue()">
   <div style="position:absolute; inset:0; background-image:url('https://i.postimg.cc/6pZ3W739/Boddhisattva-haircut-fpmt-org-image.png'); background-size:auto 100%; background-repeat:no-repeat; background-position:center; z-index:0;"></div>
   <div style="position:absolute; inset:0; background:rgba(0,0,50,0.45); z-index:1;"></div>
@@ -1021,15 +1016,6 @@ html, body {
   <div style="margin-bottom:20px;"></div>
 
   <div class="cards">
-    <div class="card grayed">
-      <div class="card-icon" style="width:42px;flex-shrink:0;"></div>
-      <div class="card-text">
-        <div class="card-title">奇門遁甲 Charts <span class="coming-soon-tag">Soon</span></div>
-        <div class="card-desc">QMDJ Y/M/D/H charts</div>
-      </div>
-      <div class="card-arrow">›</div>
-    </div>
-  </div>
 
   <div style="font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(0,191,255,0.6); padding:6px 0 8px; width:100%; max-width:420px;">🌐 Sites:</div>
   <div style="width:100%; max-width:420px; height:1px; background:rgba(255,255,255,0.1); margin:0 0 8px;"></div>
